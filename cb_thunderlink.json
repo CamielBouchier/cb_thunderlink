@@ -1,0 +1,7 @@
+{
+"name": "cb_thunderlink",
+"description": "cb_thunderlink is a thunderlink replacement.",
+"path": "cb_thunderlink.exe",
+"type": "stdio",
+"allowed_extensions": [ "cb_thunderlink@bouchier.be" ]
+}

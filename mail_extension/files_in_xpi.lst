@@ -1,0 +1,5 @@
+images\*
+*.js
+*.html
+*.json
+*.css

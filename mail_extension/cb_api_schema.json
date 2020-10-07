@@ -1,0 +1,27 @@
+[
+    {
+    "namespace": "cb_api",
+    "functions": 
+        [
+            {
+            "name": "cb_show_message",
+            "type": "function",
+            "description": "Shows a message with messageId.",
+            "async": false,
+            "parameters": 
+                [
+                    {
+                    "name": "message_id",
+                    "type": "integer",
+                    "description": "The messageId of the message to show."
+                    },
+                    {
+                    "name": "open_mode",
+                    "type": "string",
+                    "description": "new_tab | new_window | three_pane"
+                    }
+                ]
+            }
+        ]
+    }
+]

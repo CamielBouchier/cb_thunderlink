@@ -1,0 +1,6 @@
+references/*
+tiddly_wiki*
+build/*
+dist/*
+__pycache__/*
+*.xpi
