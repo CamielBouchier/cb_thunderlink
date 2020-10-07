@@ -1,0 +1,28 @@
+/*
+
+$BeginLicense$
+$EndLicense$
+
+*/
+
+body {
+  width: 35em;
+  font-family: "Open Sans Light", sans-serif;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
+.textLabel {
+  margin-left: 1.0em;
+}
+
+input[type="text"] {
+  margin: 0.5em;
+  width: 450px;
+  height: 2.0em;
+}
+
+
+/*
+vim: syntax=css ts=4 sw=4 sts=4 sr et columns=80
+*/

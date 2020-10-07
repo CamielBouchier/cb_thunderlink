@@ -1,91 +1,80 @@
 {
-"manifest_version": 2,
-"name": "cb_thunderlink",
-"description": "cb_thunderlink is a thunderlink replacement.",
-"version": "1.0",
-"author": "camiel@bouchier.be",
-"applications": 
-    {
-    "gecko": 
-        {
+    "manifest_version": 2,
+    "version": "1.0",
+    "name": "cb_thunderlink",
+    "description": "cb_thunderlink is a thunderlink replacement.",
+    "author": "camiel@bouchier.be",
+    "applications": {
+    "gecko": {
         "id": "cb_thunderlink@bouchier.be",
-        "strict_min_version": "66.0"
+        "strict_min_version": "68.12.0"
         }
     },
-"browser_action": 
-    {
-    "default_icon": "images/internet-32px.png"
+    "browser_action": {
+        "default_icon": "images/cb-32px.png"
     },
 
-"permissions": 
-    [
-    "accountsFolders",
-    "accountsRead",
-    "activeTab",
-    "addressBooks",
-    "alarms",
-    "browserSettings",
-    "clipboardRead",
-    "clipboardWrite",
-    "contextualIdentities",
-    "cookies",
-    "dns",
-    "downloads",
-    "downloads.open",
-    "geolocation",
-    "idle",
-    "management",
-    "menus",
-    "menus.overrideContext",
-    "messagesMove",
-    "messagesRead",
-    "nativeMessaging",
-    "notifications",
-    "pkcs11",
-    "privacy",
-    "proxy",
-    "storage",
-    "tabHide",
-    "tabs",
-    "theme",
-    "unlimitedStorage",
-    "webNavigation",
-    "webRequest",
-    "webRequestBlocking"
+    "permissions": [
+	    "accountsFolders",
+	    "accountsRead",
+	    "activeTab",
+	    "addressBooks",
+	    "alarms",
+	    "browserSettings",
+	    "clipboardRead",
+	    "clipboardWrite",
+	    "contextualIdentities",
+	    "cookies",
+	    "dns",
+	    "downloads",
+	    "downloads.open",
+	    "geolocation",
+	    "idle",
+	    "management",
+	    "menus",
+	    "menus.overrideContext",
+	    "messagesMove",
+	    "messagesRead",
+	    "nativeMessaging",
+	    "notifications",
+	    "pkcs11",
+	    "privacy",
+	    "proxy",
+	    "storage",
+	    "tabHide",
+	    "tabs",
+	    "theme",
+	    "unlimitedStorage",
+	    "webNavigation",
+	    "webRequest",
+	    "webRequestBlocking"
     ],
-"icons": 
-    {
-    "64": "images/internet.png",
-    "32": "images/internet-32px.png",
-    "16": "images/internet-16px.png"
+    "icons": {
+    "64": "images/cb-64px.png",
+    "32": "images/cb-32px.png",
+    "16": "images/cb-16px.png"
 	},
-"background": 
-    {
-	"scripts": 
-        [
+    "background": {
+	    "scripts": [
 		"cb_background.js"
 		],
-	"persistent": false
+	    "persistent": false
     },
-"experiment_apis": 
-    {
-    "cb_api": 
-        {
-        "schema": "cb_api_schema.json",
-        "parent": 
-            {
-            "scopes": 
-                [
-                "addon_parent"
+    "experiment_apis": {
+        "cb_api": {
+            "schema": "cb_api_schema.json",
+            "parent": {
+                "scopes": [
+                    "addon_parent"
                 ],
-            "paths": 
-                [
-                    [
-                    "cb_api"
-                    ]
+                "paths": [
+                    [ "cb_api" ]
                 ],
-            "script": "cb_api.js"
+                "script": "cb_api.js"
             }
         }
+    },
+    "options_ui": {
+        "page": "cb_options.html"
     }
 }

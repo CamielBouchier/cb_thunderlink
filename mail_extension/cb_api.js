@@ -77,7 +77,6 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
                                 the_message = collection.items[i].folderMessage
                                 if (the_message) break
                             }
-                            console.log(the_message)
                             // Following few lines are +/- from original thunderlink.
                             // Code deduplication proved difficult, e.g. for callback.
                             let win = Services.wm.getMostRecentWindow("mail:3pane")

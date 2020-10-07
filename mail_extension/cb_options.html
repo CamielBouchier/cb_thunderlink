@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+
+$BeginLicense$
+$EndLicense$
+
+-->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="cb_options.css"/>
+    </head>
+
+    <body>
+        <form>
+
+            <h4><b>Open-mode</b></h4>
+
+            <input type="radio" id="three_pane" name="open_mode" value="three_pane" checked>
+            <label for="three_pane">Three pane</label>
+            <br>
+            <input type="radio" id="new_tab" name="open_mode" value="new_tab">
+            <label for="new_tab">New tab</label>
+            <br>
+            <input type="radio" id="new_window" name="open_mode" value="new_window">
+            <label for="new_window">New window</label>
+            <br>
+
+            <h4><b>foobar</b></h4>
+            <p>Optionally add a prefix and suffix before and after the ID on copy.</p>
+            <label class=textLabel>Prefix: <input id="prefix" type="text"/></label>
+            <label class=textLabel>Suffix: <input id="suffix" type="text"/></label>
+            <label>Include angle brackets (&lt;&gt;): <input id="copyBrackets" type="checkbox"/></label>
+            <br>
+            <label>URL Encode the Message ID: <input id="urlEncode" type="checkbox"/></label>
+            <br>
+            <label>Get the raw Message ID (e.g. Message-ID: &lt;foo@bar&gt;): <input id="raw" type="checkbox"/></label>
+        </form>
+        <script src="cb_options.js"></script>
+    </body>
+</html>
+
+
+<!--
+vim: syntax=html ts=4 sw=4 sts=4 sr et columns=100
+--> 

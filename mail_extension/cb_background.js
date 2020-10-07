@@ -89,6 +89,12 @@ async function handle_incoming_link(incoming_link) {
 
     console.log(incoming_link)
 
+    let open_mode = 'three_pane'
+    let config = await browser.storage.local.get('cb_thunderlink')
+    if (config.cb_thunderlink) {
+        open_mode = config.cb_thunderlink.open_mode
+    }
+
     let match = /((cb)?thunderlink):\/\/([^\s\]]+)/.exec(incoming_link)
     let link_type = match[1]
     let link = match[3]
@@ -105,12 +111,12 @@ async function handle_incoming_link(incoming_link) {
         }
         let ml = await messenger.messages.query(the_query)
         let the_message = ml.messages[0]
-        messenger.cb_api.cb_show_message_from_api_id(the_message.id, "three_pane")
+        messenger.cb_api.cb_show_message_from_api_id(the_message.id, open_mode)
     }
 
     if (link_type == 'thunderlink') {
         msg_id =  link.replace('messageid=', '')
-        messenger.cb_api.cb_show_message_from_msg_id(msg_id, "three_pane")
+        messenger.cb_api.cb_show_message_from_msg_id(msg_id, open_mode)
     }
 }
 
