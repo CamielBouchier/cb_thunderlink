@@ -12,27 +12,81 @@
 console.log("cb_background started")
 
 //
+// Definition and implementation of the link-generators
+//
+
+var link_types = [
+    {
+        text    : 'cbthunderlink', 
+        to_link : function(m) { return to_cbthunderlink(m) }
+    },
+    {
+        text    : 'thunderlink', 
+        to_link : function(m) { return to_thunderlink(m) }
+    }
+]
+
+async function to_cbthunderlink(the_message) {
+    let link = "cbthunderlink://" + btoa(the_message.date.toJSON() + ";" + the_message.author)
+    return link
+}
+
+async function to_thunderlink(the_message) {
+    let full = await messenger.messages.getFull(the_message.id)
+    let msg_id = full.headers['message-id'][0]
+    msg_id = msg_id.replace(/^</,'').replace(/>$/,'')
+    let link = "thunderlink://messageid=" + msg_id
+    return link
+}
+
+//
+// Build the context menu for generating a link.
+//
+
+async function create_context_menu() {
+
+    let main_context_menu = {
+        contexts : ['message_list'],
+        title    : 'cb_thunderlink',
+        id       : 'main_context_menu'
+    }
+
+    main_context_id = await browser.menus.create(main_context_menu)
+
+    for (let i=0; i<link_types.length; i++) {
+
+        let sub_context_menu = {
+            contexts : ['message_list'],
+            title    : link_types[i].text,
+            parentId : main_context_id,
+            id       : 'sub_context_menu_' + i,
+            onclick  : on_context_menu
+        }
+
+        browser.menus.create(sub_context_menu)
+    }
+}
+
+create_context_menu()
+
+//
+// Do our link generating action according to the submenu clicked. 
+// Get it to the clipboard.
+//
+
+async function on_context_menu(e) {
+    let the_message = e.selectedMessages.messages[0]
+    let idx = e.menuItemId.replace('sub_context_menu_', '')
+    let link = await link_types[idx].to_link(the_message)
+    navigator.clipboard.writeText(link)
+}
+
+//
 // Start our accompanying python script.
 // See : https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging
 //
 
 var port = browser.runtime.connectNative("cb_thunderlink")
-
-//
-// The browserAction (button) we respond to queries for the currently displayed message.
-// That one is converted to a link (based on date/author) we subsequently copy to the clipboard.
-//
-
-messenger.messageDisplayAction.onClicked.addListener(() => {
-    let tab_query = {active: true, currentWindow: true}
-    messenger.tabs.query(tab_query).then(tabs => {
-        messenger.messageDisplay.getDisplayedMessage(tabs[0].id).then((message) => {
-            let link = "cbthunderlink://" + btoa(message.date.toJSON() + ";" + message.author)
-            console.log("cb_background generated link: " + link)
-            navigator.clipboard.writeText(link)
-        })
-    })
-})
 
 //
 // Here we listen to message we might receive from our accompanying python script.
@@ -58,6 +112,8 @@ async function cb_goto(encoded_link) {
         messenger.cb_api.cb_show_message(the_message.id, "three_pane")
     })
 }
+
+
 
 port.onMessage.addListener((encoded_link) => {
     cb_goto(encoded_link)

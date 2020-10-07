@@ -16,10 +16,7 @@
     {
     "default_icon": "images/internet-32px.png"
     },
-"message_display_action": 
-    {
-    "default_icon": "images/internet-32px.png"
-    },
+
 "permissions": 
     [
     "accountsFolders",
