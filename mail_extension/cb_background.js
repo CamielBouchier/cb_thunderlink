@@ -82,52 +82,56 @@ async function on_context_menu(e) {
 }
 
 //
+//  Handle incoming link (be it by button, be it by script)
+//
+
+async function handle_incoming_link(incoming_link) {
+
+    console.log(incoming_link)
+
+    let match = /((cb)?thunderlink):\/\/([^\s\]]+)/.exec(incoming_link)
+    let link_type = match[1]
+    let link = match[3]
+
+    if (link_type == 'cbthunderlink') {
+        let decoded_link = atob(link)
+        let date_auth = decoded_link.split(";")
+        let the_date = new Date(date_auth[0])
+        let the_author = date_auth[1]
+        let the_query = {
+            author   : the_author,
+            fromDate : the_date,
+            toDate   : the_date
+        }
+        let ml = await messenger.messages.query(the_query)
+        let the_message = ml.messages[0]
+        messenger.cb_api.cb_show_message_from_api_id(the_message.id, "three_pane")
+    }
+
+    if (link_type == 'thunderlink') {
+        msg_id =  link.replace('messageid=', '')
+        messenger.cb_api.cb_show_message_from_msg_id(msg_id, "three_pane")
+    }
+}
+
+//
+// Listen to incoming links on the browserAction.
+//
+
+messenger.browserAction.onClicked.addListener(async () => {
+    let incoming_link = await navigator.clipboard.readText()
+    handle_incoming_link(incoming_link)
+})
+
+//
 // Start our accompanying python script.
 // See : https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging
 //
 
 var port = browser.runtime.connectNative("cb_thunderlink")
 
-//
-// Here we listen to message we might receive from our accompanying python script.
-// If so, it is the identifier with date/author that we use for querying the messages.
-// The one found, we 'goto'.
-// Currently it is always opened in "three_pane", but "new_tab" or "new_window" is available
-// as well. This is waiting for configuration.
-//
-
-async function cb_goto(encoded_link) {
-    let decoded_link = atob(encoded_link)
-    let date_auth = decoded_link.split(";")
-    console.log("cb_background received: " + date_auth)
-    let the_date = new Date(date_auth[0])
-    let the_author = date_auth[1]
-    let the_query = {
-        author   : the_author,
-        fromDate : the_date,
-        toDate   : the_date
-    }
-    messenger.messages.query(the_query).then(ml => {
-        let the_message = ml.messages[0]
-        messenger.cb_api.cb_show_message(the_message.id, "three_pane")
-    })
-}
-
-
-
 port.onMessage.addListener((encoded_link) => {
     cb_goto(encoded_link)
-})
-
-messenger.browserAction.onClicked.addListener(() => {
-    navigator.clipboard.readText().then(clip => {
-        if (!clip.startsWith('cbthunderlink://')) {
-            console.error("Don't bother a link like: " + clip)
-            return
-        }
-        let encoded_link = clip.replace('cbthunderlink://', '')
-        cb_goto(encoded_link)
-    })
 })
 
 // vim: syntax=javascript ts=4 sw=4 sts=4 sr et columns=100

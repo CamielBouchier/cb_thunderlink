@@ -4,16 +4,35 @@
     "functions": 
         [
             {
-            "name": "cb_show_message",
+            "name": "cb_show_message_from_api_id",
             "type": "function",
-            "description": "Shows a message with messageId.",
-            "async": false,
+            "description": "Shows a message defined by API id.",
+            "async": true,
             "parameters": 
                 [
                     {
-                    "name": "message_id",
+                    "name": "api_id",
                     "type": "integer",
-                    "description": "The messageId of the message to show."
+                    "description": "The api_id of the message to show."
+                    },
+                    {
+                    "name": "open_mode",
+                    "type": "string",
+                    "description": "new_tab | new_window | three_pane"
+                    }
+                ]
+            },
+	    {
+            "name": "cb_show_message_from_msg_id",
+            "type": "function",
+            "description": "Shows a message defined by msg-id.",
+            "async": true,
+            "parameters": 
+                [
+                    {
+                    "name": "msg_id",
+                    "type": "string",
+                    "description": "The msg_id of the message to show."
                     },
                     {
                     "name": "open_mode",
