@@ -9,8 +9,6 @@
 // $EndLicense$
 //
 
-const prefixInput = document.querySelector("#prefix");
-const suffixInput = document.querySelector("#suffix");
 const copyBracketsInput = document.querySelector("#copyBrackets");
 const urlEncodeInput = document.querySelector("#urlEncode");
 const rawInput = document.querySelector("#raw");
@@ -19,7 +17,8 @@ function store_settings() {
     console.log(document.querySelector('input[name="open_mode"]:checked').value)
     browser.storage.local.set({
         cb_thunderlink: {
-            open_mode: document.querySelector('input[name="open_mode"]:checked').value
+            open_mode: document.querySelector('input[name="open_mode"]:checked').value,
+            format_string: document.querySelector('input[name="format_string"]').value
         }
     })
 }
@@ -59,6 +58,8 @@ browser.storage.local.get().then((settings) => {
     if (settings.cb_thunderlink) {
         let open_mode = settings.cb_thunderlink.open_mode
         document.getElementById(open_mode).checked = true
+	let format_string = settings.cb_thunderlink.format_string
+	document.querySelector("#format_string").value = format_string
     }
 })
 
@@ -69,14 +70,9 @@ copyBracketsInput.addEventListener("change", storeSettings);
 urlEncodeInput.addEventListener("change", storeSettings);
 rawInput.addEventListener("change", storeSettings);
 
-/*
-On textbox blur, save the currently selected settings.
-*/
-prefixInput.addEventListener("blur", storeSettings);
-suffixInput.addEventListener("blur", storeSettings);
-
-document.querySelector("#three_pane").addEventListener('change', store_settings)
-document.querySelector("#new_tab")   .addEventListener('change', store_settings)
-document.querySelector("#new_window").addEventListener('change', store_settings)
+document.querySelector("#three_pane")   .addEventListener('change', store_settings)
+document.querySelector("#new_tab")      .addEventListener('change', store_settings)
+document.querySelector("#new_window")   .addEventListener('change', store_settings)
+document.querySelector("#format_string").addEventListener('blur', store_settings)
 
 // vim: syntax=javascript ts=4 sw=4 sts=4 sr et columns=120

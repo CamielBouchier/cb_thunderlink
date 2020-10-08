@@ -28,7 +28,7 @@ var link_types = [
 
 async function to_cbthunderlink(the_message) {
     let link = "cbthunderlink://" + btoa(the_message.date.toJSON() + ";" + the_message.author)
-    return link
+    return format_link(link, the_message) 
 }
 
 async function to_thunderlink(the_message) {
@@ -36,7 +36,59 @@ async function to_thunderlink(the_message) {
     let msg_id = full.headers['message-id'][0]
     msg_id = msg_id.replace(/^</,'').replace(/>$/,'')
     let link = "thunderlink://messageid=" + msg_id
-    return link
+    return format_link(link, the_message) 
+}
+
+async function format_link(the_link, the_message) {
+    let format_string = "<link>"
+    let config = await browser.storage.local.get('cb_thunderlink')
+    if (config.cb_thunderlink.format_string) {
+        format_string = config.cb_thunderlink.format_string
+    }
+
+    // This is +/- from original thunderlink.
+    let result = await convert_escape_characters(format_string)
+    result = result.replace(/<link>/ig, the_link)
+
+    // <subject> <filteredSubject>
+    let subject = the_message.subject
+    // replace a few characters that frequently cause trouble
+    // with a focus on org-mode, provided as filteredSubject
+    let protectedSubject = subject.split("[").join("(")
+    protectedSubject = protectedSubject.split("]").join(")")
+    protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "")
+    result = result.replace(/<subject>/ig, subject)
+    result = result.replace(/<filteredSubject>/ig, protectedSubject)
+
+    // <sender> <senderName> <senderEmail>
+    let author = the_message.author
+    result = result.replace(/<sender>/ig, author)
+    // result = result.replace(/<sender>/ig, author.fullAddresses[0])
+    // result = result.replace(/<senderName>/ig, author.names[0])
+    // result = result.replace(/<senderEmail>/ig, author.addresses[0])
+
+    // <date> <time> <dateTime> <localeTime>
+    let date = new Date(the_message.date / 1000)
+    let isoDate = date.toISOString()
+    let splitDateTime = date.toISOString().split("T")
+    let dateString = splitDateTime[0]
+    let timeString = splitDateTime[1].substring(0, splitDateTime[1].length-1)
+    let localeDateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString()
+    result = result.replace(/<localeTime>/ig, localeDateString)
+    result = result.replace(/<time>/ig, isoDate)
+    result = result.replace(/<date>/ig, dateString)
+    result = result.replace(/<dateTime>/ig, timeString)
+
+    // Return the formatted link
+    return result
+}
+
+async function convert_escape_characters(string) {
+  // replacing double quotes so they are escaped for JSON.parse
+  let result = string.replace(/["]/g, "\\\"")
+  // convert escape characters like \t to tabs
+  result = JSON.parse("\"" + result + "\"")
+  return result
 }
 
 //
