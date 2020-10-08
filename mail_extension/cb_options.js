@@ -25,13 +25,13 @@ function store_settings() {
         }
         if (input.id.startsWith('s_enable')) {
             conf_links[idx].enable = input.checked
-        } 
+        }
         if (input.id.startsWith('s_name')) {
             conf_links[idx].name = input.value
-        } 
+        }
         if (input.id.startsWith('s_value')) {
             conf_links[idx].value = input.value
-        } 
+        }
     }
     let settings = {
         open_mode: document.querySelector('input[name="open_mode"]:checked').value,

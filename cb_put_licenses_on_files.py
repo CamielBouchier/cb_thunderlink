@@ -31,7 +31,7 @@ import re
 ####################################################################################################
 
 program_name = "cbPutLicenseOnFiles"
-log_dir      = "Logs"
+log_dir      = "logs"
 
 license_txt = [
     '',
@@ -154,6 +154,7 @@ if __name__ == '__main__':
     extensions_todo = ['', '.py', '.js', '.spec', '.txt', '.bat']
     regex_exclude = [
         r'.*/.hg/.*',
+        r'.*/.git/.*',
         r'.*/__pycache__/.*',
         r'.*/build/.*',
         r'.*/dist/.*',

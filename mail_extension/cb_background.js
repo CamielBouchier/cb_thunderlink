@@ -87,7 +87,7 @@ async function to_thunderlink(the_message) {
 //
 
 async function create_context_menu() {
- 
+
     let main_context_menu = {
         contexts : ['message_list'],
         title    : 'cb_thunderlink',
@@ -114,7 +114,7 @@ async function create_context_menu() {
 create_context_menu()
 
 //
-// Do our link generating action according to the submenu clicked. 
+// Do our link generating action according to the submenu clicked.
 // Get it to the clipboard.
 //
 
