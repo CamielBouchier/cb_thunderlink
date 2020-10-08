@@ -137,7 +137,7 @@ messenger.browserAction.onClicked.addListener(async () => {
 var port = browser.runtime.connectNative("cb_thunderlink")
 
 port.onMessage.addListener((encoded_link) => {
-    cb_goto(encoded_link)
+    handle_incoming_link(encoded_link)
 })
 
 // vim: syntax=javascript ts=4 sw=4 sts=4 sr et columns=100
