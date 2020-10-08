@@ -27,15 +27,55 @@ $EndLicense$
             <label for="new_window">New window</label>
             <br>
 
-            <h4><b>foobar</b></h4>
-            <p>Optionally add a prefix and suffix before and after the ID on copy.</p>
-            <label class=textLabel>Prefix: <input id="prefix" type="text"/></label>
-            <label class=textLabel>Suffix: <input id="suffix" type="text"/></label>
-            <label>Include angle brackets (&lt;&gt;): <input id="copyBrackets" type="checkbox"/></label>
-            <br>
-            <label>URL Encode the Message ID: <input id="urlEncode" type="checkbox"/></label>
-            <br>
-            <label>Get the raw Message ID (e.g. Message-ID: &lt;foo@bar&gt;): <input id="raw" type="checkbox"/></label>
+            <h4><b>Configurable links</b></h4>
+
+            <p>Here you can configure the links to be generated.</p>
+            <ul>
+                <li>'name' (second column) is what will appear in the menu.</li>
+                <li>'value' (third column) is the link generated for this menu-entry.</li>
+                <li>The checkboxes allow to enable/disable the entries in the menu.</li>
+            </ul>
+            <p> Following substitutions are made and give the flexibility:</p>
+            <ul>
+                <li> $msgid$ =&gt; the 'message-id' such as in the header of the mail.</li>
+                <li> $cblink$ =&gt; the identifier generated for a cbthunderlink.</li>
+                <li> $author$ =&gt; the author of the mail.</li>
+                <li> $date$ =&gt; the date of the mail.</li>
+            </ul>
+            <p>Typical default entries are:</p>
+            <ul>
+                <li>cbthunderlink : cbthunderlink://$cblink$</li>
+                <li>thunderlink : thunderlink://messageid=$msgid$</li>
+            </ul>
+
+            <table>
+                <tr>
+                    <td><input id="s_enable_0" type="checkbox"/></td>
+                    <td><input class="name"  id="s_name_0"   type="text" placeholder="name"/></td>
+                    <td><input class="value" id="s_value_0"  type="text" placeholder="value"/></td>
+                </tr>
+                <tr>
+                    <td><input id="s_enable_1" type="checkbox"/></td>
+                    <td><input class="name"  id="s_name_1"   type="text" placeholder="name"/></td>
+                    <td><input class="value" id="s_value_1"  type="text" placeholder="value"/></td>
+                </tr>
+                <tr>
+                    <td><input id="s_enable_2" type="checkbox"/></td>
+                    <td><input class="name"  id="s_name_2"   type="text" placeholder="name"/></td>
+                    <td><input class="value" id="s_value_2"  type="text" placeholder="value"/></td>
+                </tr>
+                <tr>
+                    <td><input id="s_enable_3" type="checkbox"/></td>
+                    <td><input class="name"  id="s_name_3"   type="text" placeholder="name"/></td>
+                    <td><input class="value" id="s_value_3"  type="text" placeholder="value"/></td>
+                </tr>
+                <tr>
+                    <td><input id="s_enable_4" type="checkbox"/></td>
+                    <td><input class="name"  id="s_name_4"   type="text" placeholder="name"/></td>
+                    <td><input class="value" id="s_value_4"  type="text" placeholder="value"/></td>
+                </tr>
+            </table>
+
         </form>
         <script src="cb_options.js"></script>
     </body>

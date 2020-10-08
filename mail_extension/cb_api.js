@@ -18,7 +18,7 @@ try {
     var { Gloda }       = ChromeUtils.import("resource:///modules/gloda/GlodaPublic.jsm")
 } catch(e) {
     try {
-        var { Gloda }   = ChromeUtils.import("resource:///modules/gloda/gloda.js")
+        var { Gloda }   = ChromeUtils.import("resource:///modules/gloda/public.js")
     } catch (e) {
         console.log(e)
     }
@@ -71,11 +71,14 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
                         onItemsModified : function () {},
                         onItemsRemoved : function () {},
                         onQueryCompleted: function (collection) {
-                            console.log(collection)
                             let the_message = null
                             for (let i=0; i<collection.items.length; i++) {
                                 the_message = collection.items[i].folderMessage
                                 if (the_message) break
+                            }
+                            if (!the_message) {
+                                console.error("Investigate me. the_message == null. collection:", collection)
+                                return
                             }
                             // Following few lines are +/- from original thunderlink.
                             // Code deduplication proved difficult, e.g. for callback.

@@ -6,22 +6,23 @@ $EndLicense$
 */
 
 body {
-  width: 35em;
-  font-family: "Open Sans Light", sans-serif;
-  font-size: 0.9em;
-  font-weight: 300;
+    /*
+    width: 100%;
+    font-family: "Open Sans Light", sans-serif;
+    */
 }
 
-.textLabel {
-  margin-left: 1.0em;
+.name {
+    width:  10em;
+    margin: 0.5em;
+    height: 1.8em;
 }
 
-input[type="text"] {
-  margin: 0.5em;
-  width: 450px;
-  height: 2.0em;
+.value {
+    width:  20em;
+    margin: 0.5em;
+    height: 1.8em;
 }
-
 
 /*
 vim: syntax=css ts=4 sw=4 sts=4 sr et columns=80
