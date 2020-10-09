@@ -12,48 +12,62 @@
 console.log("cb_background started")
 
 //
-// Ensure sensible config.
+// 
 //
 
-default_conf_links = {
-    0 : {enable: true, name: "cbthunderlink", value: "cbthunderlink://$cblink$"},
-    1 : {enable: true, name: "thunderlink",   value: "thunderlink://messageid=$msgid$"},
+const default_settings = {
+    open_mode  : "three_pane",
+    conf_links : {
+        0 : {enable: true, name: "cbthunderlink", value: "cbthunderlink://$cblink$"},
+        1 : {enable: true, name: "thunderlink",   value: "thunderlink://messageid=$msgid$"},
+    }
 }
 
-async function ensure_settings() {
+var settings = default_settings
 
+//
+// This will get settings from the local storage. 
+// If no local storage would exist for cb_thunderbird, or it is incomplete, it will be completed.
+// Finally, as each change of settings could result in a new context_menu, that is called as well.
+//
+
+async function get_settings() {
     let config = await browser.storage.local.get('cb_thunderlink')
     if (!config.cb_thunderlink) {
-        var settings = {
-            open_mode  : "three_pane",
-            conf_links : default_conf_links
-        }
         await browser.storage.local.set({cb_thunderlink: settings})
     } else {
-        var settings = {
+        settings = {
             open_mode  : config.cb_thunderlink.open_mode,
             conf_links : config.cb_thunderlink.conf_links
         }
         if (!settings.open_mode) {
-            settings.open_mode = "three_pane"
+            settings.open_mode = default_settings.open_mode
             await browser.storage.local.set({cb_thunderlink: settings})
         }
         if (!settings.conf_links) {
-            settings.conf_links = default_conf_links
+            settings.conf_links = default_settings.conf_links
             await browser.storage.local.set({cb_thunderlink: settings})
         }
     }
-    return settings
+    // A change could require a new context menu setting.
+    create_context_menu()
 }
 
+browser.storage.onChanged.addListener(
+    function(what,area) {
+        if (area == 'local' && what.cb_thunderlink) {
+            get_settings()
+        }
+    })
+
+get_settings() // Actually will kick us of, generating the context menus.
 
 //
 // Link generator
 //
 
-async function to_link(idx, the_message) {
+async function link_to_clipboard(idx, the_message) {
 
-    let settings = await ensure_settings()
     let link = settings.conf_links[idx].value
 
     // Following few lines are +/- from original thunderlink.
@@ -64,21 +78,20 @@ async function to_link(idx, the_message) {
 
     let full = await messenger.messages.getFull(the_message.id)
 
-    let author = the_message.author
-    let date = the_message.date
+    let author  = the_message.author
+    let date    = the_message.date
     let subject = the_message.subject
-
-    let cblink =  btoa(date.toJSON() + ";" + author)
-    let msgid  = full.headers['message-id'][0].replace(/^</,'').replace(/>$/,'')
+    let cblink  =  btoa(date.toJSON() + ";" + author)
+    let msgid   = full.headers['message-id'][0].replace(/^</,'').replace(/>$/,'')
 
     // Extract author name and email. This recognizes "foo@bar" or "Foo bar <foo@bar>"
     // after removing all double quotes. Perhaps there is a more robust way.
-    let author_name = ''
+    let author_name  = ''
     let author_email = ''
     let author_match = author.replace(/["]/g,'').match(/^((.*)\s+<)?([^@<\s]+@[^@\s>]+)>?$/)
     if (author_match) {
-	author_name = author_match[2]
-	author_email = author_match[3]
+	    author_name  = author_match[2]
+	    author_email = author_match[3]
     }
 
     // Following few lines are +/- from original thunderlink.
@@ -110,19 +123,16 @@ async function to_link(idx, the_message) {
     link = link.replace(/\$subject\$/ig, subject)
     link = link.replace(/\$subject_filtered\$/ig, subject_filtered)
 
-    return link
-}
-
-async function copy_link(idx, the_message) {
-    let link = await to_link(idx, the_message)
     navigator.clipboard.writeText(link)
 }
-    
+
 //
 // Build the context menu for generating a link.
 //
 
 async function create_context_menu() {
+
+    browser.menus.removeAll() // We might be called several times (get_settings!)
 
     let main_context_menu = {
         contexts : ['message_list'],
@@ -131,7 +141,6 @@ async function create_context_menu() {
     }
     let main_context_id = await browser.menus.create(main_context_menu)
 
-    let settings = await ensure_settings()
     let conf_links = settings.conf_links
     for (const i in conf_links) {
         let conf_link = conf_links[i]
@@ -147,8 +156,6 @@ async function create_context_menu() {
     }
 }
 
-create_context_menu()
-
 //
 // Do our link generating action according to the submenu clicked.
 // Get it to the clipboard.
@@ -157,38 +164,36 @@ create_context_menu()
 async function on_context_menu(e) {
     let the_message = e.selectedMessages.messages[0]
     let idx = e.menuItemId.replace('sub_context_menu_', '')
-    coopy_link(idx, the_message)
+    link_to_clipboard(idx, the_message)
 }
 
 //
-// Also trigger the ling generating action from keyboard shortcuts.
+// Also trigger the link generating action from keyboard shortcuts.
 //
 
 browser.commands.onCommand.addListener(async (command) => {
     let copy_link_match = command.match(/^copy_link_(\d+)$/)
     if (copy_link_match) {
-	let idx = copy_link_match[1]-1
-	let settings = await ensure_settings()
-	if (settings.conf_links[idx].enable) {
-	    let tab_query = {active: true, currentWindow: true}
-	    messenger.tabs.query(tab_query).then(tabs => {
-		messenger.messageDisplay.getDisplayedMessage(tabs[0].id).then((message) => {
-		    copy_link(idx, message)
-		})
-	    })
-	}
+	    let idx = copy_link_match[1]-1
+	    if (settings.conf_links[idx].enable) {
+	        let tab_query = {active: true, currentWindow: true}
+	        messenger.tabs.query(tab_query).then(tabs => {
+		        messenger.messageDisplay.getDisplayedMessage(tabs[0].id).then((message) => {
+		            link_to_clipboard(idx, message)
+		        })
+	        })
+	    }
     }
 })
 
 //
-//  Handle incoming link (be it by button, be it by script)
+// Handle incoming link (be it by button, be it by script)
 //
 
 async function handle_incoming_link(incoming_link) {
 
     console.log("handle_incoming_link", incoming_link)
 
-    let settings = await ensure_settings()
     let open_mode = settings.open_mode
 
     let match = /((cb)?thunderlink):\/\/([^\s\]]+)/.exec(incoming_link)
