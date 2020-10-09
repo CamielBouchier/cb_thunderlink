@@ -13,7 +13,38 @@
     "browser_action": {
         "default_icon": "images/cb-32px.png"
     },
-
+    "commands": {
+	"copy_link_1": {
+	    "suggested_key": {
+		"default": "Ctrl+Alt+1"
+	    },
+	    "description": "Copy configurable link 1 to the clipboard"
+	},
+	"copy_link_2": {
+	    "suggested_key": {
+		"default": "Ctrl+Alt+2"
+	    },
+	    "description": "Copy configurable link 2 to the clipboard"
+	},
+	"copy_link_3": {
+	    "suggested_key": {
+		"default": "Ctrl+Alt+3"
+	    },
+	    "description": "Copy configurable link 3 to the clipboard"
+	},
+	"copy_link_4": {
+	    "suggested_key": {
+		"default": "Ctrl+Alt+4"
+	    },
+	    "description": "Copy configurable link 4 to the clipboard"
+	},
+	"copy_link_5": {
+	    "suggested_key": {
+		"default": "Ctrl+Alt+5"
+	    },
+	    "description": "Copy configurable link 5 to the clipboard"
+	}
+    },
     "permissions": [
 	    "clipboardRead",
 	    "clipboardWrite",

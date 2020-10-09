@@ -56,32 +56,68 @@ async function to_link(idx, the_message) {
     let settings = await ensure_settings()
     let link = settings.conf_links[idx].value
 
+    // Following few lines are +/- from original thunderlink.
+    // replacing double quotes so they are escaped for JSON.parse
+    link = link.replace(/["]/g, "\\\"")
+    // convert escape characters like \t to tabs
+    link = JSON.parse("\"" + link + "\"")
+
     let full = await messenger.messages.getFull(the_message.id)
 
-    let cblink =  btoa(the_message.date.toJSON() + ";" + the_message.author)
+    let author = the_message.author
+    let date = the_message.date
+    let subject = the_message.subject
+
+    let cblink =  btoa(date.toJSON() + ";" + author)
     let msgid  = full.headers['message-id'][0].replace(/^</,'').replace(/>$/,'')
 
-    link = link.replace('$msgid$', msgid)
-    link = link.replace('$cblink$', cblink)
-    link = link.replace('$author$', the_message.author)
-    link = link.replace('$date$', the_message.date)
+    // Extract author name and email. This recognizes "foo@bar" or "Foo bar <foo@bar>"
+    // after removing all double quotes. Perhaps there is a more robust way.
+    let author_name = ''
+    let author_email = ''
+    let author_match = author.replace(/["]/g,'').match(/^((.*)\s+<)?([^@<\s]+@[^@\s>]+)>?$/)
+    if (author_match) {
+	author_name = author_match[2]
+	author_email = author_match[3]
+    }
+
+    // Following few lines are +/- from original thunderlink.
+    let date_time = new Date(date)
+    let date_time_iso = date_time.toISOString()
+    let date_time_iso_match = date_time_iso.match(/^(.*)T(.*)\.\d{3}Z$/)
+    let date_iso = date_time_iso_match[1]
+    let time_iso = date_time_iso_match[2]
+    let date_locale = date_time.toLocaleDateString()
+    let time_locale = date_time.toLocaleTimeString()
+
+    // Following few lines are +/- from original thunderlink.
+    // replace a few characters that frequently cause trouble
+    // with a focus on org-mode, provided as filtered_subject
+    let subject_filtered = subject.split("[").join("(")
+    subject_filtered = subject_filtered.split("]").join(")")
+    subject_filtered = subject_filtered.replace(/[<>'"`´]/g, "")
+
+    link = link.replace(/\$msgid\$/ig, msgid)
+    link = link.replace(/\$cblink\$/ig, cblink)
+    link = link.replace(/\$author\$/ig, author)
+    link = link.replace(/\$author_name\$/ig, author_name)
+    link = link.replace(/\$author_email\$/ig, author_email)
+    link = link.replace(/\$date\$/ig, date_time)
+    link = link.replace(/\$date_iso\$/ig, date_iso)
+    link = link.replace(/\$date_locale\$/ig, date_locale)
+    link = link.replace(/\$time_iso\$/ig, time_iso)
+    link = link.replace(/\$time_locale\$/ig, time_locale)
+    link = link.replace(/\$subject\$/ig, subject)
+    link = link.replace(/\$subject_filtered\$/ig, subject_filtered)
 
     return link
 }
 
-async function to_cbthunderlink(the_message) {
-    let link = "cbthunderlink://" + btoa(the_message.date.toJSON() + ";" + the_message.author)
-    return link
+async function copy_link(idx, the_message) {
+    let link = await to_link(idx, the_message)
+    navigator.clipboard.writeText(link)
 }
-
-async function to_thunderlink(the_message) {
-    let full = await messenger.messages.getFull(the_message.id)
-    let msg_id = full.headers['message-id'][0]
-    msg_id = msg_id.replace(/^</,'').replace(/>$/,'')
-    let link = "thunderlink://messageid=" + msg_id
-    return link
-}
-
+    
 //
 // Build the context menu for generating a link.
 //
@@ -121,9 +157,28 @@ create_context_menu()
 async function on_context_menu(e) {
     let the_message = e.selectedMessages.messages[0]
     let idx = e.menuItemId.replace('sub_context_menu_', '')
-    let link = await to_link(idx, the_message)
-    navigator.clipboard.writeText(link)
+    coopy_link(idx, the_message)
 }
+
+//
+// Also trigger the ling generating action from keyboard shortcuts.
+//
+
+browser.commands.onCommand.addListener(async (command) => {
+    let copy_link_match = command.match(/^copy_link_(\d+)$/)
+    if (copy_link_match) {
+	let idx = copy_link_match[1]-1
+	let settings = await ensure_settings()
+	if (settings.conf_links[idx].enable) {
+	    let tab_query = {active: true, currentWindow: true}
+	    messenger.tabs.query(tab_query).then(tabs => {
+		messenger.messageDisplay.getDisplayedMessage(tabs[0].id).then((message) => {
+		    copy_link(idx, message)
+		})
+	    })
+	}
+    }
+})
 
 //
 //  Handle incoming link (be it by button, be it by script)

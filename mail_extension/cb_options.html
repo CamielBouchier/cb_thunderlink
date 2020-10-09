@@ -33,14 +33,15 @@ $EndLicense$
             <ul>
                 <li>'name' (second column) is what will appear in the menu.</li>
                 <li>'value' (third column) is the link generated for this menu-entry.</li>
-                <li>The checkboxes allow to enable/disable the entries in the menu.</li>
+                <li>The checkboxes allow to enable/disable the entries in the menu and the corresponding shortcuts (click the cogwheel and select <i>Manage Extension Shortcuts</i> to view / customize these shortcuts).</li>
             </ul>
             <p> Following substitutions are made and give the flexibility:</p>
             <ul>
                 <li> $msgid$ =&gt; the 'message-id' such as in the header of the mail.</li>
                 <li> $cblink$ =&gt; the identifier generated for a cbthunderlink.</li>
-                <li> $author$ =&gt; the author of the mail.</li>
-                <li> $date$ =&gt; the date of the mail.</li>
+                <li> $author$, $author_name$, $author_email$ =&gt; the author of the mail, or only their name / email address.</li>
+                <li> $date_iso$, $time_iso$, $date_locale$, $time_locale$ =&gt; the UTC date / time of the mail, formatted either as ISO or according to your locale settings.</li>
+		<li> $subject$, $subject_filtered =&gt; the mail's subject (the filtered subject replaces a few characters that frequently cause trouble, with a focus on org-mode).</li>
             </ul>
             <p>Typical default entries are:</p>
             <ul>
