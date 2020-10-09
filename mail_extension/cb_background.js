@@ -118,19 +118,6 @@ async function copy_link(idx, the_message) {
     navigator.clipboard.writeText(link)
 }
     
-async function to_cbthunderlink(the_message) {
-    let link = "cbthunderlink://" + btoa(the_message.date.toJSON() + ";" + the_message.author)
-    return link
-}
-
-async function to_thunderlink(the_message) {
-    let full = await messenger.messages.getFull(the_message.id)
-    let msg_id = full.headers['message-id'][0]
-    msg_id = msg_id.replace(/^</,'').replace(/>$/,'')
-    let link = "thunderlink://messageid=" + msg_id
-    return link
-}
-
 //
 // Build the context menu for generating a link.
 //
