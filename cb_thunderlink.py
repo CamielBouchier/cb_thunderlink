@@ -41,8 +41,7 @@ if sys.platform == "win32" :
 program_name    = 'cb_thunderlink'
 author_mail     = 'camiel@bouchier.be'
 server_address  = ('127.0.0.1', 1302)
-protocol        = 'cbthunderlink'    # Protocol can not have _ !
-protocol_string = protocol + "://"
+protocols       = ['cbthunderlink', 'thunderlink']    # Protocol can not have _ !
 
 this_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 log_dir  = f"{this_dir}/logs"
@@ -82,7 +81,20 @@ if __name__ == '__main__' :
     logger.info("="*100)
     logger.info(f"Starting {program_name} ({sys.argv})")
 
-    if len(sys.argv) > 1 and sys.argv[1] == "register" :
+    who_am_i = "background"
+    if len(sys.argv) > 1 :
+        if sys.argv[1] == "register" :
+            who_am_i = "register"
+        elif sys.argv[1] == "unregister" :
+            who_am_i = "unregister"
+        else :
+            for protocol in protocols :
+                if sys.argv[1].startswith(protocol + '://') :
+                    who_am_i = "command"
+                    break
+
+
+    if who_am_i in ["register"] :
 
         # Registering (currently windows specific only)
         # (in this branch it is OK to use stdout => interactive)
@@ -110,34 +122,35 @@ if __name__ == '__main__' :
             # And here for the cbthunderlink:// OS integration
             K = winreg.HKEY_CLASSES_ROOT
 
-            key = protocol
-            try :
-                reg_key = winreg.OpenKey(K, key, 0, winreg.KEY_ALL_ACCESS)
-            except FileNotFoundError :
-                reg_key = winreg.CreateKey(K, key)
-            winreg.SetValueEx(reg_key, None, 0, winreg.REG_SZ, f"URL:{protocol} Protocol")
-            winreg.SetValueEx(reg_key, "URL Protocol", 0, winreg.REG_SZ, "")
-            winreg.CloseKey(reg_key)
-
-            key = protocol + r'\shell\open\command'
-            try :
-                reg_key = winreg.OpenKey(K, key, 0, winreg.KEY_ALL_ACCESS)
-            except FileNotFoundError :
-                reg_key = winreg.CreateKey(K, key)
-            val = os.path.join(this_dir, "cb_thunderlink.exe \"%1\"")
-            winreg.SetValueEx(reg_key, None, 0, winreg.REG_SZ, val)
-            winreg.CloseKey(reg_key)
+            for protocol in protocols:
+	            key = protocol
+	            try :
+	                reg_key = winreg.OpenKey(K, key, 0, winreg.KEY_ALL_ACCESS)
+	            except FileNotFoundError :
+	                reg_key = winreg.CreateKey(K, key)
+	            winreg.SetValueEx(reg_key, None, 0, winreg.REG_SZ, f"URL:{protocol} Protocol")
+	            winreg.SetValueEx(reg_key, "URL Protocol", 0, winreg.REG_SZ, "")
+	            winreg.CloseKey(reg_key)
+	
+	            key = protocol + r'\shell\open\command'
+	            try :
+	                reg_key = winreg.OpenKey(K, key, 0, winreg.KEY_ALL_ACCESS)
+	            except FileNotFoundError :
+	                reg_key = winreg.CreateKey(K, key)
+	            val = os.path.join(this_dir, "cb_thunderlink.exe \"%1\"")
+	            winreg.SetValueEx(reg_key, None, 0, winreg.REG_SZ, val)
+	            winreg.CloseKey(reg_key)
 
             print("Registry setup finished")
 
-    elif len(sys.argv) > 1 and sys.argv[1].startswith(protocol_string) :
+    elif who_am_i in "command" :
 
         # We are the command line interface.
         # Get the argument and send the identifier over the socket to our listening instance.
         logger.info("Executing cb_thunderlink")
         send_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         send_socket.connect(server_address)
-        message = sys.argv[1][len(protocol_string):].strip('/')
+        message = sys.argv[1].strip('/')
         logger.info(f"Message sent: {message}")
         encoded_content = json.dumps(message).encode("utf-8")
         encoded_length = struct.pack('=I', len(encoded_content))
