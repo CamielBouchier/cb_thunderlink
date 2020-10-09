@@ -113,6 +113,11 @@ async function to_link(idx, the_message) {
     return link
 }
 
+async function copy_link(idx, the_message) {
+    let link = await to_link(idx, the_message)
+    navigator.clipboard.writeText(link)
+}
+    
 async function to_cbthunderlink(the_message) {
     let link = "cbthunderlink://" + btoa(the_message.date.toJSON() + ";" + the_message.author)
     return link
@@ -165,9 +170,28 @@ create_context_menu()
 async function on_context_menu(e) {
     let the_message = e.selectedMessages.messages[0]
     let idx = e.menuItemId.replace('sub_context_menu_', '')
-    let link = await to_link(idx, the_message)
-    navigator.clipboard.writeText(link)
+    coopy_link(idx, the_message)
 }
+
+//
+// Also trigger the ling generating action from keyboard shortcuts.
+//
+
+browser.commands.onCommand.addListener(async (command) => {
+    let copy_link_match = command.match(/^copy_link_(\d+)$/)
+    if (copy_link_match) {
+	let idx = copy_link_match[1]-1
+	let settings = await ensure_settings()
+	if (settings.conf_links[idx].enable) {
+	    let tab_query = {active: true, currentWindow: true}
+	    messenger.tabs.query(tab_query).then(tabs => {
+		messenger.messageDisplay.getDisplayedMessage(tabs[0].id).then((message) => {
+		    copy_link(idx, message)
+		})
+	    })
+	}
+    }
+})
 
 //
 //  Handle incoming link (be it by button, be it by script)
