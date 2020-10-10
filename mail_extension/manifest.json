@@ -7,7 +7,7 @@
     "applications": {
     "gecko": {
         "id": "cb_thunderlink@bouchier.be",
-        "strict_min_version": "68.12.0"
+        "strict_min_version": "68.10.0"
         }
     },
     "browser_action": {

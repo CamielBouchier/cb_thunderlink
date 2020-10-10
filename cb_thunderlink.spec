@@ -26,7 +26,6 @@ block_cipher = None
 
 a = Analysis(
     ['cb_thunderlink.py'],
-    pathex=['D:\\Software_MyDevelopment\\Active\\cb_thunderlink'],
     binaries=[],
     datas=[
         ('cb_thunderlink.json', '.'),
