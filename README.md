@@ -5,7 +5,7 @@
 
 I am a long time user of [thunderlink](https://addons.thunderbird.net/nl/thunderbird/addon/thunderlink/) ([github](https://github.com/mikehardy/thunderlink)). I can't imagine my workflow and electronic archive without!
 
-However Thunderbird changed quite drastically the underlying APIs and thefore thunderlink stopped working on recent versions. 
+However Thunderbird changed quite drastically the underlying APIs and thefore thunderlink stopped working on recent versions. See e.g. [this announcement](https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/)
 
 A complete re-think and re-write was needed and the original author did not have the time. So I took the task doing so.
 
@@ -19,29 +19,30 @@ The original thunderlink identified messages in an unique way by using message-i
 
 However, there is a remote risk that searching on the message-id gets lost in the further future reduction of thunderbird API. Therefore a second mechanism was introduced named 'cbthunderlink'. This identifies messages in an unique way using the message-date and message-author. Links would read like `cbthunderlink://SomeBase64String`. It might be slightly more future-proof to start using those.
 
-#### Clickable
+Features work for both and where needed I will distinguish them as `cbthunderlink`, `thunderlink` or `(cb)thunderlink` when referring to both.
+
+#### Clickable - OS-integration
 
 Thunderlinks clickable-feature depended on being able calling the `thunderbird -thunderlink xyz` command. However thunderbird has also dropped support therefore... 
 
-To keep that feature available, cb_thunderbird comes with an accompanying program, started automatically by the add-on, to emulate that feature and make links clickable again. Note that currently this is only available yet for Windows.
+To keep that feature available, cb_thunderlink comes with an accompanying program, started automatically by the add-on, to emulate that feature and make links clickable again. Note that currently this is only available yet for Windows.
 
-However, cb_thunderbird can be used perfectly well without that accompanying program as well. Links need to be cut then from your source and paste (using the cbthunderlink button) into thunderbird.
-
-
-### Old Thunderlink README follows
+However, cb_thunderlink can be used perfectly well without that accompanying program as well. Links need to be cut then from your source and paste (using the cbthunderlink button) into thunderbird.
 
 
-ThunderLinks are durable hyperlinks to specific email messages.
+### Description - usage
 
-Make a reference to the ThunderLink anywhere you want immediate access to the original message contents in full. For example, wikis, task trackers, etc.
+`(cb)thunderlink`'`s are durable hyperlinks to specific email messages.
 
-Click on a ThunderLink later to open that specific message in Thunderbird.
+You can use them anywhere you want immediate access to the original message contents in full. 
+For example, wikis, task trackers, etc.
 
-You may customize ThunderLink formats to fit your needs.
+Click on `(cb)thunderlink` later to open that specific message in Thunderbird.
+(when not installing the accompanying program, copy the link and paste it using cb_thunderlink button)
 
-You may even configure ThunderLink to tag the email while creating the link, enabling advanced workflows and more productivity!
+You may customize `(cb)thunderlink` formats to fit your needs.
 
-ThunderLinks are durable even if you file the message. They are based on the unique message ID generated when an email is sent. This enables the Thunderbird email client to quickly and reliably find and select any email that exists in your Thunderbird mail store.
+`(cb)thunderlinks` are durable even if you file the message. This enables the Thunderbird email client to quickly and reliably find and select any email that exists in your Thunderbird mail store.
 
 <b>Installation</b>
 ===========
@@ -218,3 +219,8 @@ Linux (Tested on Ubuntu 18.04LTS):
    Care to contribute? https://github.com/mikehardy/thunderlink
 
    For devs cloning the repo use make 'makeXpi.sh <release-number>' to create distributables for Thunderbird
+
+
+<!--
+vim: syntax=markdown ts=4 sw=4 sts=4 sr et columns=100
+-->

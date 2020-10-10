@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# vim: syntax=python ts=4 sw=4 sts=4 sr et columns=100 lines=45
 
 #
 #
@@ -196,4 +195,4 @@ if __name__ == '__main__' :
     logger.info("Finishing {}".format(program_name))
     logger.info("="*100)
 
-#####
+# vim: syntax=python ts=4 sw=4 sts=4 sr et columns=100
