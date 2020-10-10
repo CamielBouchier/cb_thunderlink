@@ -1,4 +1,4 @@
-<b>cb_thunderlink - clickable, durable links to specific messages</b>
+<b>Clickable, durable links to specific messages</b>
 ===
 
 ### Intro - Thanks
@@ -32,7 +32,7 @@ However, cb_thunderlink can be used perfectly well without that accompanying pro
 
 ### Description - usage
 
-`(cb)thunderlink`'`s are durable hyperlinks to specific email messages.
+`(cb)thunderlink`'s are durable hyperlinks to specific email messages.
 
 You can use them anywhere you want immediate access to the original message contents in full. 
 For example, wikis, task trackers, etc.
@@ -42,7 +42,7 @@ Click on `(cb)thunderlink` later to open that specific message in Thunderbird.
 
 You may customize `(cb)thunderlink` formats to fit your needs.
 
-`(cb)thunderlinks` are durable even if you file the message. This enables the Thunderbird email client to quickly and reliably find and select any email that exists in your Thunderbird mail store.
+`(cb)thunderlink`'s are durable even if you file the message. This enables the Thunderbird email client to quickly and reliably find and select any email that exists in your Thunderbird mail store.
 
 <b>Installation</b>
 ===========
