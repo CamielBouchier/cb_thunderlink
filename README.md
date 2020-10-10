@@ -1,5 +1,4 @@
 <b>Clickable, durable links to specific messages</b>
-===
 
 ### Intro - Thanks
 
@@ -44,180 +43,40 @@ You may customize `(cb)thunderlink` formats to fit your needs.
 
 `(cb)thunderlink`'s are durable even if you file the message. This enables the Thunderbird email client to quickly and reliably find and select any email that exists in your Thunderbird mail store.
 
-<b>Installation</b>
-===
+### Installation
 
-- Head to the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink.xpi` from te assets. You can install the `cb_thunderlink.xpi` in thunderbird using the 'install add-on from file' feature in thunderbird.
+Head to the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink.xpi` from the assets. You can install the `cb_thunderlink.xpi` in thunderbird using the 'install add-on from file' feature in thunderbird.
 
+When not using the OS-integration and the 'clickable' feature, that is all you need. 
+You can start using `(cb)thunderlink`'s with the approach of copying the links and pasting it using the cb_thunderlink button.
 
-   <b>Windows:</b>
-   ----------------
-   Download the "raw" version of the file that matches your Windows and Thunderbird versions, then double-click the file and confirm the registry script to merge it in to your registry:
-   
-   <ul>
-   <li>https://github.com/mikehardy/thunderlink/blob/master/integration/ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg
-   <li>https://github.com/mikehardy/thunderlink/blob/master/integration/ThunderLink_WIN7_64bit_Thunderbird_32bit.reg
-   <li>https://github.com/mikehardy/thunderlink/blob/master/integration/ThunderLink_WIN10_64bit_Thunderbird_32bit.reg
-   </ul>
+If you need the full power of OS integration and the possibility to click links, read further. The instructions will be different per OS and currently only Windows is supported.
 
-   These .reg files were generously provided by @mobileartur - please feel free to provide others or open pull requests to help other windows users. Note that 32bit Thunderbird is the current recommendation for Windows. For this reason we don't have registry files for 64-bit Thunderbird.
+#### Windows
 
-Linux (Tested on Ubuntu 18.04LTS):
-----------------------------------
+Head again to  the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink.zip` from the assets.
 
-1. Get an example Thunderlink and test it directly.
+Unzip the `cb_thunderlink.zip` e.g. to `C:\FooBar\cb_thunderlink`.
 
-   Right-click an email and choose "ThunderLink..." > "thunderlink". This will save it to the clipboard. It should look something like this:
+Open a 'Command prompt' **as administrator** and issue :
 
-       thunderlink://messageid=123456.789012@example.com
+```
+> cd C:\FooBar\cb_thunderlink
+> cb_thunderlink.exe register
+``` 
 
-   Next, test the thunderlink URL directly from the command line like this:
+It registers the executable to the add-on and it registers the protocols `thunderlink://` and `cbthunderlink://` to the operating system.
 
-       $ thunderbird -thunderlink 'thunderlink://messageid=123456.789012@example.com'
+Remove and reinstall the `cb_thunderlink.xpi` into thunderbird and that's it. 
+From now on you should have again clickable `(cb)thunderink`'s!
 
-   If nothing happens, the addon is either not installed or not functioning. If the message ID is wrong, this will result in an error pop-up that says "Couldn't find an email message for ThunderLink". If it works, it will open the corresponding message. Proceed to the next step to start registering the `thunderlink://` URL scheme.
+#### Linux
 
-2. Check if the `thunderlink://` protocol is already registered:
+Currently unsupported for OS-integration and clickable.
 
-       $ gio mime x-scheme-handler/thunderlink
-       No default applications for “x-scheme-handler/thunderlink”
+#### MAC
 
-   If you don't have `gio`, use `xdg-mime` instead:
-
-       $ xdg-mime query default x-scheme-handler/thunderlink
-       $ echo $?
-       4
-
-   Blank output and a non-zero error code from `xdg-mime` mean it's not registered.
-
-3. Install the desktop file.
-
-   - Manually:
-      - Download the thunderlink launcher from  <https://github.com/mikehardy/thunderlink/blob/master/integration/thunderbird-tl.desktop>
-      - Copy it to `~/.local/share/applications/thunderbird-tl.desktop`
-
-   - Command line:
-     - `wget -P ~/.local/share/applications/ https://raw.githubusercontent.com/mikehardy/thunderlink/master/integration/thunderbird-tl.desktop`
-
-   These are the important lines in the desktop file:
-
-       Exec=thunderbird -thunderlink %u
-       MimeType=x-scheme-handler/thunderlink
-
-4. Make the desktop file executable.
-
-       $ chmod +x $HOME/.local/share/applications/thunderbird-tl.desktop
-
-   This is necessary [because of security precautions](https://askubuntu.com/questions/419610/permission-of-a-desktop-file)
-
-5. Register the `x-scheme-handler/thunderlink` mimetype to the desktop file.
-
-   Using `gio`:
-
-       $ gio mime x-scheme-handler/thunderlink thunderbird-tl.desktop
-       Set thunderbird-tl.desktop as the default for x-scheme-handler/thunderlink
-
-   Using `xdg-mime`:
-
-       $ XDG_UTILS_DEBUG_LEVEL=2 xdg-mime default 'thunderbird-tl.desktop' 'x-scheme-handler/thunderlink'
-
-   On most Linux distributions, these commands add this line:
-
-       x-scheme-handler/thunderlink=thunderbird-tl.desktop
-
-   to the configuration file `~/.config/mimeapps.list` under the `[Added Associations]` section.
-
-6. Check if it was successfully registered:
-
-       $ gio mime x-scheme-handler/thunderlink
-       Default application for “x-scheme-handler/thunderlink”: thunderbird-tl.desktop
-       Registered applications:
-           thunderbird-tl.desktop
-       Recommended applications:
-           thunderbird-tl.desktop
-
-   If you don't have `gio`, use `xdg-mime` instead:
-
-       $ xdg-mime query default x-scheme-handler/thunderlink
-       thunderbird-tl.desktop
-       $ echo $?
-       0
-
-7. Try opening a thunderlink directly with Thunderbird again:
-
-        $ thunderbird -thunderlink 'thunderlink://messageid=123456.789012@example.com'
-
-    and then with `xdg-open` to test the desktop file:
-
-        $ xdg-open 'thunderlink://messageid=123456.789012@example.com'
-
-   If the `xdg-open` command succeeds, then Thunderlink is installed properly.
-
-8. If `xdg-open` works but some applications do not, they may be using older configuration files.
-
-   For example, some applications use the old location for `mimeapps.list` instead of
-`~/.config/`. To fix this, edit this file with a text editor:
-
-       $ edit ~/.local/share/applications/mimeapps.list
-
-   and manually add this line:
-
-       x-scheme-handler/thunderlink=thunderbird-tl.desktop
-
-   under the "\[Default Applications\]" group. (This location is listed as "[for compatibility, deprecated](https://standards.freedesktop.org/mime-apps-spec/1.0.1/ar01s02.html)" by the FreeDesktop standard.)
-
-   Some applications read `mimeinfo.cache` instead of `mimeapps.list`, so regenerate the cache with `update-desktop-database`.
-
-        $ update-desktop-database ~/.local/share/applications
-
-   Note that this will not read the file at `~/.config/mimeapps.list`, it will read the file at `~/.local/share/applications/mimeapps.list`.
-
-   There is also an [even older deprecated file](https://lists.freedesktop.org/archives/xdg/2014-February/013177.html) called `defaults.list` that is still used by some applications. Handle this in the same way; edit this file with a text editor:
-
-       $ edit ~/.local/share/applications/defaults.list
-
-   and manually add this line:
-
-       x-scheme-handler/thunderlink=thunderbird-tl.desktop
-
-   under the "\[Default Applications\]" group.
-
-   <b>Mac:</b>
-   ----------
-   You may integrate directly with thunderbird using helper scripts as described here:
-   https://github.com/mikehardy/thunderlink/blob/master/integration/macosx/install.txt
-   
-   Separately, it is possible to interoperate with Mail.app on macOS and Thunderbird on (for example) Windows with the same links, following these instructions: https://github.com/mikehardy/thunderlink/wiki/macOS-compatibility---interoperability
-   
-   <b>Usage</b>
-   -------------
-   Use the keyboard shortcut for the ThunderLink format you want (e.g. Ctrl-Alt-6) or right-click on an email and select 'ThunderLink...' and the format you want. You now have the ThunderLink to your email in your clipboard. You can paste it into your personal wiki, or your project teams wiki, or a new task entry in your task tracker for instance.
-
-   If you would like a clickable ThunderLink with the email's subject, use a pattern like this: `<A HREF="<thunderlink>"><subject></a>` - this may be pasted into other systems that render HTML.
-
-   If you registered the ThunderLink protocol correctly, a click on the ThunderLink will open your email directly using the ThunderLink options you configured (open in a new tab, open in a new window, etc)
-
-   
-   <b>Notes:</b>
-   =======
-   <ul>
-   <li>Some task managers (for example, MyLifeOrganized (MLO)) require you to prefix the ThunderLink with `file:` to be treated like a link</li>
-   <li>You can configure very complicated ThunderLinks if you like. For example:
-   ```
-   Email: <subject>   -s Tomorrow -*   @ Work;Email; 
-   file:<thunderlink>
-   ```
-   </li>
-   </ul>
-
-   <b>Having trouble?</b>
-   ================
-   In the unlikely event of a bug, please open an issue on the provided github link, taking care to include all the requested information.
-
-   Care to contribute? https://github.com/mikehardy/thunderlink
-
-   For devs cloning the repo use make 'makeXpi.sh <release-number>' to create distributables for Thunderbird
-
+Currently unsupported for OS-integration and clickable.
 
 <!--
 vim: syntax=markdown ts=4 sw=4 sts=4 sr et columns=100
