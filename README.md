@@ -11,23 +11,23 @@ A complete re-think and re-write was needed and the original author did not have
 
 Big thanks to [Mike Hardy](https://github.com/mikehardy) and team for having thunderlink supported all this time!
 
-### Important remark on cb_thunderlink vs thunderlink
+### Important remarks on cb_thunderlink vs thunderlink
 
-#### 'thunderlink://' versus 'cbthunderlink://'
+#### `thunderlink://` versus `cbthunderlink://`
 
 The original thunderlink identified messages in an unique way by using message-id of the email. Links would read like `thunderlink://messageid=somestuff@foobar`. cb_thunderlink still fully supports this.
 
-However, there is a remote risk that searching on the message-id gets lost in the further future reduction of thunderbird API. Therefore a second mechanism was introduced named 'cbthunderlink'. This identifies messages in an unique way using the message-date and message-author. Links would read like `cbthunderlink://SomeBase64String`. It might be slightly more future-proof to start using those.
+However, there is a remote risk that searching on the message-id gets lost in the further future reduction of Thunderbird API. Therefore a second mechanism was introduced named 'cbthunderlink'. This identifies messages in an unique way using the message-date and message-author. Links would read like `cbthunderlink://SomeBase64String`. It might be slightly more future-proof to start using those.
 
 Features work for both and where needed I will distinguish them as `cbthunderlink`, `thunderlink` or `(cb)thunderlink` when referring to both.
 
 #### Clickable - OS-integration
 
-Thunderlinks clickable-feature depended on being able calling the `thunderbird -thunderlink xyz` command. However thunderbird has also dropped support therefore... 
+Thunderlinks clickable-feature depended on being able calling the `thunderbird -thunderlink xyz` command. However Thunderbird has also dropped support therefore... 
 
 To keep that feature available, cb_thunderlink comes with an accompanying program, started automatically by the add-on, to emulate that feature and make links clickable again. Note that currently this is only available yet for Windows.
 
-However, cb_thunderlink can be used perfectly well without that accompanying program as well. Links need to be cut then from your source and paste (using the cbthunderlink button) into thunderbird.
+However, cb_thunderlink can be used perfectly well without that accompanying program. Links need to be cut then from your source and pasted (using the cb_thunderlink button) into Thunderbird.
 
 
 ### Description - usage
@@ -46,7 +46,7 @@ You may customize `(cb)thunderlink` formats to fit your needs.
 
 ### Installation
 
-Head to the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink.xpi` from the assets. You can install the `cb_thunderlink.xpi` in thunderbird using the 'install add-on from file' feature in thunderbird.
+Head to the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink.xpi` from the assets. You can install the `cb_thunderlink.xpi` in Thunderbird using the 'install add-on from file' feature in Thunderbird.
 
 When not using the OS-integration and the 'clickable' feature, that is all you need. 
 You can start using `(cb)thunderlink`'s with the approach of copying the links and pasting it using the cb_thunderlink button.
@@ -68,7 +68,7 @@ Open a 'Command prompt' **as administrator** and issue :
 
 It registers the executable to the add-on and it registers the protocols `thunderlink://` and `cbthunderlink://` to the operating system.
 
-Remove and reinstall the `cb_thunderlink.xpi` into thunderbird and that's it. 
+Remove and reinstall the `cb_thunderlink.xpi` into Thunderbird and that's it. 
 From now on you should have again clickable `(cb)thunderink`'s!
 
 #### Linux
