@@ -2,9 +2,10 @@
 
 ### Intro - Thanks
 
-I am a long time user of [thunderlink](https://addons.thunderbird.net/nl/thunderbird/addon/thunderlink/) ([github](https://github.com/mikehardy/thunderlink)). I can't imagine my workflow and electronic archive without!
+I am a long time user of **thunderlink** as can be found on 
+[addons.thunderbird.net](https://addons.thunderbird.net/nl/thunderbird/addon/thunderlink/) or [github](https://github.com/mikehardy/thunderlink). I can't imagine my workflow and electronic archive without!
 
-However Thunderbird changed quite drastically the underlying APIs and thefore thunderlink stopped working on recent versions. See e.g. [this announcement](https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/)
+However Thunderbird changed quite drastically the underlying APIs and thefore thunderlink stopped working on recent versions. See e.g. [this announcement.](https://www.thunderbird.net/en-US/thunderbird/78.0/releasenotes/)
 
 A complete re-think and re-write was needed and the original author did not have the time. So I took the task doing so.
 
