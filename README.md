@@ -45,12 +45,10 @@ You may customize `(cb)thunderlink` formats to fit your needs.
 `(cb)thunderlink`'s are durable even if you file the message. This enables the Thunderbird email client to quickly and reliably find and select any email that exists in your Thunderbird mail store.
 
 <b>Installation</b>
-===========
-<ol>
-<li>Install the ThunderLink Add-On in Thunderbird - https://addons.thunderbird.net/en-US/thunderbird/addon/thunderlink/?src=search</li>
-<li>Register the 'thunderlink' protocol in your OS following the instructions below:</li>
-</ol>
- </b>
+===
+
+- Head to the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink.xpi` from te assets. You can install the `cb_thunderlink.xpi` in thunderbird using the 'install add-on from file' feature in thunderbird.
+
 
    <b>Windows:</b>
    ----------------
