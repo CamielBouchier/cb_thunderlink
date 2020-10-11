@@ -16,7 +16,9 @@ console.log("cb_background started")
 //
 
 const default_settings = {
-    open_mode  : "three_pane",
+    open_mode : "three_pane",
+    avoid_folders : [],
+    prefer_folders : [],
     conf_links : {
         0 : {enable: true, name: "cbthunderlink", value: "cbthunderlink://$cblink$"},
         1 : {enable: true, name: "thunderlink",   value: "thunderlink://messageid=$msgid$"},
@@ -37,11 +39,21 @@ async function get_settings() {
         await browser.storage.local.set({cb_thunderlink: settings})
     } else {
         settings = {
-            open_mode  : config.cb_thunderlink.open_mode,
-            conf_links : config.cb_thunderlink.conf_links
+            open_mode      : config.cb_thunderlink.open_mode,
+            avoid_folders  : config.cb_thunderlink.avoid_folders,
+            prefer_folders : config.cb_thunderlink.prefer_folders,
+            conf_links     : config.cb_thunderlink.conf_links
         }
         if (!settings.open_mode) {
             settings.open_mode = default_settings.open_mode
+            await browser.storage.local.set({cb_thunderlink: settings})
+        }
+        if (!settings.avoid_folders) {
+            settings.avoid_folders = default_settings.avoid_folders
+            await browser.storage.local.set({cb_thunderlink: settings})
+        }
+        if (!settings.prefer_folders) {
+            settings.prefer_folders = default_settings.prefer_folders
             await browser.storage.local.set({cb_thunderlink: settings})
         }
         if (!settings.conf_links) {
@@ -211,7 +223,26 @@ async function handle_incoming_link(incoming_link) {
             toDate   : the_date
         }
         let ml = await messenger.messages.query(the_query)
-        let the_message = ml.messages[0]
+        let the_message = null
+        for (let idx=0; idx<ml.messages.length; idx++) {
+            let folder = ml.messages[idx].folder
+            if (settings.prefer_folders.includes(folder.name)) {
+                the_message = ml.messages[idx]
+                break
+            }
+        }
+        if (!the_message) {
+            for (let idx=0; idx<ml.messages.length; idx++) {
+                let folder = ml.messages[idx].folder
+                if (!settings.avoid_folders.includes(folder.name)) {
+                    the_message = ml.messages[idx]
+                    break
+                }
+            }
+        }
+        if (!the_message && ml.messages.length) {
+            the_message = ml.messages[0]
+        }
         if (!the_message) {
             console.error("Investigate me. the_message == null. ml:",ml)
             return
@@ -221,7 +252,10 @@ async function handle_incoming_link(incoming_link) {
 
     if (link_type == 'thunderlink') {
         msg_id =  link.replace('messageid=', '')
-        messenger.cb_api.cb_show_message_from_msg_id(msg_id, open_mode)
+        messenger.cb_api.cb_show_message_from_msg_id(msg_id, 
+                                                     open_mode, 
+                                                     settings.prefer_folders,
+                                                     settings.avoid_folders)
     }
 }
 

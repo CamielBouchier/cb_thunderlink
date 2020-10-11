@@ -33,9 +33,19 @@ function store_settings() {
             conf_links[idx].value = input.value
         }
     }
+    avoid_folders = document.getElementById('avoid_folders').value.split(',')
+    for (let i=0; i<avoid_folders.length; i++) {
+        avoid_folders[i] = avoid_folders[i].trim()
+    }
+    prefer_folders = document.getElementById('prefer_folders').value.split(',')
+    for (let i=0; i<prefer_folders.length; i++) {
+        prefer_folders[i] = prefer_folders[i].trim()
+    }
     let settings = {
-        open_mode: document.querySelector('input[name="open_mode"]:checked').value,
-        conf_links: conf_links
+        open_mode      : document.querySelector('input[name="open_mode"]:checked').value,
+        conf_links     : conf_links,
+        avoid_folders  : avoid_folders,
+        prefer_folders : prefer_folders,
     }
     browser.storage.local.set({cb_thunderlink: settings})
 }
@@ -54,9 +64,13 @@ for (input of inputs) {
 
 browser.storage.local.get().then((settings) => {
     if (settings.cb_thunderlink) {
-        let open_mode = settings.cb_thunderlink.open_mode
+        let open_mode      = settings.cb_thunderlink.open_mode
+        let avoid_folders  = settings.cb_thunderlink.avoid_folders
+        let prefer_folders = settings.cb_thunderlink.prefer_folders
+        let conf_links     = settings.cb_thunderlink.conf_links
         document.getElementById(open_mode).checked = true
-        let conf_links = settings.cb_thunderlink.conf_links
+        document.getElementById('avoid_folders').value = avoid_folders.join(', ')
+        document.getElementById('prefer_folders').value = prefer_folders.join(', ')
         for (const key in conf_links) {
             let conf_link = conf_links[key]
             document.getElementById('s_enable_' + key).checked = conf_link.enable

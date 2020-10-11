@@ -46,6 +46,7 @@
 	}
     },
     "permissions": [
+	    "accountsRead",
 	    "clipboardRead",
 	    "clipboardWrite",
 	    "menus",

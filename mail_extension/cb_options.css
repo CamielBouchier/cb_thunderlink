@@ -12,6 +12,11 @@ body {
     */
 }
 
+#avoid_folders,
+#prefer_folders {
+    width : 95%;
+}
+
 .name {
     width:  10em;
     margin: 0.5em;

@@ -62,8 +62,8 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
 		                }
 		            }
                 },
-                cb_show_message_from_msg_id(msg_id, open_mode) {
-                    console.log("cb_show_message_from_msg_id", msg_id, open_mode)
+                cb_show_message_from_msg_id(msg_id, open_mode, prefer_folders, avoid_folders) {
+                    console.log("cb_show_message_from_msg_id", msg_id, open_mode, prefer_folders, avoid_folders)
                     let query = Gloda.newQuery(Gloda.NOUN_MESSAGE)
 		            query.headerMessageID(msg_id)
                     query.getCollection({
@@ -71,22 +71,32 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
                         onItemsModified : function () {},
                         onItemsRemoved : function () {},
                         onQueryCompleted: function (collection) {
-                            let the_messages = {}
+                            let the_messages = []
                             for (let i=0; i<collection.items.length; i++) {
                                 let item = collection.items[i]
                                 if (item.folderMessage) {
-                                    the_messages[item._folderID] = item.folderMessage
+                                    the_messages.push(item.folderMessage)
                                 }
                             }
-                            // Currently naive way of avoiding "all mail" in e.g. Google. 
-                            // Asks for configuration ... TODO
                             let the_message = null
-                            let lowest_fid = 1000000
-                            for (let fid in the_messages) {
-                                if (fid < lowest_fid) {
-                                    lowest_fid = fid
-                                    the_message = the_messages[fid]
+                            for (let idx in the_messages) {
+                                let folder = the_messages[idx].folder
+                                if (prefer_folders.includes(folder.name)) {
+                                    the_message = the_messages[idx]
+                                    break
                                 }
+                            }
+                            if (!the_message) {
+                                for (let idx in the_messages) {
+                                    let folder = the_messages[idx].folder
+                                    if (!avoid_folders.includes(folder.name)) {
+                                        the_message = the_messages[idx]
+                                        break
+                                    }
+                                }
+                            }
+                            if (!the_message && the_messages.length) {
+                                the_message = the_messages[0]
                             }
                             if (!the_message) {
                                 console.error("Investigate me. the_message == null. collection:", collection)

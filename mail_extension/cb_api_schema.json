@@ -38,6 +38,22 @@
                     "name": "open_mode",
                     "type": "string",
                     "description": "new_tab | new_window | three_pane"
+                    },
+                    {
+                    "name": "prefer_folders",
+                    "type": "array",
+		    "items": {
+			    "type" : "string"
+		    },
+                    "description": "array of preferred folders"
+                    },
+                    {
+                    "name": "avoid_folders",
+                    "type": "array",
+		    "items": {
+			    "type" : "string"
+		    },
+                    "description": "array of avoided folders"
                     }
                 ]
             }
