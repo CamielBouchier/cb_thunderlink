@@ -71,10 +71,22 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
                         onItemsModified : function () {},
                         onItemsRemoved : function () {},
                         onQueryCompleted: function (collection) {
-                            let the_message = null
+                            let the_messages = {}
                             for (let i=0; i<collection.items.length; i++) {
-                                the_message = collection.items[i].folderMessage
-                                if (the_message) break
+                                let item = collection.items[i]
+                                if (item.folderMessage) {
+                                    the_messages[item._folderID] = item.folderMessage
+                                }
+                            }
+                            // Currently naive way of avoiding "all mail" in e.g. Google. 
+                            // Asks for configuration ... TODO
+                            let the_message = null
+                            let lowest_fid = 1000000
+                            for (let fid in the_messages) {
+                                if (fid < lowest_fid) {
+                                    lowest_fid = fid
+                                    the_message = the_messages[fid]
+                                }
                             }
                             if (!the_message) {
                                 console.error("Investigate me. the_message == null. collection:", collection)
