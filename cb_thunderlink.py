@@ -24,16 +24,18 @@
 #####
 
 import json
-import sys
-import struct
-import os
 import logging
-import time
+import os
 import socket
+import stat
+import struct
+import subprocess
+import sys
+import time
 
 if sys.platform == "win32" :
-    import winreg
     import ctypes
+    import winreg
 
 #####
 
@@ -153,6 +155,43 @@ if __name__ == '__main__' :
                 d['path'] = script_full_name
             with open (manifest_location, "w", encoding='utf-8') as f :
                 json.dump(d, f)
+
+            # First shot for gnome/gio based systems. Likely I will need here a bunch of variations according to 
+            # the distribution/desktop.
+
+            for protocol in protocols :
+                desktop_file_dir = os.path.expanduser("~/.local/share/applications")
+                desktop_file_name = f"cb_thunderlink_{protocol}.desktop"
+                desktop_file_fullname = os.path.join(desktop_file_dir, desktop_file_name)
+                print(f"Writing {desktop_file_fullname}")
+                desktop_file = ( 
+                    "[Desktop Entry]\n"
+                    "Encoding=UTF-8\n"
+                    f"Name=cb_thunderlink_{protocol}\n"
+                    f"Exec={script_full_name} %u\n"
+                    "Terminal=false\n"
+                    "X-MultipleArgs=false\n"
+                    "Type=Application\n"
+                    "Icon=thunderbird\n"
+                    "Categories=Application;Network;Email;\n"
+                    f"MimeType=x-scheme-handler/{protocol};\n"
+                    "StartupNotify=true\n"
+                    "Actions=Compose;Contacts\n"
+                    "NoDisplay=true\n")
+                try :
+                    os.makedirs(desktop_file_dir)
+                except FileExistsError :
+                    pass
+                with open (desktop_file_fullname, "w", encoding='utf-8') as f:
+                    f.write(desktop_file)
+                st = os.stat(desktop_file_fullname)
+                os.chmod(desktop_file_fullname, st.st_mode|stat.S_IEXEC)
+
+                gio_command = ["gio", "mime", f"x-scheme-handler/{protocol}", desktop_file_name]
+                #f"gio mime x-scheme-handler/{protocol} {desktop_file_name}"
+                print(f"Executing {gio_command}")
+                gio_output = subprocess.Popen(gio_command, stdout=subprocess.PIPE).communicate()
+                print(gio_output)
 
     elif script_function in "command" :
 
