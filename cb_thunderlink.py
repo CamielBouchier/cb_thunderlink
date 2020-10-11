@@ -80,20 +80,20 @@ if __name__ == '__main__' :
     logger.info("="*100)
     logger.info(f"Starting {program_name} ({sys.argv})")
 
-    who_am_i = "background"
+    script_function = "background"
     if len(sys.argv) > 1 :
         if sys.argv[1] == "register" :
-            who_am_i = "register"
+            script_function = "register"
         elif sys.argv[1] == "unregister" :
-            who_am_i = "unregister"
+            script_function = "unregister"
         else :
             for protocol in protocols :
                 if sys.argv[1].startswith(protocol + '://') :
-                    who_am_i = "command"
+                    script_function = "command"
                     break
 
 
-    if who_am_i in ["register"] :
+    if script_function in ["register"] :
 
         # Registering (currently windows specific only)
         # (in this branch it is OK to use stdout => interactive)
@@ -120,7 +120,6 @@ if __name__ == '__main__' :
 
             # And here for the cbthunderlink:// OS integration
             K = winreg.HKEY_CLASSES_ROOT
-
             for protocol in protocols:
 	            key = protocol
 	            try :
@@ -142,7 +141,20 @@ if __name__ == '__main__' :
 
             print("Registry setup finished")
 
-    elif who_am_i in "command" :
+        if sys.platform == "linux" :
+
+            manifest_location = os.path.expanduser("~/.mozilla/native-messaging-hosts/cb_thunderlink.json")
+            script_full_name = os.path.normpath(os.path.join(this_dir, sys.argv[0]))
+
+            print(f"Registering {script_full_name} to Thunderbird ({manifest_location})")
+
+            with open ("cb_thunderlink.json", "r", encoding='utf-8') as f :
+                d = json.load(f)
+                d['path'] = script_full_name
+            with open (manifest_location, "w", encoding='utf-8') as f :
+                json.dump(d, f)
+
+    elif script_function in "command" :
 
         # We are the command line interface.
         # Get the argument and send the identifier over the socket to our listening instance.

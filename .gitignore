@@ -1,7 +1,7 @@
 references/*
 tiddly_wiki*
-build/*
-dist/*
+build*/*
+dist*/*
 __pycache__/*
 *.xpi
 .*.swp
