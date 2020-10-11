@@ -24,7 +24,7 @@ Features work for both and where needed I will distinguish them as `cbthunderlin
 
 Thunderlinks clickable-feature depended on being able calling the `thunderbird -thunderlink xyz` command. However Thunderbird has also dropped support therefore... 
 
-To keep that feature available, cb_thunderlink comes with an accompanying program, started automatically by the add-on, to emulate that feature and make links clickable again. Note that currently this is only available yet for Windows.
+To keep that feature available, cb_thunderlink comes with an accompanying program, started automatically by the add-on, to emulate that feature and make links clickable again. Note that currently this is only available yet for Windows and for some Linuxes.
 
 However, cb_thunderlink can be used perfectly well without that accompanying program. Links need to be cut then from your source and pasted (using the cb_thunderlink button) into Thunderbird.
 
@@ -54,9 +54,9 @@ If you need the full power of OS integration and the possibility to click links,
 
 #### Windows
 
-Head again to  the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink.zip` from the assets.
+Head again to  the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink_windows.zip` from the assets.
 
-Unzip the `cb_thunderlink.zip` e.g. to `C:\FooBar\cb_thunderlink`.
+Unzip the `cb_thunderlink_windows.zip` e.g. to `C:\FooBar\cb_thunderlink`.
 
 Open a 'Command prompt' **as administrator** and issue :
 
@@ -72,7 +72,23 @@ From now on you should have again clickable `(cb)thunderink`'s!
 
 #### Linux
 
-Currently unsupported for OS-integration and clickable.
+(Currently only tested for XUbuntu 18.04, all feedback on other systems welcome!)
+
+Head again to  the [latest release](https://github.com/CamielBouchier/cb_thunderlink/releases) and download the `cb_thunderlink_linux.zip` from the assets.
+
+Unzip the `cb_thunderlink_linux.zip` e.g. to `~/cb_thunderlink`.
+
+Open a 'shell' and issue :
+
+```
+> cd ~/cb_thunderlink
+> ./cb_thunderlink register
+``` 
+
+It registers the executable to the add-on and it registers the protocols `thunderlink://` and `cbthunderlink://` to the operating system.
+
+Remove and reinstall the `cb_thunderlink.xpi` into Thunderbird and that's it. 
+From now on you should have again clickable `(cb)thunderink`'s!
 
 #### MAC
 

@@ -131,7 +131,7 @@ if __name__ == '__main__' :
 	            winreg.SetValueEx(reg_key, None, 0, winreg.REG_SZ, f"URL:{protocol} Protocol")
 	            winreg.SetValueEx(reg_key, "URL Protocol", 0, winreg.REG_SZ, "")
 	            winreg.CloseKey(reg_key)
-	
+
 	            key = protocol + r'\shell\open\command'
 	            try :
 	                reg_key = winreg.OpenKey(K, key, 0, winreg.KEY_ALL_ACCESS)
@@ -156,7 +156,7 @@ if __name__ == '__main__' :
             with open (manifest_location, "w", encoding='utf-8') as f :
                 json.dump(d, f)
 
-            # First shot for gnome/gio based systems. Likely I will need here a bunch of variations according to 
+            # First shot for gnome/gio based systems. Likely I will need here a bunch of variations according to
             # the distribution/desktop.
 
             for protocol in protocols :
@@ -164,7 +164,7 @@ if __name__ == '__main__' :
                 desktop_file_name = f"cb_thunderlink_{protocol}.desktop"
                 desktop_file_fullname = os.path.join(desktop_file_dir, desktop_file_name)
                 print(f"Writing {desktop_file_fullname}")
-                desktop_file = ( 
+                desktop_file = (
                     "[Desktop Entry]\n"
                     "Encoding=UTF-8\n"
                     f"Name=cb_thunderlink_{protocol}\n"

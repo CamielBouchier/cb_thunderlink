@@ -156,10 +156,11 @@ if __name__ == '__main__':
         r'.*/.hg/.*',
         r'.*/.git/.*',
         r'.*/__pycache__/.*',
-        r'.*/build/.*',
+        r'.*/build*/.*',
         r'.*/dist/.*',
         r'.*/logs/.*',
         r'.*/images/.*',
+        r'.*/references/.*',
         ]
 
     for the_file in generate_files(dir_todo, extensions_todo, regex_exclude) :

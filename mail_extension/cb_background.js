@@ -12,7 +12,7 @@
 console.log("cb_background started")
 
 //
-// 
+//
 //
 
 const default_settings = {
@@ -26,7 +26,7 @@ const default_settings = {
 var settings = default_settings
 
 //
-// This will get settings from the local storage. 
+// This will get settings from the local storage.
 // If no local storage would exist for cb_thunderbird, or it is incomplete, it will be completed.
 // Finally, as each change of settings could result in a new context_menu, that is called as well.
 //

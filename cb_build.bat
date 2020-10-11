@@ -18,9 +18,9 @@ REM
 cd mail_extension
 "c:\Program Files\7-Zip\7z.exe" a cb_thunderlink.xpi @files_in_xpi.lst
 cd ..
-pyinstaller --noconfirm cb_thunderlink.spec
-cd dist
-"c:\Program Files\7-Zip\7z.exe" a cb_thunderlink.zip cb_thunderlink
+pyinstaller --noconfirm --workpath build_windows --distpath dist_windows cb_thunderlink.spec
+cd dist_windows
+"c:\Program Files\7-Zip\7z.exe" a cb_thunderlink_windows.zip cb_thunderlink
 cd ..
 
 REM
