@@ -74,6 +74,30 @@ browser.storage.onChanged.addListener(
 
 get_settings() // Actually will kick us of, generating the context menus.
 
+// 
+// https://base64.guru/developers/javascript/examples/unicode-strings
+//
+// ASCII to Unicode (decode Base64 to original data)
+// @param {string} b64
+// @return {string}
+//
+
+function atou(b64) {
+  return decodeURIComponent(escape(atob(b64)));
+}
+
+// 
+// https://base64.guru/developers/javascript/examples/unicode-strings
+//
+// Unicode to ASCII (encode data to Base64)
+// @param {string} data
+// @return {string}
+//
+
+function utoa(data) {
+  return btoa(unescape(encodeURIComponent(data)));
+}
+
 //
 // Link generator
 //
@@ -93,7 +117,7 @@ async function link_to_clipboard(idx, the_message) {
     let author  = the_message.author
     let date    = the_message.date
     let subject = the_message.subject
-    let cblink  =  btoa(date.toJSON() + ";" + author)
+    let cblink  =  utoa(date.toJSON() + ";" + author)
     let msgid   = full.headers['message-id'][0].replace(/^</,'').replace(/>$/,'')
 
     // Extract author name and email. This recognizes "foo@bar" or "Foo bar <foo@bar>"
@@ -213,7 +237,7 @@ async function handle_incoming_link(incoming_link) {
     let link = match[3]
 
     if (link_type == 'cbthunderlink') {
-        let decoded_link = atob(link)
+        let decoded_link = atou(link)
         let date_auth = decoded_link.split(";")
         let the_date = new Date(date_auth[0])
         let the_author = date_auth[1]
