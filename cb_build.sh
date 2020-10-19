@@ -13,6 +13,8 @@
 # This bat file builds the cb_thunderlink distribution.
 #
 
+rm -rf build_linux
+rm -rf dist_linux
 cd mail_extension
 7z a cb_thunderlink.xpi @files_in_xpi.lst
 cd ..
