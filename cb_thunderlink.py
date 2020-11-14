@@ -148,7 +148,7 @@ if __name__ == '__main__' :
             manifest_location = \
                     os.path.expanduser("~/.mozilla/native-messaging-hosts/cb_thunderlink.json")
             try :
-                os.makedirs(manifest_location)
+                os.makedirs(os.path.dirname(manifest_location))
             except FileExistsError :
                 pass
             script_full_name = os.path.normpath(os.path.join(this_dir, sys.argv[0]))
