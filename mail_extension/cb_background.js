@@ -240,7 +240,8 @@ async function handle_incoming_link(incoming_link) {
         let decoded_link = atou(link)
         let date_auth = decoded_link.split(";")
         let the_date = new Date(date_auth[0])
-        let the_author = date_auth[1]
+        // See issue #10 for the replace.
+        let the_author = date_auth[1].replace(/-/g, '')
         let the_query = {
             author   : the_author,
             fromDate : the_date,
