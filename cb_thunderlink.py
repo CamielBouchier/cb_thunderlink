@@ -145,7 +145,12 @@ if __name__ == '__main__' :
 
         if sys.platform == "linux" :
 
-            manifest_location = os.path.expanduser("~/.mozilla/native-messaging-hosts/cb_thunderlink.json")
+            manifest_location = \
+                    os.path.expanduser("~/.mozilla/native-messaging-hosts/cb_thunderlink.json")
+            try :
+                os.makedirs(manifest_location)
+            except FileExistsError :
+                pass
             script_full_name = os.path.normpath(os.path.join(this_dir, sys.argv[0]))
 
             print(f"Registering {script_full_name} to Thunderbird ({manifest_location})")
@@ -156,7 +161,8 @@ if __name__ == '__main__' :
             with open (manifest_location, "w", encoding='utf-8') as f :
                 json.dump(d, f)
 
-            # First shot for gnome/gio based systems. Likely I will need here a bunch of variations according to
+            # First shot for gnome/gio based systems. 
+            # Likely I will need here a bunch of variations according to
             # the distribution/desktop.
 
             for protocol in protocols :
