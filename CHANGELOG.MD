@@ -1,3 +1,7 @@
+* Issue [#16]((https://github.com/CamielBouchier/cb_thunderlink/issues/16) adressed : quotes in Windows registry.
+
+* hashbang added for linux. See also [#18](https://github.com/CamielBouchier/cb_thunderlink/issues/18).
+
 Release_0_7_0
 =============
 

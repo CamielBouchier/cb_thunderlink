@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 #
@@ -137,8 +138,8 @@ if __name__ == '__main__' :
 	                reg_key = winreg.OpenKey(K, key, 0, winreg.KEY_ALL_ACCESS)
 	            except FileNotFoundError :
 	                reg_key = winreg.CreateKey(K, key)
-	            val = os.path.join(this_dir, "cb_thunderlink.exe \"%1\"")
-	            winreg.SetValueEx(reg_key, None, 0, winreg.REG_SZ, val)
+	            val = os.path.join(this_dir, "cb_thunderlink.exe")
+	            winreg.SetValueEx(reg_key, None, 0, winreg.REG_SZ, f"\"{val}\" \"%1\"")
 	            winreg.CloseKey(reg_key)
 
             print("Registry setup finished")
