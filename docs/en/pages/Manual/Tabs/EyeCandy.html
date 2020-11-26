@@ -1,0 +1,496 @@
+
+
+
+<!DOCTYPE HTML>
+
+<!-- (C) 2017-2018 Camiel Bouchier (CamielBouchier@hotmail.com) - All rights reserved -->
+
+
+<html lang="en">
+
+    <head>
+
+
+  	
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+            <title>Photivo</title>
+            <link rel="icon" href="https://photivo.bouchier.be/img/favicon.ico" />
+            
+                <link href="https://photivo.bouchier.be/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Photivo Full Atom Feed" />
+        
+                <link href="https://photivo.bouchier.be/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Photivo Full RSS Feed" />
+        
+        
+        
+        
+        
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic" />
+            <link rel="stylesheet" href="https://photivo.bouchier.be/theme/assets/css/main.css" />
+
+
+            <script src="https://photivo.bouchier.be/js/jquery.min.js"></script>
+
+
+
+
+
+    <meta property="og:description" content="Photivo - Creative photography" />
+    <meta property="og:url"         content="https://photivo.bouchier.be/en/pages/Manual/Tabs/EyeCandy.html" />
+    <meta property="og:image"       content="https://photivo.bouchier.be/thumbnails/Manual/thumbnail_600x370.jpg" />
+    <meta property="og:title"       content=""Eyecandy" Processing Tab" />
+
+
+	<script type="text/javascript">
+
+    
+    var disqus_config = function () {
+        this.page.url = 'https://photivo.bouchier.be/en/pages/Manual/Tabs/EyeCandy.html';
+        this.page.identifier = '9ed8d9c0873fdf5ac38bd736209f2220';
+        this.page.title = '"Eyecandy" Processing Tab';
+    };
+    
+    (function() {
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://photivo-en.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+
+    </script>
+
+
+
+
+    </head>
+
+    <body>
+
+        <div id="cbSite">
+            <div id="cbSideBar" class="cbNoPrint"> 
+    
+                <header id="cbHeader">
+                   
+                    <h1><a href="https://photivo.bouchier.be/en/pages/AboutPhotivo.html" rel="home"><img src="/img/ShortLogo.png">Photivo</a></h1>
+                    <p class="cbSubTitle">Creative photography</p>
+    				<a id="cbMenuToggle" href="#"></a>
+    			</header>
+     
+                <nav id="cbNav">
+
+                    <aside class="cbMenu">
+
+                        <ul>
+ 
+                            <li>
+                                <form class="navbar-search" action="https://photivo.bouchier.be/en/search.html" onsubmit="return validateForm(this.elements['q'].value);"> 
+                                    <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input">
+                                </form>
+                            </li>
+
+                            <hr>
+
+
+
+
+                            <a href="https://photivo.bouchier.be/en/index.html"><li>
+                                All articles</li></a>
+                            <hr>
+
+        
+
+                                    <a href="https://photivo.bouchier.be/en/pages/AboutPhotivo.html"><li>
+                                        
+                                        About Photivo
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Development.html"><li>
+                                        
+                                        Development
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Download.html"><li>
+                                        
+                                        Download
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/License.html"><li>
+                                        
+                                        License
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual.html"><li>
+                                        
+                                        Manual
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Internals.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Internals
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Processing Tabs
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/Camera.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Camera" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/EyeCandy.html"><li class="Current">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Eyecandy" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/Geometry.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Geometry" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/LocalEdit.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Local Edit" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/Output.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Output" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tutorials.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Tutorials
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/UsingPhotivo.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Using Photivo
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Videocast.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Videocast
+                                    </li></a>
+                                    <hr>
+                            
+    
+                        </ul>
+                    </aside>     
+                    <aside class="cbSocial">
+                        <span class="cbMail">
+                            <a href="mailto://photivo@bouchier.be"></a>
+                        </span>
+                        <span class="cbFlickr">
+                            <a href="https://www.flickr.com/groups/photivo/"></a>
+                        </span>
+                    </aside>
+    
+                    <aside class="cbRecentPosts">
+                        <h3>Recent posts</h3>
+                        <ul> 
+                                <li>
+                                    <a href="https://photivo.bouchier.be/en/posts/20180322/X3FAndOpenCV.html">X3F support available.</a>
+                                    <br>
+                                    <span class="cbDate">2018-03-22</span>
+                                    <br>
+                                    <span class="cbCategories">
+                                        <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category">Announcement</a>
+                                    </span>
+
+                                        <br>
+                                        <span class="cbComments">
+                                            <a data-disqus-identifier="3fca187c944ad559b4409996c0cfb6d2" href="https://photivo.bouchier.be/en/posts/20180322/X3FAndOpenCV.html#disqus_thread"></a>
+                                        </span>
+
+                                    <hr>
+                                </li>
+                                <li>
+                                    <a href="https://photivo.bouchier.be/en/posts/20180320/LinuxAndCMakeAvailable.html">Linux packages and cmake available.</a>
+                                    <br>
+                                    <span class="cbDate">2018-03-20</span>
+                                    <br>
+                                    <span class="cbCategories">
+                                        <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category">Announcement</a>
+                                    </span>
+
+                                        <br>
+                                        <span class="cbComments">
+                                            <a data-disqus-identifier="e26e153034c1b92953ccda2a136fda4b" href="https://photivo.bouchier.be/en/posts/20180320/LinuxAndCMakeAvailable.html#disqus_thread"></a>
+                                        </span>
+
+                                    <hr>
+                                </li>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbRecentComments">
+                        <h3>Recent replies</h3>
+                        <ul>
+                            <li>
+                                <script type="text/javascript" src="https://photivo-en.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+                                <hr>
+                            </li>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbCategories">
+                        <h3>Categories</h3>
+                        <ul>
+                                <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category"><li>Announcement (2)</li></a>
+                                <hr>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbTags">
+                        <h3>Tags</h3>
+                        <ul>
+                        </ul>
+                    </aside> 
+                </nav>
+    
+            </div>      
+            <div id="cbMainContainer">
+    
+                <main id="cbMain" role="main">
+
+
+        <article class="cbWithThumb cbArticle">
+
+
+            <style>
+                #img_thumb
+                    {
+                    background-image    : url(https://photivo.bouchier.be/thumbnails/Manual/thumbnail_1200x800.jpg);
+                    background-size     : cover;
+                    background-position : center;
+                    width               : 100%;
+                    height              : 800px;
+                    max-height          : 33vh;
+                    }
+            </style>
+
+            <div class="cbPostThumb cbNoPrint" id="img_thumb" title="Photo by Hope House Press (https://unsplash.com/@hopehousepress)"></div>
+
+
+        <header class="cbArticleHeader">
+
+            <h2 class="cbArticleTitle">"Eyecandy" Processing Tab</h2>
+
+            <span class="cbPrint"><a href="javascript:window.print()">Print</a></span>
+
+    	    <span class="cbDate">
+                <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/EyeCandy.html" rel="bookmark">
+                    <time class="entry-date published" datetime="2012-01-01T00:00:00+01:00">2012-01-01</time>
+                </a>
+            </span>
+
+
+                <span class="cbAuthor">
+                        <a class="url fn" href="https://photivo.bouchier.be/en/author/camiel-bouchier.html">Camiel Bouchier</a>
+                </span>
+   
+                <span class="cbComments">
+                    <a data-disqus-identifier="9ed8d9c0873fdf5ac38bd736209f2220" href="https://photivo.bouchier.be/en/pages/Manual/Tabs/EyeCandy.html#disqus_thread"></a>
+                </span>
+ 
+
+        </header> 
+        <div class="cbArticleContent  cbJustify   "> 
+            <h2 class="sectionedit2" id="black_and_white">Black and White</h2>
+
+<div class="level2">
+
+<p>
+The <strong>Black and White</strong> tool is the most versatile filter available to convert images from colour to greyscale.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/eyecandy/black-and-white.png" class="media" alt="black-and-white" />
+</p>
+
+<p>
+<strong>Opacity</strong> controls how much colour is removed. <strong>0,0</strong> means the tool is disabled, <strong>1,0</strong> removes all colour and produces a pure greyscale image.
+</p>
+
+<p>
+The large <strong>Mode</strong> combobox sets the type of b/w conversion Photivo uses. The modes are modelled after analogue b/w films. But don’t trust them too much. Just try what looks best for your image.
+</p>
+
+<p>
+The smaller <strong>Colour Filter</strong> combobox emulates colour filters. The different colour option works just like the appropriately coloured filter you would put in front of your camera’s lens.
+</p>
+
+<p>
+The <strong>Red</strong>, <strong>Green</strong> and <strong>Blue</strong> sliders represent the three RGB channels. They configure the <strong>Channelmixer</strong> only and have no effect on all other modes.
+</p>
+
+</div>
+
+<h2 class="sectionedit3" id="simple_tone">Simple Tone</h2>
+
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit4" id="tone">Tone</h2>
+
+<div class="level2">
+
+<p>
+This filter can be used to tone (or duo tone since there are two instances) the image. Internally a layer with the chosen color is put over the current image. For fine tuning you can set a <a href="/en/pages/Manual/Internals/LuminanceMask.html" class="wikilink1" title="manual:internals:luminance-mask">luminance mask</a> to control the intensity.
+</p>
+
+</div>
+
+<h2 class="sectionedit5" id="cross_processing">Cross processing</h2>
+
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit6" id="contrast">Contrast</h2>
+
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit7" id="gradual_overlay">Gradual overlay</h2>
+
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit8" id="vignette">Vignette</h2>
+
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit9" id="gradual_blur">Gradual blur</h2>
+
+<div class="level2">
+
+<p>
+The <strong>Gradual blur</strong> is a filter for imitating blur effects you usually get with special lenses. Please keep in mind, it is only a fake effect. You will not get an identical result as with the actual lens.
+</p>
+
+<p>
+The main strength of the filter’s effect is controlled by <strong>Radius</strong>, i.e. the pixel radius of the blur. Higher values blur more strongly and <strong>0</strong> disables the filter altogether.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/eyecandy/gradual-blur-linear.png" class="medialeft" alt="gradual-blur-linear" />
+<img src="/media/Manual/Tabs/eyecandy/gradual-blur-round.png" class="media" alt="gradual-blur-round" />
+</p>
+
+<p>
+The <strong>Mode</strong> combobox sets the general shape for the blur and allows to preview the mask used for the blur. For best effects control the mask to not quite reach pure white with the <strong>Lowel Level</strong> and <strong>Upper Level</strong> sliders.
+</p>
+
+<p>
+<strong>Linear</strong> gives a one-directional blur which is controlled by <strong>Angle</strong>. The controls work like those for the gradual overlay. Two horizontal linear blurs (one rotated 180 degrees) may create a <a href="http://en.wikipedia.org/wiki/Miniature_faking" class="urlextern" title="http://en.wikipedia.org/wiki/Miniature_faking"  rel="nofollow">toy effect (also called “miniature faking”)</a>.
+</p>
+
+<p>
+The <strong>Round</strong> mode uses a radial blur, its general shape controlled by <strong>Shape</strong>. It works similar to the <strong>Vignette</strong> filter, <strong>Lower level</strong> and <strong>Upper level</strong> correspond to the respective radius.
+</p>
+
+<p>
+A <strong>Shape</strong> of <strong>1</strong> gives you a rectangle with hard edges, <strong>2</strong> is a circle, <strong>3</strong> and above rectangles with rounded corners. <strong>Roundness</strong> squashes the shape vertically (positive values) or horizontally (negative values). That means, if you want a real circular blur use a <strong>Shape</strong> of <strong>2</strong> and a <strong>Roundness</strong> of <strong>0</strong>. With the <strong>Center X</strong> and <strong>Center Y</strong> sliders you move the center of the blur. The default (<strong>0.00</strong> for both) represents the image’s center. The <strong>Round</strong> blur may also simulate the blur towards the image borders of older high aperture lenses which are usually soft outside the center.
+</p>
+
+<p>
+<p><div class="noteimportant">This filter gets extremely slow with increasing image size.
+</div></p>
+</p>
+
+</div>
+
+<h2 class="sectionedit10" id="softgloworton">Softglow / Orton</h2>
+
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit11" id="color_intensity">Color Intensity</h2>
+
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit12" id="tone_curves">Tone curves</h2>
+
+<div class="level2">
+
+</div>
+
+<!--
+vim: syntax=markdown ts=4 sw=4 sts=4 sr et columns=160 lines=32
+-->
+        </div> 
+    </article>
+ 
+        <div id="cbComments" class="cbComments">
+	        <div id="disqus_thread"></div>
+        </div>
+
+                </main>
+    
+                <footer id="cbFooter" role="contentinfo" class="cbNoPrint">
+                    <span>
+                        Powered by <a class="cbUnderline" href="https://blog.getpelican.com">Pelican</a>.<br>2017-2018 Camiel Bouchier. All rights reserved.
+    		        </span>
+                </footer>
+    
+            </div>
+        </div> 
+
+        <script src="https://photivo.bouchier.be/theme/assets/js/skel.min.js"></script>
+        <script src="https://photivo.bouchier.be/theme/assets/js/cbCms.js"></script>
+
+
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Register.StartupHook("End Jax",function ()
+                {
+                var BROWSER = MathJax.Hub.Browser;
+                var jax = "HTML-CSS";
+                if (BROWSER.isMSIE && BROWSER.hasMathPlayer) jax = "NativeMML";
+                if (BROWSER.isFirefox) jax = "SVG";
+                if (BROWSER.isChrome) jax = "SVG";
+                if (BROWSER.isSafari && BROWSER.versionAtLeast("5.0")) jax = "NativeMML";
+                // For the moment I have best cross-browser and reasonable results with just the preview.
+                // I need to find out later for the mobile browsers if something can be done.
+                jax = "PreviewHTML"
+                return MathJax.Hub.setRenderer(jax);
+                });
+		    MathJax.Hub.Config(
+			    {
+			    jax : [ "output/SVG" ] ,
+    		    "HTML-CSS" :
+                    {
+                    scale : 100
+                    } ,
+    		    "SVG" :
+                    {
+                    scale: 90
+                    } ,
+  			    });
+	    </script>
+
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        <script id="dsq-count-scr" src="https://photivo-en.disqus.com/count.js" async></script>
+
+ 
+
+    </body>
+</html>
+

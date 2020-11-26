@@ -1,0 +1,449 @@
+
+
+
+<!DOCTYPE HTML>
+
+<!-- (C) 2017-2018 Camiel Bouchier (CamielBouchier@hotmail.com) - All rights reserved -->
+
+
+<html lang="en">
+
+    <head>
+
+
+  	
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+            <title>Photivo</title>
+            <link rel="icon" href="https://photivo.bouchier.be/img/favicon.ico" />
+            
+                <link href="https://photivo.bouchier.be/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Photivo Full Atom Feed" />
+        
+                <link href="https://photivo.bouchier.be/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Photivo Full RSS Feed" />
+        
+        
+        
+        
+        
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic" />
+            <link rel="stylesheet" href="https://photivo.bouchier.be/theme/assets/css/main.css" />
+
+
+            <script src="https://photivo.bouchier.be/js/jquery.min.js"></script>
+
+
+
+
+
+    <meta property="og:description" content="Photivo - Creative photography" />
+    <meta property="og:url"         content="https://photivo.bouchier.be/en/pages/Manual/Internals/Theming.html" />
+    <meta property="og:image"       content="https://photivo.bouchier.be/thumbnails/Manual/thumbnail_600x370.jpg" />
+    <meta property="og:title"       content="Theming Photivo GUI" />
+
+
+	<script type="text/javascript">
+
+    
+    var disqus_config = function () {
+        this.page.url = 'https://photivo.bouchier.be/en/pages/Manual/Internals/Theming.html';
+        this.page.identifier = 'fda3a38f21bafeae2e93be2a62b316e3';
+        this.page.title = 'Theming Photivo GUI';
+    };
+    
+    (function() {
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://photivo-en.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+
+    </script>
+
+
+
+
+    </head>
+
+    <body>
+
+        <div id="cbSite">
+            <div id="cbSideBar" class="cbNoPrint"> 
+    
+                <header id="cbHeader">
+                   
+                    <h1><a href="https://photivo.bouchier.be/en/pages/AboutPhotivo.html" rel="home"><img src="/img/ShortLogo.png">Photivo</a></h1>
+                    <p class="cbSubTitle">Creative photography</p>
+    				<a id="cbMenuToggle" href="#"></a>
+    			</header>
+     
+                <nav id="cbNav">
+
+                    <aside class="cbMenu">
+
+                        <ul>
+ 
+                            <li>
+                                <form class="navbar-search" action="https://photivo.bouchier.be/en/search.html" onsubmit="return validateForm(this.elements['q'].value);"> 
+                                    <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input">
+                                </form>
+                            </li>
+
+                            <hr>
+
+
+
+
+                            <a href="https://photivo.bouchier.be/en/index.html"><li>
+                                All articles</li></a>
+                            <hr>
+
+        
+
+                                    <a href="https://photivo.bouchier.be/en/pages/AboutPhotivo.html"><li>
+                                        
+                                        About Photivo
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Development.html"><li>
+                                        
+                                        Development
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Download.html"><li>
+                                        
+                                        Download
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/License.html"><li>
+                                        
+                                        License
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual.html"><li>
+                                        
+                                        Manual
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Internals.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Internals
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Internals/LuminanceMask.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Luminance masks
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Internals/Theming.html"><li class="Current">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Theming Photivo GUI
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Processing Tabs
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tutorials.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Tutorials
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/UsingPhotivo.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Using Photivo
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Videocast.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Videocast
+                                    </li></a>
+                                    <hr>
+                            
+    
+                        </ul>
+                    </aside>     
+                    <aside class="cbSocial">
+                        <span class="cbMail">
+                            <a href="mailto://photivo@bouchier.be"></a>
+                        </span>
+                        <span class="cbFlickr">
+                            <a href="https://www.flickr.com/groups/photivo/"></a>
+                        </span>
+                    </aside>
+    
+                    <aside class="cbRecentPosts">
+                        <h3>Recent posts</h3>
+                        <ul> 
+                                <li>
+                                    <a href="https://photivo.bouchier.be/en/posts/20180322/X3FAndOpenCV.html">X3F support available.</a>
+                                    <br>
+                                    <span class="cbDate">2018-03-22</span>
+                                    <br>
+                                    <span class="cbCategories">
+                                        <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category">Announcement</a>
+                                    </span>
+
+                                        <br>
+                                        <span class="cbComments">
+                                            <a data-disqus-identifier="3fca187c944ad559b4409996c0cfb6d2" href="https://photivo.bouchier.be/en/posts/20180322/X3FAndOpenCV.html#disqus_thread"></a>
+                                        </span>
+
+                                    <hr>
+                                </li>
+                                <li>
+                                    <a href="https://photivo.bouchier.be/en/posts/20180320/LinuxAndCMakeAvailable.html">Linux packages and cmake available.</a>
+                                    <br>
+                                    <span class="cbDate">2018-03-20</span>
+                                    <br>
+                                    <span class="cbCategories">
+                                        <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category">Announcement</a>
+                                    </span>
+
+                                        <br>
+                                        <span class="cbComments">
+                                            <a data-disqus-identifier="e26e153034c1b92953ccda2a136fda4b" href="https://photivo.bouchier.be/en/posts/20180320/LinuxAndCMakeAvailable.html#disqus_thread"></a>
+                                        </span>
+
+                                    <hr>
+                                </li>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbRecentComments">
+                        <h3>Recent replies</h3>
+                        <ul>
+                            <li>
+                                <script type="text/javascript" src="https://photivo-en.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+                                <hr>
+                            </li>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbCategories">
+                        <h3>Categories</h3>
+                        <ul>
+                                <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category"><li>Announcement (2)</li></a>
+                                <hr>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbTags">
+                        <h3>Tags</h3>
+                        <ul>
+                        </ul>
+                    </aside> 
+                </nav>
+    
+            </div>      
+            <div id="cbMainContainer">
+    
+                <main id="cbMain" role="main">
+
+
+        <article class="cbWithThumb cbArticle">
+
+
+            <style>
+                #img_thumb
+                    {
+                    background-image    : url(https://photivo.bouchier.be/thumbnails/Manual/thumbnail_1200x800.jpg);
+                    background-size     : cover;
+                    background-position : center;
+                    width               : 100%;
+                    height              : 800px;
+                    max-height          : 33vh;
+                    }
+            </style>
+
+            <div class="cbPostThumb cbNoPrint" id="img_thumb" title="Photo by Hope House Press (https://unsplash.com/@hopehousepress)"></div>
+
+
+        <header class="cbArticleHeader">
+
+            <h2 class="cbArticleTitle">Theming Photivo GUI</h2>
+
+            <span class="cbPrint"><a href="javascript:window.print()">Print</a></span>
+
+    	    <span class="cbDate">
+                <a href="https://photivo.bouchier.be/en/pages/Manual/Internals/Theming.html" rel="bookmark">
+                    <time class="entry-date published" datetime="2012-01-01T00:00:00+01:00">2012-01-01</time>
+                </a>
+            </span>
+
+
+                <span class="cbAuthor">
+                        <a class="url fn" href="https://photivo.bouchier.be/en/author/camiel-bouchier.html">Camiel Bouchier</a>
+                </span>
+   
+                <span class="cbComments">
+                    <a data-disqus-identifier="fda3a38f21bafeae2e93be2a62b316e3" href="https://photivo.bouchier.be/en/pages/Manual/Internals/Theming.html#disqus_thread"></a>
+                </span>
+ 
+
+        </header> 
+        <div class="cbArticleContent  cbJustify   "> 
+            <p>
+To achieve its unique look and the ability to switch between different themes Photivo mostly relies on Qt’s styling abilities around <code>QPalette</code>, <code>QStyle</code> and QSS stylesheets. On top of that <code>ptTheme</code> has its own stylsheet format and parser to avoid duplicated stylesheets and define colour variables in one single place instead of putting the actual colour values wherever you need them.
+</p>
+
+<p>
+<p><div class="noteclassic">At the moment it is not possible to add new themes without making changes to the C++ source code as well. You can alter the existing themes, but consider this to be at your own risk.
+</div></p>
+</p>
+
+<h3 class="sectionedit2" id="theme_tweaking_with_custom_stylesheets">Theme Tweaking with Custom Stylesheets</h3>
+
+<p>
+To tweak some aspects of a theme without touching the “official” theming files the best way is to use a custom QSS stylesheet. QSS is Qt’s version of the web world’s <abbr title="Cascading Style Sheets">CSS</abbr> stylesheets. Basically it’s <abbr title="Cascading Style Sheets">CSS</abbr> with several Qt specific additions.
+</p>
+
+<p>
+Assuming you know a bit about <abbr title="Cascading Style Sheets">CSS</abbr>, a good place to start is the <a href="http://qt-project.org/doc/qt-4.8/stylesheet.html" class="urlextern" title="http://qt-project.org/doc/qt-4.8/stylesheet.html"  rel="nofollow">Qt Stylesheet documentation</a>. For writing a custom stylesheet you’ll want to keep the <a href="http://qt-project.org/doc/qt-4.8/stylesheet-reference.html" class="urlextern" title="http://qt-project.org/doc/qt-4.8/stylesheet-reference.html"  rel="nofollow">style sheets reference</a> and <a href="http://qt-project.org/doc/qt-4.8/stylesheet-examples.html" class="urlextern" title="http://qt-project.org/doc/qt-4.8/stylesheet-examples.html"  rel="nofollow">examples</a> handy. Also the <em>Photivo.qss</em> file in Photivo’s <em>Themes</em> subfolder is a good reference. There the major part of Photivo’s built-in themes are defined.
+</p>
+
+<p>
+Things to keep in mind:
+</p>
+
+<ul>
+<li class="level1"><div class="li"> To load a custom theme file go to <em>Settings › Theming</em> in Photivo and load the file via the <em>Open</em> button to the left of the two theme combo boxes.</div>
+</li>
+<li class="level1"><div class="li"> A custom stylesheet is an addition to the style you choose in the <em>Theming</em> section.It is intended to tweak an existing theme. Most likely you won’t be able to build a completely new theme this way.</div>
+</li>
+<li class="level1"><div class="li"> The <code>$Colourname$</code> variables you see in <em>Photivo.qss</em> do not work in custom stylesheets. You must use the actual colour values themselves.</div>
+</li>
+</ul>
+
+<h3 class="sectionedit3" id="photivo_themes_explained">Photivo Themes Explained</h3>
+
+<p>
+A Photivo theme consists of a <code>.ptheme</code> file defining variables and one or more <code>.qss</code> files defining the actual style rules. For example the default <em>Dark grey</em> style is defined in <em>DarkGrey.ptheme</em>, <em>Photivo.qss</em>, <em>Photivo.windows.qss</em> and <em>Photivo.linux.qss</em>.
+</p>
+
+<p>
+<p><div class="notewarning">Photivo’s theme files are not intended to be edited by users. The theme parser is not error tolerant! It will break quickly if you don’t stick to the rules.
+</div></p>
+</p>
+
+<ul>
+<li class="level1"><div class="li"> Except comments a .ptheme file consists of an <code>@Variables</code> section followed by an <code>@import</code> command. Both are mandatory.</div>
+</li>
+<li class="level1"><div class="li"> Multiple <code>@Variables</code> or <code>@import</code> are not allowed.</div>
+</li>
+<li class="level1"><div class="li"> Comments are only allowed at the start of the file before the <code>@Variables</code> section. Do not use comments anywhere else!</div>
+</li>
+<li class="level1"><div class="li"> Comments must be the slash-star type, i.e. starting with <code>/*</code> and ending with <code>*/</code>. They can span multiple lines.</div>
+</li>
+<li class="level1"><div class="li"> Everything is case sensitive.</div>
+</li>
+<li class="level1"><div class="li"> Theme and qss files are assumed to be UTF-8 encoded.</div>
+</li>
+<li class="level1"><div class="li"> Always use the forward slash “<code>/</code>” as path delimiter.</div>
+</li>
+<li class="level1"><div class="li"> <code>.ptheme</code> files must reside in <code>&lt;PhotivoProgramFolder&gt;/Themes</code></div>
+</li>
+</ul>
+
+<p>
+The <code>@Variables</code> section defines global color values and paths to graphical elements. Access them anywhere in the QSS as <code>$VariableName$</code>.
+</p>
+
+<ul>
+<li class="level1"><div class="li"> Always define ALL the colors.</div>
+</li>
+<li class="level1"><div class="li"> You MUST use <code>#rrggbb</code> notation compatible with <code>QColor::name()</code></div>
+</li>
+<li class="level1"><div class="li"> For graphics, paths can be Qt resource paths or real file paths. File paths may be </div>
+</li>
+</ul>
+
+<p>
+    absolute or relative to the <code>.qss</code> file’s location.
+</p>
+
+<p>
+The <code>@import</code> specifies the theme’s QSS files.
+</p>
+
+<ul>
+<li class="level1"><div class="li"> Only give the file name without the extension, i.e. for “Photivo.qss” write “Photivo”.</div>
+</li>
+<li class="level1"><div class="li"> The file name may include a path. Paths may be absolute or relative to the <code>.ptheme</code> file’s location.</div>
+</li>
+<li class="level1"><div class="li"> The file extension for all QSS files must be <code>.qss</code> (lower case).</div>
+</li>
+<li class="level1"><div class="li"> Avoid additional <code>@import</code> rules in the QSS files themselves. You cannot use the variables from the <code>@Variables</code> section in additionally imported files.</div>
+</li>
+<li class="level1"><div class="li"> Platform specific settings are supported in additional QSS files. For example “Photivo.qss” may be accompanied by “Photivo.windows.qss”, “Photivo.linux.qss” and “Photivo.mac.qss”. If present the parser appends additional files to the end of the main style file depending on the platform Photivo was compiled for.</div>
+</li>
+</ul>
+
+<!--
+vim: syntax=markdown ts=4 sw=4 sts=4 sr et columns=160 lines=32
+-->
+        </div> 
+    </article>
+ 
+        <div id="cbComments" class="cbComments">
+	        <div id="disqus_thread"></div>
+        </div>
+
+                </main>
+    
+                <footer id="cbFooter" role="contentinfo" class="cbNoPrint">
+                    <span>
+                        Powered by <a class="cbUnderline" href="https://blog.getpelican.com">Pelican</a>.<br>2017-2018 Camiel Bouchier. All rights reserved.
+    		        </span>
+                </footer>
+    
+            </div>
+        </div> 
+
+        <script src="https://photivo.bouchier.be/theme/assets/js/skel.min.js"></script>
+        <script src="https://photivo.bouchier.be/theme/assets/js/cbCms.js"></script>
+
+
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Register.StartupHook("End Jax",function ()
+                {
+                var BROWSER = MathJax.Hub.Browser;
+                var jax = "HTML-CSS";
+                if (BROWSER.isMSIE && BROWSER.hasMathPlayer) jax = "NativeMML";
+                if (BROWSER.isFirefox) jax = "SVG";
+                if (BROWSER.isChrome) jax = "SVG";
+                if (BROWSER.isSafari && BROWSER.versionAtLeast("5.0")) jax = "NativeMML";
+                // For the moment I have best cross-browser and reasonable results with just the preview.
+                // I need to find out later for the mobile browsers if something can be done.
+                jax = "PreviewHTML"
+                return MathJax.Hub.setRenderer(jax);
+                });
+		    MathJax.Hub.Config(
+			    {
+			    jax : [ "output/SVG" ] ,
+    		    "HTML-CSS" :
+                    {
+                    scale : 100
+                    } ,
+    		    "SVG" :
+                    {
+                    scale: 90
+                    } ,
+  			    });
+	    </script>
+
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        <script id="dsq-count-scr" src="https://photivo-en.disqus.com/count.js" async></script>
+
+ 
+
+    </body>
+</html>
+

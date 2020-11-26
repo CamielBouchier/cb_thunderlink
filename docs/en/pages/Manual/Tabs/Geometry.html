@@ -1,0 +1,748 @@
+
+
+
+<!DOCTYPE HTML>
+
+<!-- (C) 2017-2018 Camiel Bouchier (CamielBouchier@hotmail.com) - All rights reserved -->
+
+
+<html lang="en">
+
+    <head>
+
+
+  	
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+            <title>Photivo</title>
+            <link rel="icon" href="https://photivo.bouchier.be/img/favicon.ico" />
+            
+                <link href="https://photivo.bouchier.be/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Photivo Full Atom Feed" />
+        
+                <link href="https://photivo.bouchier.be/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Photivo Full RSS Feed" />
+        
+        
+        
+        
+        
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic" />
+            <link rel="stylesheet" href="https://photivo.bouchier.be/theme/assets/css/main.css" />
+
+
+            <script src="https://photivo.bouchier.be/js/jquery.min.js"></script>
+
+
+
+
+
+    <meta property="og:description" content="Photivo - Creative photography" />
+    <meta property="og:url"         content="https://photivo.bouchier.be/en/pages/Manual/Tabs/Geometry.html" />
+    <meta property="og:image"       content="https://photivo.bouchier.be/thumbnails/Manual/thumbnail_600x370.jpg" />
+    <meta property="og:title"       content=""Geometry" Processing Tab" />
+
+
+	<script type="text/javascript">
+
+    
+    var disqus_config = function () {
+        this.page.url = 'https://photivo.bouchier.be/en/pages/Manual/Tabs/Geometry.html';
+        this.page.identifier = '157beb6bf762ef9e80680cb8895ffafe';
+        this.page.title = '"Geometry" Processing Tab';
+    };
+    
+    (function() {
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://photivo-en.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+
+    </script>
+
+
+
+
+    </head>
+
+    <body>
+
+        <div id="cbSite">
+            <div id="cbSideBar" class="cbNoPrint"> 
+    
+                <header id="cbHeader">
+                   
+                    <h1><a href="https://photivo.bouchier.be/en/pages/AboutPhotivo.html" rel="home"><img src="/img/ShortLogo.png">Photivo</a></h1>
+                    <p class="cbSubTitle">Creative photography</p>
+    				<a id="cbMenuToggle" href="#"></a>
+    			</header>
+     
+                <nav id="cbNav">
+
+                    <aside class="cbMenu">
+
+                        <ul>
+ 
+                            <li>
+                                <form class="navbar-search" action="https://photivo.bouchier.be/en/search.html" onsubmit="return validateForm(this.elements['q'].value);"> 
+                                    <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input">
+                                </form>
+                            </li>
+
+                            <hr>
+
+
+
+
+                            <a href="https://photivo.bouchier.be/en/index.html"><li>
+                                All articles</li></a>
+                            <hr>
+
+        
+
+                                    <a href="https://photivo.bouchier.be/en/pages/AboutPhotivo.html"><li>
+                                        
+                                        About Photivo
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Development.html"><li>
+                                        
+                                        Development
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Download.html"><li>
+                                        
+                                        Download
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/License.html"><li>
+                                        
+                                        License
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual.html"><li>
+                                        
+                                        Manual
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Internals.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Internals
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Processing Tabs
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/Camera.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Camera" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/EyeCandy.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Eyecandy" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/Geometry.html"><li class="Current">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Geometry" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/LocalEdit.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Local Edit" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/Output.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        "Output" Processing Tab
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Tutorials.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Tutorials
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/UsingPhotivo.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Using Photivo
+                                    </li></a>
+                                    <hr>
+                                    <a href="https://photivo.bouchier.be/en/pages/Manual/Videocast.html"><li>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Videocast
+                                    </li></a>
+                                    <hr>
+                            
+    
+                        </ul>
+                    </aside>     
+                    <aside class="cbSocial">
+                        <span class="cbMail">
+                            <a href="mailto://photivo@bouchier.be"></a>
+                        </span>
+                        <span class="cbFlickr">
+                            <a href="https://www.flickr.com/groups/photivo/"></a>
+                        </span>
+                    </aside>
+    
+                    <aside class="cbRecentPosts">
+                        <h3>Recent posts</h3>
+                        <ul> 
+                                <li>
+                                    <a href="https://photivo.bouchier.be/en/posts/20180322/X3FAndOpenCV.html">X3F support available.</a>
+                                    <br>
+                                    <span class="cbDate">2018-03-22</span>
+                                    <br>
+                                    <span class="cbCategories">
+                                        <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category">Announcement</a>
+                                    </span>
+
+                                        <br>
+                                        <span class="cbComments">
+                                            <a data-disqus-identifier="3fca187c944ad559b4409996c0cfb6d2" href="https://photivo.bouchier.be/en/posts/20180322/X3FAndOpenCV.html#disqus_thread"></a>
+                                        </span>
+
+                                    <hr>
+                                </li>
+                                <li>
+                                    <a href="https://photivo.bouchier.be/en/posts/20180320/LinuxAndCMakeAvailable.html">Linux packages and cmake available.</a>
+                                    <br>
+                                    <span class="cbDate">2018-03-20</span>
+                                    <br>
+                                    <span class="cbCategories">
+                                        <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category">Announcement</a>
+                                    </span>
+
+                                        <br>
+                                        <span class="cbComments">
+                                            <a data-disqus-identifier="e26e153034c1b92953ccda2a136fda4b" href="https://photivo.bouchier.be/en/posts/20180320/LinuxAndCMakeAvailable.html#disqus_thread"></a>
+                                        </span>
+
+                                    <hr>
+                                </li>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbRecentComments">
+                        <h3>Recent replies</h3>
+                        <ul>
+                            <li>
+                                <script type="text/javascript" src="https://photivo-en.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+                                <hr>
+                            </li>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbCategories">
+                        <h3>Categories</h3>
+                        <ul>
+                                <a href="https://photivo.bouchier.be/en/category/announcement.html" rel="category"><li>Announcement (2)</li></a>
+                                <hr>
+                        </ul>
+                    </aside>
+
+                    <aside class="cbTags">
+                        <h3>Tags</h3>
+                        <ul>
+                        </ul>
+                    </aside> 
+                </nav>
+    
+            </div>      
+            <div id="cbMainContainer">
+    
+                <main id="cbMain" role="main">
+
+
+        <article class="cbWithThumb cbArticle">
+
+
+            <style>
+                #img_thumb
+                    {
+                    background-image    : url(https://photivo.bouchier.be/thumbnails/Manual/thumbnail_1200x800.jpg);
+                    background-size     : cover;
+                    background-position : center;
+                    width               : 100%;
+                    height              : 800px;
+                    max-height          : 33vh;
+                    }
+            </style>
+
+            <div class="cbPostThumb cbNoPrint" id="img_thumb" title="Photo by Hope House Press (https://unsplash.com/@hopehousepress)"></div>
+
+
+        <header class="cbArticleHeader">
+
+            <h2 class="cbArticleTitle">"Geometry" Processing Tab</h2>
+
+            <span class="cbPrint"><a href="javascript:window.print()">Print</a></span>
+
+    	    <span class="cbDate">
+                <a href="https://photivo.bouchier.be/en/pages/Manual/Tabs/Geometry.html" rel="bookmark">
+                    <time class="entry-date published" datetime="2012-01-01T00:00:00+01:00">2012-01-01</time>
+                </a>
+            </span>
+
+
+                <span class="cbAuthor">
+                        <a class="url fn" href="https://photivo.bouchier.be/en/author/camiel-bouchier.html">Camiel Bouchier</a>
+                </span>
+   
+                <span class="cbComments">
+                    <a data-disqus-identifier="157beb6bf762ef9e80680cb8895ffafe" href="https://photivo.bouchier.be/en/pages/Manual/Tabs/Geometry.html#disqus_thread"></a>
+                </span>
+ 
+
+        </header> 
+        <div class="cbArticleContent  cbJustify   "> 
+            <h2 class="sectionedit2" id="lensfun">Lensfun</h2>
+
+<div class="level2">
+
+<p>
+Lensfun is a set of filters dealing with errors and distortions introduced by imperfect lenses – and no lens is perfect. Lensfun is used to
+</p>
+<ul>
+<li class="level1"><div class="li"> correct lateral/transversal <a href="http://en.wikipedia.org/wiki/Chromatic_aberration" class="urlextern" title="http://en.wikipedia.org/wiki/Chromatic_aberration"  rel="nofollow">chromatic aberration</a>,</div>
+</li>
+<li class="level1"><div class="li"> correct <a href="http://en.wikipedia.org/wiki/Vignetting" class="urlextern" title="http://en.wikipedia.org/wiki/Vignetting"  rel="nofollow">vignetting</a>,</div>
+</li>
+<li class="level1"><div class="li"> correct <a href="http://en.wikipedia.org/wiki/Distortion_(optics)" class="urlextern" title="http://en.wikipedia.org/wiki/Distortion_(optics)"  rel="nofollow">geometric distortions</a> like barrel, pincushion or mustache distortion,</div>
+</li>
+<li class="level1"><div class="li"> convert between lens geometries, e.g. from fisheye to normal rectilinear.</div>
+</li>
+</ul>
+
+<p>
+In Photivo the whole of Lensfun is split up into four processing tools and one configuration tool that affects all the others. All have <strong>Lensfun</strong> in their caption.
+</p>
+
+</div>
+
+<h3 class="sectionedit3" id="lens_parameters">Lens Parameters</h3>
+
+<div class="level3">
+
+<p>
+The <strong>Lens Parameters (Lensfun)</strong> tool contains the global Lensfun configuration. The values you set here affect all the other tools simultaneously.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/lensfun-lens-parameters.png" class="media" alt="lensfun-lens-parameters" />
+</p>
+
+<p>
+<strong>Focal length (35mm equiv.)</strong> represents the focal length the image was taken with, if necessary converted to its 35mm film equivalent. So if you took the picture with a 14mm lens and your camera has a <a href="http://en.wikipedia.org/wiki/Crop_factor" class="urlextern" title="http://en.wikipedia.org/wiki/Crop_factor"  rel="nofollow">crop factor</a> of 1.5 – which is very common for digital <a href="http://en.wikipedia.org/wiki/Single-lens_reflex_camera" class="urlextern" title="http://en.wikipedia.org/wiki/Single-lens_reflex_camera"  rel="nofollow">SLR cameras</a> – the correct value for the <strong>Focal length</strong> field is 14 × 1.5 = 21mm. Photivo tries to set this value automatically from the image’s Exif data.
+<p><div class="noteclassic">This automatic currently does not work for (most?) Canon cameras because of the weird way they store crop factor information in the image.
+</div></p>
+</p>
+
+<p>
+<strong>Aperture</strong> is the aperture (f-stop) the image was shot with. Photivo sets this value automatically if it is present in the image’s Exif data.
+</p>
+
+<p>
+<strong>Distance</strong> is the distance to the subject of the image. The Lensfun documentation is not very specific about this value. I assume it is the distance between the camera and the main subject of the image in meters. However it does not seem to have a major influence on the results.
+</p>
+
+<p>
+<strong>Scale</strong> is used to adjust the image scale. After a distortion correction and/or geometry conversion the dimensions of the input might not be the same as the pipe size dimensions. <strong>Scale</strong> lets you adjust how much of the corrected image you lose. See the following figure for an illustration of what happens.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/lensfun-scale.png" class="media" alt="lensfun-scale" />
+</p>
+
+<p>
+On the left you see the the input image. On the right is the output after applying Lensfun distortion correction and/or geometry conversion. The red rectangle represents the pipe size. The correction/conversion is likely to produce an output image that is larger or smaller than the pipe size dimensions. In our example it is larger (green box). Since Photivo treats the pipe size dimensions as the definite image boundaries, everything outside the red box gets chopped off.
+</p>
+
+<p>
+This is where the <strong>Scale</strong> slider comes in. It changes the size of the green box. Effectively it lets you control how much of the corrected/converted output image actually appears inside the pipe size boundaries and therefore is visible and usable by the filters further down the processing pipe.
+</p>
+
+<p>
+Output images smaller than the pipe size (green box smaller than red box) do not change that logic. The unused pipe size area is just filled with black.
+</p>
+
+<p>
+If the <strong>Auto scale</strong> checkbox is active, Lensfun tries to set the scale factor in such a way as to fit as much image area as possible into the pipe size box without creating black borders.
+</p>
+
+</div>
+
+<h3 class="sectionedit4" id="chromatic_aberration">Chromatic Aberration</h3>
+
+<div class="level3">
+
+<p>
+The <strong>Chromatic Aberration (Lensfun)</strong> tool corrects lateral/transversal <a href="http://en.wikipedia.org/wiki/Chromatic_aberration" class="urlextern" title="http://en.wikipedia.org/wiki/Chromatic_aberration"  rel="nofollow">chromatic aberration</a>. CA correction depends on the focal length value from the <strong>Lens Parameters</strong> tool.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/lensfun-ca.png" class="media" alt="lensfun-ca" />
+</p>
+
+<p>
+<strong>Model</strong> sets the mathematical model used to correct CAs. <strong>None</strong> means CA correction is disabled. Each model has a set of parameters. Those appear as sliders below the combo box and adjust according to the model you choose. The values represent parameters in a (set of) mathematical equations and don’t really have an easily explained individual meaning for the output. Just play around with the values until you are satisfied with the result.
+</p>
+
+</div>
+
+<h3 class="sectionedit5" id="vignetting">Vignetting</h3>
+
+<div class="level3">
+
+<p>
+The <strong>Vignetting (Lensfun)</strong> tool corrects <a href="http://en.wikipedia.org/wiki/Vignetting" class="urlextern" title="http://en.wikipedia.org/wiki/Vignetting"  rel="nofollow">vignetting</a>. Vignetting correction depends on the focal length, aperture and distance values from the <strong>Lens Parameters</strong> tool.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/lensfun-vignetting.png" class="media" alt="lensfun-vignetting" />
+</p>
+
+<p>
+<strong>Model</strong> sets the mathematical model used to correct vignetting. <strong>None</strong> means the correction is disabled. Each model has a set of parameters. Those appear as sliders below the combo box and adjust according to the model you choose. The values represent parameters in a (set of) mathematical equations and don’t really have an easily explained individual meaning for the output. Just play around with the values until you are satisfied with the result.
+</p>
+
+</div>
+
+<h3 class="sectionedit6" id="lens_distortion">Lens Distortion</h3>
+
+<div class="level3">
+
+<p>
+The <strong>Lens Distortion (Lensfun)</strong> tool corrects <a href="http://en.wikipedia.org/wiki/Distortion_(optics)" class="urlextern" title="http://en.wikipedia.org/wiki/Distortion_(optics)"  rel="nofollow">geometric distortion</a> like barrel, pincushion or mustache distortion. Distortion correction depends on the focal length value from the <strong>Lens Parameters</strong> tool.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/lensfun-distortion.png" class="media" alt="lensfun-distortion" />
+</p>
+
+<p>
+<strong>Model</strong> sets the mathematical model used to correct distortions. <strong>None</strong> means the correction is disabled. Each model has a set of parameters. Those appear as sliders below the combo box and adjust according to the model you choose. The values represent parameters in a (set of) mathematical equations and don’t really have an easily explained individual meaning for the output. Just play around with the values until you are satisfied with the result.
+</p>
+
+</div>
+
+<h3 class="sectionedit7" id="geometry_conversion">Geometry Conversion</h3>
+
+<div class="level3">
+
+<p>
+The <strong>Geometry Conversion (Lensfun)</strong> tool converts between different lens geometries.
+Its main purpose is to straighten the bended lines produced by a <a href="http://en.wikipedia.org/wiki/Fisheye_lens" class="urlextern" title="http://en.wikipedia.org/wiki/Fisheye_lens"  rel="nofollow">fisheye lens</a>. Like the distortion correction geometry conversion depends on the focal length value from the <strong>Lens Parameters</strong> tool.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/lensfun-geometry.png" class="media" alt="lensfun-geometry" />
+</p>
+
+<p>
+<strong>Source geometry</strong> is the geometry of the lens the picture was taken with. <strong>Target geometry</strong> is the lens geometry you want to convert to. If source and target are the same, Photivo skips the tool when processing the pipe, i.e. no conversion takes place.
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Unknown</strong> stands for an unknown or just not specified lens geometry. If either source or target is <strong>Unknown</strong>, Photivo skips the tool and no conversion is performed.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Rectilinear</strong> stands for the normal type of lens that keeps straight lines (like a building corner) straight in the image but may distort angles. Usually this is the geometry you want your final result to have.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Fisheye</strong> lenses bend straight lines into curves. Generally, the shorter the focal length, the stronger the bending effect.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Panoramic</strong> stands for special lenses used in <a href="http://en.wikipedia.org/wiki/Panoramic_photography" class="urlextern" title="http://en.wikipedia.org/wiki/Panoramic_photography"  rel="nofollow">panoramic photography</a>.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Equirectangular</strong> represents the <a href="http://en.wikipedia.org/wiki/Equirectangular_projection" class="urlextern" title="http://en.wikipedia.org/wiki/Equirectangular_projection"  rel="nofollow">equirectangular projection</a>. No such lenses exist, but using them as source or target might give interesting effects.</div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit8" id="defish">Defish</h2>
+
+<div class="level2">
+
+<p>
+<strong>Defish</strong> is a specialised version of the Lensfun geometry conversion. It is used to “defish” images taken with a <a href="http://en.wikipedia.org/wiki/Fisheye_lens" class="urlextern" title="http://en.wikipedia.org/wiki/Fisheye_lens"  rel="nofollow">fisheye lens</a>, i.e. straighten the bent fisheye lines which results in an image with normal rectilinear geometry.
+</p>
+
+<p>
+<p><div class="noteimportant"><strong>Defish</strong> is completely separate from the other Lensfun tools. Particularly it is <em>not</em> affected by the values set in <strong>Lens Parameters (Lensfun)</strong>.
+</div></p>
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/defish.png" class="media" alt="defish" />
+</p>
+
+<p>
+<strong>Enable</strong> activates or deactivates the <strong>Defish</strong> tool.
+</p>
+
+<p>
+<strong>Focal length (35mm equiv.)</strong> represents the focal length the image was taken with, if necessary converted to its 35mm film equivalent. So if you took the picture with a 14mm lens and your camera has a <a href="http://en.wikipedia.org/wiki/Crop_factor" class="urlextern" title="http://en.wikipedia.org/wiki/Crop_factor"  rel="nofollow">crop factor</a> of 1.5 – which is very common for digital <a href="http://en.wikipedia.org/wiki/Single-lens_reflex_camera" class="urlextern" title="http://en.wikipedia.org/wiki/Single-lens_reflex_camera"  rel="nofollow">SLR cameras</a> – the correct value for the <strong>Focal length</strong> field is 14 × 1.5 = 21mm. Photivo tries to set this value automatically from the image’s Exif data.
+<p><div class="noteclassic">This automatic currently does not work for (most?) Canon cameras because of the weird way they store crop factor information in the image.
+</div></p>
+</p>
+
+<p>
+<strong>Scale</strong> is used to adjust the image scale. After a distortion correction or geometry conversion parts of the corrected/converted image might lie outside the bounding box defined by the pipe size. Everything outside that box gets chopped off. <strong>Scale</strong> lets you adjust how much of the corrected image you lose. If the value is <strong>0.0</strong> or the <strong>Auto scale</strong> checkbox is active, Lensfun tries to set the scale factor in such a way as to fit as much image area as possible into the bounding box without creating black borders.
+</p>
+
+</div>
+
+<h2 class="sectionedit9" id="rotation_and_perspective">Rotation and Perspective</h2>
+
+<div class="level2">
+
+<p>
+With the <strong>Rotation and Perspective</strong> tool you rotate the image or tilt and turn (perspective correction) it.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/rotation.png" class="media" alt="rotation" />
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/perspective-and-grid.png" class="media" alt="perspective-and-grid" />
+</p>
+
+</div>
+
+<h2 class="sectionedit10" id="crop">Crop</h2>
+
+<div class="level2">
+
+<p>
+The <strong>Crop</strong> tool crops out rectangular regions from the source image.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/crop.png" class="media" alt="crop" />
+</p>
+
+<p>
+The <strong>Crop</strong> checkbox enables and disables the current crop. If no previously selected crop region is available, Photivo automatically enters cropping mode. This mode is also activated by the <strong>Make a crop</strong> button to the right of the checkbox.
+</p>
+
+<p>
+Enabling <strong>Aspect Ratio</strong> restricts the shape of the cropped image region to a certain aspect ratio. You can set this ratio with the <strong>W</strong> (width) and <strong>H</strong> (height) comboboxes.
+</p>
+
+<p>
+The <strong>Guidelines</strong> combobox below displays common guiding lines used for image composition; for example the “rule of thirds” lines or image diagonals.
+</p>
+
+<p>
+Making a crop:
+</p>
+<ul>
+<li class="level1"><div class="li"> When entering crop mode all filters are disabled and the image is zoomed so that it completely fits into the viewport. The <strong>Make a crop</strong> button is replaced by the <strong>Confirm crop</strong> and <strong>Abort crop</strong> buttons. You can change the inital zoom behaviour in the <strong>Crop</strong> tab on the <strong>Settings</strong> page.</div>
+</li>
+<li class="level1"><div class="li"> If you did not crop the current image before, the initial crop rectangle contains the full image (if permitted by the aspect ratio setting). Otherwise crop mode starts with the previous crop rectangle.</div>
+</li>
+<li class="level1"><div class="li"> Adjust the rectangle’s size and position with the mouse. When you move your mouse over different parts of the rectangle the mouse cursor changes according to the action that is possible there.</div>
+<ul>
+<li class="level2"><div class="li"> Drag the <em>corners</em> with the left mouse button to change the size of both adjacent edges simultaneously. Drag the <em>edges</em> to change only the width or height of the rectangle.</div>
+</li>
+<li class="level2"><div class="li"> Drag the <em>center</em> to move the rectangle around without changing its size.</div>
+</li>
+<li class="level2"><div class="li"> Crop works on all zoom levels. If the image is too large to fit into the viewport completely and you want to drag it to make another part of the image visible, hold down the <code>Ctrl</code> key.</div>
+</li>
+<li class="level2"><div class="li"> Pressing the <code>Alt</code> key cycles through “LightsOut” modes. Changing the <strong>LightsOut</strong> combo box does the same. There are three modes: <strong>None</strong> just displays the rectangle (and guidelines) on top of the image. <strong>Dimmed</strong> additionally dims the image outside the rectangle. <strong>Black</strong> completely blacks out areas outside the rectangle and also does not show the rectangle borders or guidelines. That way you have an distraction-free preview of your current crop.</div>
+</li>
+<li class="level2"><div class="li"> You can also change the guidelines or aspect ratio restriction at any point during cropping.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/crop-cropping.png" class="media" alt="crop-cropping" />
+</p>
+<ul>
+<li class="level1"><div class="li"> When you are satisfied with your crop selection, click the <strong>Confirm crop</strong> button or press <code>Enter</code> or double click inside the crop rectangle.</div>
+</li>
+<li class="level1"><div class="li"> Click the <strong>Abort crop</strong> button or hit <code>Esc</code> to cancel the crop. Photivo will return to the previous crop (if there is one) or the uncropped image.</div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit11" id="seam_carving">Seam carving</h2>
+
+<div class="level2">
+
+<p>
+Seam carving allows you to rescale and change the aspect ratio of your image while preserving important image features and avoiding distorted proportions as would happen with normal non-proportional rescaling. The <a href="http://en.wikipedia.org/wiki/Seam_carving" class="urlextern" title="http://en.wikipedia.org/wiki/Seam_carving"  rel="nofollow">Wikipedia article on seam carving</a> gives a good explanation.
+</p>
+
+<p>
+Photivo uses <a href="http://liblqr.wikidot.com/" class="urlextern" title="http://liblqr.wikidot.com/"  rel="nofollow">Liquid Rescale</a> for seam carving. The tool lets you choose the type of energy evaluation function and of course the amount of rescaling.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/seam-carving-relative.png" class="media" alt="seam-carving-relative" />
+<img src="/media/Manual/Tabs/geometry/seam-carving-absolute.png" class="media" alt="seam-carving-absolute" />
+</p>
+
+<p>
+Energy evaluation functions are different methods to search for rescaling seams in the image.
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Directional grad brightness</strong>: absolute value of the brightness gradient in the direction of the rescaling</div>
+</li>
+<li class="level1"><div class="li"> <strong>Average grad brightness</strong>: sum of absolute values of the brightness gradients in both directions</div>
+</li>
+<li class="level1"><div class="li"> <strong>Norm brightness</strong>: norm of the brightness gradient</div>
+</li>
+<li class="level1"><div class="li"> <strong>Directional grad luminance</strong>: absolute value of the luminance gradient in the direction of the rescaling</div>
+</li>
+<li class="level1"><div class="li"> <strong>Average grad luminance</strong>: sum of absolute values of the luminance gradients in both directions</div>
+</li>
+<li class="level1"><div class="li"> <strong>Norm luminance</strong>: norm of the luminance gradient</div>
+</li>
+</ul>
+
+<p>
+It is hard to predict which function produces the best results for a particular image, so just play around with them till you like the result.
+</p>
+
+<p>
+<strong>Scaling</strong> sets the scaling mode. With <strong>Relative</strong> you choose a percentage based on the current image size. With <strong>Absolute</strong> you specify the target width and height in pixels.
+</p>
+
+<p>
+The <strong>Vertical first</strong> checkbox controls which dimension is rescaled first. Usually Photivo rescales horizontally first, then vertically. Enable <strong>Vertical first</strong> to revert this order.
+</p>
+
+<p>
+<p><div class="noteimportant">Liquid rescale is a quite slow filter and might produce vastly different results for different pipe sizes.
+</div></p>
+</p>
+
+</div>
+
+<h2 class="sectionedit12" id="resize">Resize</h2>
+
+<div class="level2">
+
+<p>
+The <strong>Resize</strong> tool changes the image’s size. Resizing is always proportional, i.e. the aspect ratio stays the same.
+</p>
+
+<p>
+<img src="/media/Manual/Tabs/geometry/resize.png" class="media" alt="resize" />
+</p>
+
+<p>
+Check the <strong>Resize</strong> checkbox to enable resizing. With <strong>Size</strong> you set the output size in pixels of the longer image dimension. I.e. <strong>Size</strong> sets the output width for images with landscape orientation (wider than high) and the output height for images with portrait orientation (higher than wide).
+</p>
+
+<p>
+The <strong>Filter</strong> combobox lets you choose the resize algorithm. Resizing is done through GraphicsMagick and all of GraphicsMagick’s filters are available. It is probably safe to stay with <strong>Mitchell</strong> or <strong>Lanczos3</strong>.
+</p>
+
+<p>
+<strong>Automatic pipe size</strong> automatically matches pipe size and output resolution to avoid unnecessarily large pipe sizes and save processing time. It uses the smallest possible pipe size that is still larger than the specified output size of the resize tool.
+</p>
+
+</div>
+
+<h2 class="sectionedit13" id="flip">Flip</h2>
+
+<div class="level2">
+
+<p>
+<img src="/media/Manual/Tabs/geometry/flip.png" class="media" alt="flip" />
+</p>
+
+<p>
+The <strong>Flip</strong> tool allows you to flip your image either along the horzontal or the vertical axis.
+</p>
+
+</div>
+
+<h2 class="sectionedit14" id="block">Block</h2>
+
+<div class="level2">
+
+<p>
+<img src="/media/Manual/Tabs/geometry/block-pipe.png" class="media" alt="block-pipe" />
+</p>
+
+<p>
+When the <strong>Block pipe</strong> checkbox is enabled, all the tabs from <strong>RGB</strong> to <strong>EyeCandy</strong> will not be processed, i.e. only <strong>Camera</strong>, <strong>Geometry</strong> and <strong>Output</strong> stay active. This tool is mostly there as a convenient way to temporarily disable a heavy processing pipe when you want to adjust settings on the early tabs.
+</p>
+
+</div>
+
+<!--
+vim: syntax=markdown ts=4 sw=4 sts=4 sr et columns=160 lines=32
+-->
+        </div> 
+    </article>
+ 
+        <div id="cbComments" class="cbComments">
+	        <div id="disqus_thread"></div>
+        </div>
+
+                </main>
+    
+                <footer id="cbFooter" role="contentinfo" class="cbNoPrint">
+                    <span>
+                        Powered by <a class="cbUnderline" href="https://blog.getpelican.com">Pelican</a>.<br>2017-2018 Camiel Bouchier. All rights reserved.
+    		        </span>
+                </footer>
+    
+            </div>
+        </div> 
+
+        <script src="https://photivo.bouchier.be/theme/assets/js/skel.min.js"></script>
+        <script src="https://photivo.bouchier.be/theme/assets/js/cbCms.js"></script>
+
+
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Register.StartupHook("End Jax",function ()
+                {
+                var BROWSER = MathJax.Hub.Browser;
+                var jax = "HTML-CSS";
+                if (BROWSER.isMSIE && BROWSER.hasMathPlayer) jax = "NativeMML";
+                if (BROWSER.isFirefox) jax = "SVG";
+                if (BROWSER.isChrome) jax = "SVG";
+                if (BROWSER.isSafari && BROWSER.versionAtLeast("5.0")) jax = "NativeMML";
+                // For the moment I have best cross-browser and reasonable results with just the preview.
+                // I need to find out later for the mobile browsers if something can be done.
+                jax = "PreviewHTML"
+                return MathJax.Hub.setRenderer(jax);
+                });
+		    MathJax.Hub.Config(
+			    {
+			    jax : [ "output/SVG" ] ,
+    		    "HTML-CSS" :
+                    {
+                    scale : 100
+                    } ,
+    		    "SVG" :
+                    {
+                    scale: 90
+                    } ,
+  			    });
+	    </script>
+
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        <script id="dsq-count-scr" src="https://photivo-en.disqus.com/count.js" async></script>
+
+ 
+
+    </body>
+</html>
+
