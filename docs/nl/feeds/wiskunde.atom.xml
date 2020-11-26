@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Camiel Bouchier - Wiskunde</title><link href="https://camiel.bouchier.be/nl/" rel="alternate"></link><link href="https://camiel.bouchier.be/feeds/wiskunde.atom.xml" rel="self"></link><id>https://camiel.bouchier.be/nl/</id><updated>2016-11-29T00:00:00+01:00</updated><entry><title>Heb ik nog genoeg stookolie ?</title><link href="https://camiel.bouchier.be/nl/posts/genoeg-stookolie.html" rel="alternate"></link><published>2016-11-29T00:00:00+01:00</published><updated>2016-11-29T00:00:00+01:00</updated><author><name>Camiel Bouchier</name></author><id>tag:camiel.bouchier.be,2016-11-29:/nl/posts/genoeg-stookolie.html</id><summary type="html">&lt;p&gt;Koud als het is peilde ik daarnet of we nog wel genoeg stookolie hebben om ons de volgende weken te kunnen verwarmen.
+Maar wacht, ik meet een hoogte in een cilindrische tank ! Ik weet wel dat het een tank is van drieduizend liter.
+En dat hij 120cm diameter heeft. Maar hoeveel stookolie zit er nu in als ik 25cm peil ?
+Vind het hier uit !
+</summary><content type="html">&lt;p&gt;Koud als het is peilde ik daarnet of we nog wel genoeg stookolie hebben om ons de volgende weken te kunnen verwarmen.
+Maar wacht, ik meet een hoogte in een cilindrische tank ! Ik weet wel dat het een tank is van drieduizend liter.
+En dat hij 120cm diameter heeft. Maar hoeveel stookolie zit er nu in als ik 25cm peil ?
+Vind het hier uit !
+&lt;/p&gt;
+&lt;h3 id="More"&gt;Geen wiskunde alstublieft !&lt;/h3&gt;
+
+&lt;p&gt;
+    Die wiskunde interesseert je geen knijt, maar je zou het ook wel willen weten voor je cilindrische tank ?
+    Vul dan onderstaande gegevens in en ik bereken het wel even voor je.
+&lt;/p&gt;
+
+&lt;script&gt;
+    function Bereken()
+        {
+        var Peil = $( '#PeilHoogte' ).val()
+        var Diameter = $( '#DiameterTank' ).val()
+        var Inhoud = $( '#InhoudTank' ).val()
+        var X = ( Peil - Diameter / 2 ) / ( Diameter / 2 )
+        var Alpha = Math.asin(X)
+        if ( isNaN( Alpha ) )
+            {
+            $( '#Resultaat' ).html( 'De gegevens lijken mij niet juist ingevuld. Of misschien ben je wel aan grondsanering toe ?' )
+            }
+        else
+            {
+            var Fraction = ( Math.PI / 2 + 0.5 * Math.sin( 2 * Alpha ) + Alpha ) / Math.PI
+            var Resterend = Math.round( Fraction * Inhoud )
+            var Vullend = Inhoud - Resterend
+            $( '#Resultaat' ).html( 'Je tank bevat nog ' + Resterend + ' liter stookolie. Je kunt ' + Vullend + ' liter bijvullen.' )
+            }
+        }
+&lt;/script&gt;
+
+&lt;div&gt;
+    &lt;div&gt;
+        &lt;label style="display:inline-block; width:100%; text-align:left;" for="InhoudTank"&gt;Inhoud in liter van de tank :&lt;/label&gt;
+        &lt;input type="number" name="InhoudTank" id="InhoudTank" value="3000" placeholder="Inhoud in liter" onChange="Bereken()"/&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;label style="display:inline-block; width:100%; text-align:left;" for="DiameterTank"&gt;Diameter in cm van de tank :&lt;/label&gt;
+        &lt;input type="number" name="DiameterTank" id="DiameterTank" value="120" placeholder="Diameter in cm" onChange="Bereken()" /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;label style="display:inline-block; width:100%; text-align:left;" for="PeilHoogte"&gt;Peilhoogte in cm :&lt;/label&gt;
+        &lt;input type="number" name="PeilHoogte" id="PeilHoogte" value="25" placeholder="Peilhoogte in cm" onChange="Bereken()"/&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;div id="Resultaat"&gt;Je tank bevat nog 453 liter stookolie. Je kunt er 2547 liter bijvullen.&lt;/div&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;Geef me toch maar de wiskunde !&lt;/h3&gt;
+
+&lt;p&gt;
+    De berekening hiervan is niet zo moeilijk en kan met wiskunde uit het middelbaar onderwijs.
+    Uiteraard zijn er wel een aantal vereenvoudigingen. Ik ga er van uit dat de tank een perfecte cilinder is, die ook perfect horizontaal ligt.
+    In werkelijkheid zijn er doorgaans welvingen op de koppen, maar die introduceren geen al te grote fout.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="/thumbnails/NogStookolie/Tank_Math_300x270.jpg"
+     alt="Tank_Math"
+     align="left"
+     title="Drawing by Camiel Bouchier"
+     srcset="/thumbnails/NogStookolie/Tank_Math_531x478.jpg 531w"
+     sizes="(max-width: 300px) 100vw, 300px"
+     width="300"
+     height="270"&gt;
+    De uitleg is aan de hand van deze tekening. De verhoudingen zijn gereduceerd tot een cirkel met straal 1.
+    Veronderstel dat het peil boven de helft staat zodat een hoek `alpha` wordt gevormd tussen de horizontale middellijn
+    en de stand van de stookolie. `alpha` drukken we uit in radialen ( `2*pi` radialen in een cirkel ). Rechts boven is dan een oppervlakte die bestaat uit het cirkelsegment en een rechthoekige driehoek.
+    De rechthoekige driehoek heeft als zijden `sin(alpha)` en `cos(alpha)`. Zijn oppervlakte is dus `1/2*sin(alpha)*cos(alpha)`.
+    Het cirkelsegment heeft als oppervlakte `pi/2*alpha`. Rechtsboven staat dus een gearceerde oppervlakte van :
+    &lt;div style="text-align:center;"&gt;`1/2*sin(alpha)*cos(alpha)+alpha/2`&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+    Links boven is de oppervlakte wegens symmetrie dezelfde. Er staat dus een oppervlakte
+    `sin(alpha)*cos(alpha)+alpha` boven de helft. Onder de helft uiteraard `pi/2`.
+&lt;/p&gt;
+
+&lt;p&gt;
+    De oppervlakte gevuld door de stookolie ( na de verhoudingen tot een cirkel met straal 1 te hebben gereduceerd)  is dus :
+    `pi/2+alpha+sin(alpha)*cos(alpha)`. Met `I` de totale inhoud van de tank is de resterende inhoud dus :
+    &lt;div style="text-align:center;"&gt;`I * ( pi/2+alpha+sin(alpha)*cos(alpha) )`&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+    Als de stookolie onder de helft gaat wordt `alpha` negatief en ook `sin(alpha)*cos(alpha)`,
+    m.a.w. de formule blijft opgaan onder de helft.
+    Blijft de vraag hoe aan `alpha` te komen. We zien dat `sin(alpha)` de peilhoogte is, waarbij -1 leeg is, 0 halfweg en +1 vol.
+    Daaruit volgt dat, met `R` de straal van de tank en `P` de peilhoogte :
+    &lt;div style="text-align:center;"&gt;`alpha = sin^-1( ( P - R ) / R )`&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;!--
+vim: syntax=markdown ts=4 sw=4 sts=4 sr et columns=160 lines=32
+--&gt;</content><category term="Wiskunde"></category></entry><entry><title>Het antwoord is `e^pi`</title><link href="https://camiel.bouchier.be/nl/posts/het-antwoord-is-e-to-pi.html" rel="alternate"></link><published>2016-01-31T00:00:00+01:00</published><updated>2016-01-31T00:00:00+01:00</updated><author><name>Camiel Bouchier</name></author><id>tag:camiel.bouchier.be,2016-01-31:/nl/posts/het-antwoord-is-e-to-pi.html</id><summary type="html">&lt;p&gt;Kreeg je ze ook al eens in één of andere test ? De vraag welk getal volgt in de rij 1, 1, 2, 3, 5 ?
+Je wordt dan verondersteld '8' te antwoorden. Omdat elk getal de som is van zijn 2 voorgaande
+( de &lt;a href="https://nl.wikipedia.org/wiki/Rij_van_Fibonacci"&gt;rij van Fibonacci&lt;/a&gt; ).&lt;/p&gt;
+&lt;p&gt;Welnu, dat is een weinig creatief antwoord. Je kruipt in de gedachtengang van de vraagsteller, terwijl er
+letterlijk oneindig veel andere mogelijkheden zijn. Logische mogelijkheden. Laten we zeggen dat het volgende
+getal `e^pi` is ! En aantonen natuurlijk.
+</summary><content type="html">&lt;p&gt;Kreeg je ze ook al eens in één of andere test ? De vraag welk getal volgt in de rij 1, 1, 2, 3, 5 ?
+Je wordt dan verondersteld '8' te antwoorden. Omdat elk getal de som is van zijn 2 voorgaande
+( de &lt;a href="https://nl.wikipedia.org/wiki/Rij_van_Fibonacci"&gt;rij van Fibonacci&lt;/a&gt; ).&lt;/p&gt;
+&lt;p&gt;Welnu, dat is een weinig creatief antwoord. Je kruipt in de gedachtengang van de vraagsteller, terwijl er
+letterlijk oneindig veel andere mogelijkheden zijn. Logische mogelijkheden. Laten we zeggen dat het volgende
+getal `e^pi` is ! En aantonen natuurlijk.
+&lt;/p&gt;
+&lt;p&gt;&lt;a name="More"&gt;&lt;/a&gt;
+&lt;h3&gt;Veelterm&lt;/h3&gt;&lt;/p&gt;
+&lt;p&gt;
+    Een mogelijke aanpak is met veeltermen. Beschouw de veelterm :
+    &lt;br&gt;
+    `f(x)=a_5*x^5+a_4*x^4+a_3*x^3+a_2*x^2+a_1*x+a_0`.
+    &lt;br&gt;
+    Daarbij werd voor een vijfde graad gekozen omdat er al 5 getallen zijn gegeven, dat wordt later duidelijk.
+    `x` zal staan voor de positie in de rij. 0 voor het eerste getal, 1 voor het tweede ... 4 voor het vijfde.
+&lt;/p&gt;
+
+&lt;p&gt;
+    Toegepast op onze rij hebben we nu :
+    `f(0)=1`, `f(1)=1`, `f(2)=2`, `f(3)=3`, `f(4)=5`.
+    Het volgende getal in de rij kennen we niet maar laten we het `alpha` noemen. Dan `f(5)=alpha`.
+&lt;/p&gt;
+
+&lt;h3&gt;6 vergelijking met 6 onbekenden&lt;/h3&gt;
+
+&lt;p&gt;
+    Wanneer we nu bovenstaande uitschrijven zien we dat we 6 vergelijkingen hebben met 6 onbekenden `a_0` .. `a_5` :
+    &lt;br&gt;
+    &lt;br&gt;`a_5*0^5+a_4*0^4+a_3*0^3+a_2*0^2+a_1*0+a_0 = 1`
+    &lt;br&gt;`a_5*1^5+a_4*1^4+a_3*1^3+a_2*1^2+a_1*1+a_0 = 1`
+    &lt;br&gt;`a_5*2^5+a_4*2^4+a_3*2^3+a_2*2^2+a_1*2+a_0 = 2`
+    &lt;br&gt; `a_5*3^5+a_4*3^4+a_3*3^3+a_2*3^2+a_1*3+a_0 = 3`
+    &lt;br&gt; `a_5*4^5+a_4*4^4+a_3*4^3+a_2*4^2+a_1*4+a_0 = 5`
+    &lt;br&gt; `a_5*5^5+a_4*5^4+a_3*5^3+a_2*5^2+a_1*5+a_0 = alpha`
+    &lt;br&gt;
+    &lt;br&gt; Of onder matrix vorm :
+    &lt;br&gt;
+    `( (1,0,0,0,0,0) , (1,1,1,1,1,1) , (1,2,2^2,2^3,2^4,2^5) , (1,3,3^2,3^3,3^4,3^5) , (1,4,4^2,4^3,4^4,4^5) , (1,5,5^2,5^3,5^4,5^5) )*((a_0),(a_1),(a_2),(a_3),(a_4),(a_5))=((1),(1),(2),(3),(5),(alpha))`
+&lt;/p&gt;
+
+&lt;p&gt;
+    Zoals we weten moeten we om dit oplossen de matrix inverteren.
+    De matrix, die een inverteerbare &lt;a class="dlUnderline" href="https://nl.wikipedia.org/wiki/Vandermonde-matrix"&gt;Vandermonde matrix&lt;/a&gt; is,
+    kan wellicht manueel worden geïnverteerd. Ik gebruikte echter
+    &lt;a class="dlUnderline" href="https://www.wolframalpha.com/input/?i=inv+%7B+%7B1,0,0,0,0,0%7D+,+%7B1,1,1,1,1,1%7D+,+%7B1,2,2%5E2,2%5E3,2%5E4,2%5E5%7D+,+%7B1,3,3%5E2,3%5E3,3%5E4,3%5E5%7D+,+%7B1,4,4%5E2,4%5E3,4%5E4,4%5E5%7D+,+%7B1,5,5%5E2,5%5E3,5%5E4,5%5E5%7D+%7D"&gt;www.wolframalpha.com&lt;/a&gt;. Het resultaat voor de inverse matrix is :
+    &lt;br&gt;
+    `1/120*((120,0,0,0,0,0),(-274,600,-600,400,-150,24),(225,-770,1070,-780,305,-50),(-85,355,-590,490,-205,35),(15,-70,130,-120,55,-10),(-1,5,-10,10,-5,1))`
+    &lt;br&gt;
+    &lt;br&gt;
+    Bijgevolg is de oplossing voor het stelsel :
+    &lt;br&gt;
+    `((a_0),(a_1),(a_2),(a_3),(a_4),(a_5))=1/120*((120,0,0,0,0,0),(-274,600,-600,400,-150,24),(225,-770,1070,-780,305,-50),(-85,355,-590,490,-205,35),(15,-70,130,-120,55,-10),(-1,5,-10,10,-5,1))*((1),(1),(2),(3),(5),(alpha))`
+    &lt;br&gt;
+    &lt;br&gt;
+    Of uitgewerkt :
+    &lt;br&gt;
+    `((a_0),(a_1),(a_2),(a_3),(a_4),(a_5))=1/120((120),(-424+24*alpha),(780-50*alpha),(-465+35*alpha),(120-10*alpha),(-11+alpha))`
+&lt;/p&gt;
+
+&lt;h3&gt; Terug naar de veelterm &lt;/h3&gt;
+
+&lt;p&gt; De oorspronkelijke veelterm , opgelost naar `a_i` is dus :
+    &lt;br&gt;
+    `120* f(x) = ` `120 + (-424+24*alpha)*x` `+ (780-50*alpha)*x^2` `+ (-465+35*alpha)*x^3` `+ (120-10*alpha)*x^4` `+ (-11+alpha)*x^5`
+    &lt;br&gt;
+    Hiervoor geldt inderdaad :
+    &lt;ul style="list-style-type: none;"&gt;
+        &lt;li&gt;`f(0)=1`&lt;/li&gt;
+        &lt;li&gt;`f(1)=1`&lt;/li&gt;
+        &lt;li&gt;`f(2)=2`&lt;/li&gt;
+        &lt;li&gt;`f(3)=3`&lt;/li&gt;
+        &lt;li&gt;`f(4)=5`&lt;/li&gt;
+        &lt;li&gt;`f(5)=alpha`&lt;/li&gt;
+    &lt;/ul&gt;
+    Bemerk hoe voor 0..4 de afhankelijkheid van `alpha` volledig verdween !
+&lt;/p&gt;
+
+&lt;h3&gt; Wat betekent dit ? &lt;/h3&gt;
+
+&lt;p&gt;
+    We hebben dus een veelterm gedefinieerd die voor x=0..4 de oorspronkelijke rij 1, 1, 2, 3, 5 genereert en voor het volgende getal (x=5)
+    een willekeurig getal `alpha`. Noteer dat `alpha` niet eens geheel, rationaal of zelfs maar reëel moet zijn !
+&lt;/p&gt;
+
+&lt;p&gt; Met andere woorden `e^pi` is een even geldig antwoord als 8 ! &lt;/p&gt;
+
+&lt;h3&gt; En verder ... &lt;/h3&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;
+        Noteer dat deze veelterm een andere rij definieert dan de Fibonacci rij. Zelfs voor `alpha=8`.
+        De twee rijen vallen juist samen voor de eerste 6 getallen. Deze veelterm rij, bvb, heeft als eigenschap dat `f(6)=-40+6*alpha`.
+        Dus met `alpha=8` is ook het volgende getal in de rij 8 ! En niet 13 zoals in de Fibonacci rij.
+    &lt;/li&gt;
+    &lt;li&gt;
+        Merk verder ook op dat niets in deze aanpak specifiek is voor de Fibonacci rij. Ik nam ze puur als voorbeeld.
+        Met deze techniek kun je dus om het even welke rij vervolledigen met een 'logische' oplossing `e^pi`.
+        De enige voorwaarde is dat de matrix inverteerbaar is. Maar dat is altijd het geval voor de
+        Vandermonde matrices die op deze manier tevoorschijn komen.
+    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--
+vim: syntax=markdown ts=4 sw=4 sts=4 sr et columns=160 lines=32
+--&gt;</content><category term="Wiskunde"></category></entry></feed>
