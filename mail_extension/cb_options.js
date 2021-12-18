@@ -62,7 +62,7 @@ for (input of inputs) {
 // local storage => GUI (at opening settings)
 //
 
-browser.storage.local.get().then((settings) => {
+browser.storage.local.get('cb_thunderlink').then((settings) => {
     if (settings.cb_thunderlink) {
         let open_mode      = settings.cb_thunderlink.open_mode
         let avoid_folders  = settings.cb_thunderlink.avoid_folders

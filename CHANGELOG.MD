@@ -1,3 +1,8 @@
+Release_1_0_0
+=============
+
+* Messed up release numbering and version numbering in the past. Going to 1.0.0 after having introduced the suggestions from John Bieling, bringing it in the official thunderbird add-ons.
+
 Release_0_8_0
 =============
 

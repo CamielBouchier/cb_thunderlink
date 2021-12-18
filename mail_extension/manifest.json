@@ -1,13 +1,14 @@
 {
     "manifest_version": 2,
-    "version": "0.6.0",
+    "version": "1.0.0",
     "name": "cb_thunderlink",
     "description": "cb_thunderlink is a thunderlink replacement.",
     "author": "camiel@bouchier.be",
     "applications": {
     "gecko": {
         "id": "cb_thunderlink@bouchier.be",
-        "strict_min_version": "68.10.0"
+        "strict_min_version": "68.9.0",
+        "strict_max_version": "91.*"
         }
     },
     "browser_action": {
