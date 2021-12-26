@@ -5,10 +5,12 @@
 #
 # $BeginLicense$
 #
-# (C) 2020 by Camiel Bouchier (camiel@bouchier.be)
+# (C) 2020-2021 by Camiel Bouchier (camiel@bouchier.be)
 #
 # This file is part of cb_thunderlink.
-# All rights reserved.
+#
+# License: Mozilla Public License Version 2.0
+# (https://github.com/CamielBouchier/cb_thunderlink/blob/main/LICENSE)
 #
 # $EndLicense$
 #
@@ -162,7 +164,7 @@ if __name__ == '__main__' :
             with open (manifest_location, "w", encoding='utf-8') as f :
                 json.dump(d, f)
 
-            # First shot for gnome/gio based systems. 
+            # First shot for gnome/gio based systems.
             # Likely I will need here a bunch of variations according to
             # the distribution/desktop.
 

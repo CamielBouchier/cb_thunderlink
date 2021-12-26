@@ -3,10 +3,12 @@
 REM
 REM $BeginLicense$
 REM
-REM (C) 2020 by Camiel Bouchier (camiel@bouchier.be)
+REM (C) 2020-2021 by Camiel Bouchier (camiel@bouchier.be)
 REM
 REM This file is part of cb_thunderlink.
-REM All rights reserved.
+REM
+REM License: Mozilla Public License Version 2.0
+REM (https://github.com/CamielBouchier/cb_thunderlink/blob/main/LICENSE)
 REM
 REM $EndLicense$
 REM

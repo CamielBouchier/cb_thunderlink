@@ -6,10 +6,12 @@
 
 $BeginLicense$
 
-(C) 2020 by Camiel Bouchier (camiel@bouchier.be)
+(C) 2020-2021 by Camiel Bouchier (camiel@bouchier.be)
 
 This file is part of cb_thunderlink.
-All rights reserved.
+
+License: Mozilla Public License Version 2.0
+(https://github.com/CamielBouchier/cb_thunderlink/blob/main/LICENSE)
 
 $EndLicense$
 
@@ -35,10 +37,12 @@ log_dir      = "logs"
 
 license_txt = [
     '',
-    '(C) 2020 by Camiel Bouchier (camiel@bouchier.be)',
+    '(C) 2020-2021 by Camiel Bouchier (camiel@bouchier.be)',
     '',
     'This file is part of cb_thunderlink.',
-    'All rights reserved.',
+    '',
+    'License: Mozilla Public License Version 2.0',
+    '(https://github.com/CamielBouchier/cb_thunderlink/blob/main/LICENSE)',
     ''
     ]
 
@@ -151,13 +155,15 @@ if __name__ == '__main__':
     logger.info("Starting {}".format(program_name))
 
     dir_todo = '.'
-    extensions_todo = ['', '.py', '.js', '.spec', '.txt', '.bat']
+    extensions_todo = ['', '.py', '.js', '.spec', '.txt', '.bat', '.css']
     regex_exclude = [
         r'.*/.hg/.*',
         r'.*/.git/.*',
         r'.*/__pycache__/.*',
-        r'.*/build*/.*',
-        r'.*/dist/.*',
+        r'.*/build_linux/.*',
+        r'.*/build_windows/.*',
+        r'.*/dist_linux/.*',
+        r'.*/dist_windows/.*',
         r'.*/logs/.*',
         r'.*/images/.*',
         r'.*/references/.*',

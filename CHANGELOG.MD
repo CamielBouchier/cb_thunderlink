@@ -1,3 +1,8 @@
+Release_1_1_0
+=============
+
+* Introduced Mozilla Public License Version 2.0
+
 Release_1_0_0
 =============
 

@@ -1,10 +1,12 @@
 //
 // $BeginLicense$
 //
-// (C) 2020 by Camiel Bouchier (camiel@bouchier.be)
+// (C) 2020-2021 by Camiel Bouchier (camiel@bouchier.be)
 //
 // This file is part of cb_thunderlink.
-// All rights reserved.
+//
+// License: Mozilla Public License Version 2.0
+// (https://github.com/CamielBouchier/cb_thunderlink/blob/main/LICENSE)
 //
 // $EndLicense$
 //
@@ -74,7 +76,7 @@ browser.storage.onChanged.addListener(
 
 get_settings() // Actually will kick us of, generating the context menus.
 
-// 
+//
 // https://base64.guru/developers/javascript/examples/unicode-strings
 //
 // ASCII to Unicode (decode Base64 to original data)
@@ -86,7 +88,7 @@ function atou(b64) {
   return decodeURIComponent(escape(atob(b64)));
 }
 
-// 
+//
 // https://base64.guru/developers/javascript/examples/unicode-strings
 //
 // Unicode to ASCII (encode data to Base64)
@@ -277,8 +279,8 @@ async function handle_incoming_link(incoming_link) {
 
     if (link_type == 'thunderlink') {
         msg_id =  link.replace('messageid=', '')
-        messenger.cb_api.cb_show_message_from_msg_id(msg_id, 
-                                                     open_mode, 
+        messenger.cb_api.cb_show_message_from_msg_id(msg_id,
+                                                     open_mode,
                                                      settings.prefer_folders,
                                                      settings.avoid_folders)
     }

@@ -1,10 +1,12 @@
 //
 // $BeginLicense$
 //
-// (C) 2020 by Camiel Bouchier (camiel@bouchier.be)
+// (C) 2020-2021 by Camiel Bouchier (camiel@bouchier.be)
 //
 // This file is part of cb_thunderlink.
-// All rights reserved.
+//
+// License: Mozilla Public License Version 2.0
+// (https://github.com/CamielBouchier/cb_thunderlink/blob/main/LICENSE)
 //
 // $EndLicense$
 //
