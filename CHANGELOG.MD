@@ -1,3 +1,8 @@
+Release_1_2_0
+=============
+
+* Added drop_link command shortcut. 
+
 Release_1_1_0
 =============
 

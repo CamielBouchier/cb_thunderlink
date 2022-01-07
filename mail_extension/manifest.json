@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "version": "1.1.0",
+    "version": "1.2.0",
     "name": "cb_thunderlink",
     "description": "cb_thunderlink is a thunderlink replacement.",
     "author": "camiel@bouchier.be",
@@ -15,6 +15,12 @@
         "default_icon": "images/cb-32px.png"
     },
     "commands": {
+	"drop_link": {
+	    "suggested_key": {
+		"default": "Ctrl+Alt+0"
+	    },
+	    "description": "Paste configurable link from the clipboard"
+	},
 	"copy_link_1": {
 	    "suggested_key": {
 		"default": "Ctrl+Alt+1"

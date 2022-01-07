@@ -3,7 +3,10 @@ tiddly_wiki*
 build*/*
 dist*/*
 logs/*
+Lib/*
+Scripts/*
 __pycache__/*
 *.xpi
 .*.swp
 *.zip
+pyvenv.cfg

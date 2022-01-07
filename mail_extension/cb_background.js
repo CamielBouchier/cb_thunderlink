@@ -222,6 +222,11 @@ browser.commands.onCommand.addListener(async (command) => {
 	        })
 	    }
     }
+    let drop_link_match = command.match(/^drop_link$/)
+    if (drop_link_match) {
+        let incoming_link = await navigator.clipboard.readText()
+        handle_incoming_link(incoming_link)
+    }
 })
 
 //
