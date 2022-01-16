@@ -104,8 +104,7 @@ function utoa(data) {
 // Link generator
 //
 
-async function link_to_clipboard(idx, the_message) {
-
+async function link_to_clipboard(idx, the_message, selected_text) {
     let link = settings.conf_links[idx].value
 
     // Following few lines are +/- from original thunderlink.
@@ -160,12 +159,15 @@ async function link_to_clipboard(idx, the_message) {
     link = link.replace(/\$time_locale\$/ig, time_locale)
     link = link.replace(/\$subject\$/ig, subject)
     link = link.replace(/\$subject_filtered\$/ig, subject_filtered)
+    link = link.replace(/\$selected_text\$/ig, selected_text ?? "");
+
+    console.debug(`Storing in clipboard: ${link}`);
 
     navigator.clipboard.writeText(link)
 }
 
 //
-// Build the context menu for generating a link.
+// Build the context menus for generating a link.
 //
 
 async function create_context_menu() {
@@ -179,18 +181,39 @@ async function create_context_menu() {
     }
     let main_context_id = await browser.menus.create(main_context_menu)
 
-    let conf_links = settings.conf_links
-    for (const i in conf_links) {
-        let conf_link = conf_links[i]
-        if (!conf_link.enable) continue
-        let sub_context_menu = {
+    let selection_context_menu = {
+        contexts : ['selection', 'tab', 'page'],
+        title    : 'cb_thunderlink',
+        id       : 'selection_context_menu'
+    };
+    let selection_context_id = await browser.menus.create(selection_context_menu);
+
+    // gather enabled configured links
+    let conf_links = settings.conf_links;
+
+    for (let [i, conf_link] of Object.entries(conf_links)) {
+
+        // ignore disabled links
+        if (!conf_link.enable) {
+            continue;
+        }
+
+        // add sub menu entry to the message_list menu
+        browser.menus.create({
             contexts : ['message_list'],
             title    : conf_link.name,
             parentId : main_context_id,
             id       : 'sub_context_menu_' + i,
             onclick  : on_context_menu
-        }
-        browser.menus.create(sub_context_menu)
+        });
+
+        // add sub menu entry to the selection menu
+        browser.menus.create({
+            contexts : ['selection', 'tab', 'page'],
+            title    : conf_link.name,
+            parentId : selection_context_id,
+            onclick  : (info, tab) => on_context_menu_selection(i, info, tab),
+        });
     }
 }
 
@@ -203,6 +226,22 @@ async function on_context_menu(e) {
     let the_message = e.selectedMessages.messages[0]
     let idx = e.menuItemId.replace('sub_context_menu_', '')
     link_to_clipboard(idx, the_message)
+}
+
+//
+// Handle menu entries from the right click menu in a (message) tab
+//
+async function on_context_menu_selection(idx, info, tab) {
+    let message = await messenger.messageDisplay.getDisplayedMessage(tab.id);
+
+    if (!message) {
+        console.error(`Could not find message in tab #${tab.id} (probably not a message tab?)`);
+        return false;
+    }
+
+    let selected_text = info.selectionText;
+
+    link_to_clipboard(idx, message, selected_text);
 }
 
 //
