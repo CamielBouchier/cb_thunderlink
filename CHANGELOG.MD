@@ -1,3 +1,8 @@
+Release_1_3_0
+=============
+
+* Merged https://github.com/CamielBouchier/cb_thunderlink/pull/38
+
 Release_1_2_0
 =============
 

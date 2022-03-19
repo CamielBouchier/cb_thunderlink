@@ -10,3 +10,4 @@ __pycache__/*
 .*.swp
 *.zip
 pyvenv.cfg
+cb_thunderlink.html
