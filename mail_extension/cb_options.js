@@ -44,10 +44,11 @@ function store_settings() {
         prefer_folders[i] = prefer_folders[i].trim()
     }
     let settings = {
-        open_mode      : document.querySelector('input[name="open_mode"]:checked').value,
-        conf_links     : conf_links,
-        avoid_folders  : avoid_folders,
-        prefer_folders : prefer_folders,
+        open_mode           : document.querySelector('input[name="open_mode"]:checked').value,
+        now_strftime_format : document.getElementById('now_strftime_format').value.trim(),
+        conf_links          : conf_links,
+        avoid_folders       : avoid_folders,
+        prefer_folders      : prefer_folders,
     }
     browser.storage.local.set({cb_thunderlink: settings})
 }
@@ -66,11 +67,13 @@ for (input of inputs) {
 
 browser.storage.local.get('cb_thunderlink').then((settings) => {
     if (settings.cb_thunderlink) {
-        let open_mode      = settings.cb_thunderlink.open_mode
-        let avoid_folders  = settings.cb_thunderlink.avoid_folders
-        let prefer_folders = settings.cb_thunderlink.prefer_folders
-        let conf_links     = settings.cb_thunderlink.conf_links
+        let open_mode           = settings.cb_thunderlink.open_mode
+        let now_strftime_format = settings.cb_thunderlink.now_strftime_format
+        let avoid_folders       = settings.cb_thunderlink.avoid_folders
+        let prefer_folders      = settings.cb_thunderlink.prefer_folders
+        let conf_links          = settings.cb_thunderlink.conf_links
         document.getElementById(open_mode).checked = true
+        document.getElementById('now_strftime_format').value = now_strftime_format
         document.getElementById('avoid_folders').value = avoid_folders.join(', ')
         document.getElementById('prefer_folders').value = prefer_folders.join(', ')
         for (const key in conf_links) {

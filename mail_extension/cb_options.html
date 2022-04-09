@@ -41,6 +41,12 @@ $EndLicense$
             <input id="avoid_folders" type="text" 
                    placeholder="list of folders to be avoided"/>
 
+            <h4><b>Time format for '$now$'</b></h4>
+
+            <p> See <a href ="https://github.com/thdoan/strftime"> supported specifiers</a></p>
+
+            <input id="now_strftime_format" type="text" placeholder="%d-%m-%Y %H:%M:%S"/>
+
             <h4><b>Configurable links</b></h4>
 
             <p>Here you can configure the links to be generated.</p>
@@ -116,6 +122,10 @@ $EndLicense$
                 <li>
                     $selected_text$ =&gt; Currently selected text
                      (only available when calling cb_thunderlink by right-clicking in a message tab, <strong>not</strong> from the message list).
+                </li>
+                <li>
+                    $now$ =&gt; the time the link was generated, in a format defined by the 
+                    setting 'now_strftime_format'.
                 </li>
             </ul>
             <p>Typical default entries are:</p>
