@@ -1,3 +1,8 @@
+Release_1_6_0
+=============
+
+* Implemented https://github.com/CamielBouchier/cb_thunderlink/issues/47
+
 Release_1_5_0
 =============
 
