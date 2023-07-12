@@ -8,7 +8,7 @@
     "gecko": {
         "id": "cb_thunderlink@bouchier.be",
         "strict_min_version": "68.9.0",
-        "strict_max_version": "102.*"
+        "strict_max_version": "115.*"
         }
     },
     "browser_action": {
