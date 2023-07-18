@@ -25,6 +25,11 @@ try {
         console.log(e)
     }
 }
+try {
+    var { GlodaConstants } = ChromeUtils.import("resource:///modules/gloda/GlodaConstants.jsm")
+} catch(e) {
+    console.log(e)
+}
 
 //
 // Implementation of an experimental API.
@@ -66,8 +71,8 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
                 },
                 cb_show_message_from_msg_id(msg_id, open_mode, prefer_folders, avoid_folders) {
                     console.log("cb_show_message_from_msg_id", msg_id, open_mode, prefer_folders, avoid_folders)
-                    let query = Gloda.newQuery(Gloda.NOUN_MESSAGE)
-		            query.headerMessageID(msg_id)
+                    let query = Gloda.newQuery(GlodaConstants.NOUN_MESSAGE)
+		    query.headerMessageID(msg_id)
                     query.getCollection({
                         onItemsAdded : function () {},
                         onItemsModified : function () {},
