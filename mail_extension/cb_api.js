@@ -25,10 +25,13 @@ try {
         console.log(e)
     }
 }
+
+// Somewhere around version 115 it seems NOUN_MESSAGE moved into GlodaConstants instead of GlodaPublic
 try {
     var { GlodaConstants } = ChromeUtils.import("resource:///modules/gloda/GlodaConstants.jsm")
+    var CB_NOUN_MESSAGE = GlodaConstants.NOUN_MESSAGE
 } catch(e) {
-    console.log(e)
+    var CB_NOUN_MESSAGE = Gloda.NOUN_MESSAGE
 }
 
 //
@@ -71,8 +74,8 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
                 },
                 cb_show_message_from_msg_id(msg_id, open_mode, prefer_folders, avoid_folders) {
                     console.log("cb_show_message_from_msg_id", msg_id, open_mode, prefer_folders, avoid_folders)
-                    let query = Gloda.newQuery(GlodaConstants.NOUN_MESSAGE)
-		    query.headerMessageID(msg_id)
+                    let query = Gloda.newQuery(CB_NOUN_MESSAGE)
+		            query.headerMessageID(msg_id)
                     query.getCollection({
                         onItemsAdded : function () {},
                         onItemsModified : function () {},
