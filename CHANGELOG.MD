@@ -1,3 +1,8 @@
+Release_1_7_1
+=============
+
+* Implemented https://github.com/CamielBouchier/cb_thunderlink/pull/57
+
 Release_1_7_0
 =============
 
