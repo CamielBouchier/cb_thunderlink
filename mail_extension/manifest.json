@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "version": "1.7.1",
+    "version": "1.7.2",
     "name": "cb_thunderlink",
     "description": "cb_thunderlink is a thunderlink replacement.",
     "author": "camiel@bouchier.be",

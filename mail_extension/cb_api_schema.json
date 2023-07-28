@@ -10,6 +10,11 @@
             "async": true,
             "parameters": 
                 [
+		    {
+	            "name": "tb_version",
+                    "type": "integer",
+                    "description": "The tb_version."
+                    },
                     {
                     "name": "api_id",
                     "type": "integer",
@@ -29,6 +34,11 @@
             "async": true,
             "parameters": 
                 [
+		    {
+	            "name": "tb_version",
+                    "type": "integer",
+                    "description": "The tb_version."
+                    },
                     {
                     "name": "msg_id",
                     "type": "string",

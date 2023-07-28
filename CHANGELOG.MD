@@ -1,3 +1,10 @@
+Release_1_7_2
+=============
+
+* Support for ESR115
+* Implemented https://github.com/CamielBouchier/cb_thunderlink/issues/59
+* Implemented https://github.com/CamielBouchier/cb_thunderlink/issues/58
+
 Release_1_7_1
 =============
 

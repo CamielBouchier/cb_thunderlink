@@ -157,6 +157,15 @@ browser.storage.onChanged.addListener(
 
 get_settings() // Actually will kick us of, generating the context menus.
 
+var tb_version
+
+async function get_version() {
+    let v = await browser.runtime.getBrowserInfo()
+    tb_version = parseInt(v.version.split('.')[0])
+}
+
+get_version()
+
 //
 // https://base64.guru/developers/javascript/examples/unicode-strings
 //
@@ -288,8 +297,7 @@ async function create_context_menu() {
             contexts : ['message_list'],
             title    : conf_link.name,
             parentId : main_context_id,
-            id       : 'sub_context_menu_' + i,
-            onclick  : on_context_menu
+            id       : 'sub_context_menu_' + i
         });
 
         // add sub menu entry to the selection menu
@@ -297,8 +305,17 @@ async function create_context_menu() {
             contexts : ['selection', 'tab', 'page'],
             title    : conf_link.name,
             parentId : selection_context_id,
-            onclick  : (info, tab) => on_context_menu_selection(i, info, tab),
+            id       : 'other_menu_'+ i
         });
+
+        browser.menus.onClicked.addListener((info, tab) => {
+            if (info.menuItemId.startsWith('sub_context_menu_')) {
+                on_context_menu(info)
+            }
+            if (info.menuItemId.startsWith('other_menu_')) {
+                on_context_menu_selection(info, tab)
+            }
+        })
     }
 }
 
@@ -316,7 +333,8 @@ async function on_context_menu(e) {
 //
 // Handle menu entries from the right click menu in a (message) tab
 //
-async function on_context_menu_selection(idx, info, tab) {
+async function on_context_menu_selection(info, tab) {
+    let idx = info.menuItemId.replace('other_menu_', '')
     let message = await messenger.messageDisplay.getDisplayedMessage(tab.id);
 
     if (!message) {
@@ -402,12 +420,15 @@ async function handle_incoming_link(incoming_link) {
             console.error("Investigate me. the_message == null. ml:",ml)
             return
         }
-        messenger.cb_api.cb_show_message_from_api_id(the_message.id, open_mode)
+        messenger.cb_api.cb_show_message_from_api_id(tb_version, 
+                                                     the_message.id, 
+                                                     open_mode)
     }
 
     if (link_type == 'thunderlink') {
         msg_id =  link.replace('messageid=', '')
-        messenger.cb_api.cb_show_message_from_msg_id(msg_id,
+        messenger.cb_api.cb_show_message_from_msg_id(tb_version,
+                                                     msg_id,
                                                      open_mode,
                                                      settings.prefer_folders,
                                                      settings.avoid_folders)

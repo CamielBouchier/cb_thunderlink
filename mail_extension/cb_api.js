@@ -46,8 +46,8 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
         return {
             cb_api: {
-                cb_show_message_from_api_id(api_id, open_mode) {
-                    console.log("cb_show_message_from_api_id", api_id, open_mode)
+                cb_show_message_from_api_id(tb_version, api_id, open_mode) {
+                    console.log("cb_show_message_from_api_id", tb_version, api_id, open_mode)
                     // See : https://thunderbird-webextensions.readthedocs.io/en/latest/how-to/experiments.html
                     // #using-folder-and-message-types
                     let the_message = context.extension.messageManager.get(api_id)
@@ -65,15 +65,21 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
                             let tabmail = win.document.getElementById("tabmail")
                             tabmail.switchToTab(0) //will always be the mail tab
                             win.focus()
-		                    win.gFolderTreeView.selectFolder(the_message.folder)
-		                    win.gFolderDisplay.selectMessage(the_message)
+                            if (tb_version <= 102) {
+		                        win.gFolderTreeView.selectFolder(the_message.folder)
+		                        win.gFolderDisplay.selectMessage(the_message)
+                            } else {
+                                win.gTabmail.tabInfo[0].folder = the_message.folder
+                                win.gTabmail.currentAbout3Pane.selectMessage(the_message)
+                            }
                         } else {
 		                    MailUtils.displayMessage(the_message)
 		                }
 		            }
                 },
-                cb_show_message_from_msg_id(msg_id, open_mode, prefer_folders, avoid_folders) {
-                    console.log("cb_show_message_from_msg_id", msg_id, open_mode, prefer_folders, avoid_folders)
+                cb_show_message_from_msg_id(tb_version, msg_id, open_mode, prefer_folders, avoid_folders) {
+                    console.log("cb_show_message_from_msg_id", 
+                                tb_version, msg_id, open_mode, prefer_folders, avoid_folders)
                     let query = Gloda.newQuery(CB_NOUN_MESSAGE)
 		            query.headerMessageID(msg_id)
                     query.getCollection({
@@ -127,8 +133,13 @@ var cb_api = class extends ExtensionCommon.ExtensionAPI {
                                     let tabmail = win.document.getElementById("tabmail")
                                     tabmail.switchToTab(0) //will always be the mail tab
                                     win.focus()
-		                            win.gFolderTreeView.selectFolder(the_message.folder)
-		                            win.gFolderDisplay.selectMessage(the_message)
+                                    if (tb_version <= 102) {
+		                                win.gFolderTreeView.selectFolder(the_message.folder)
+		                                win.gFolderDisplay.selectMessage(the_message)
+                                    } else {
+                                        win.gTabmail.tabInfo[0].folder = the_message.folder
+                                        win.gTabmail.currentAbout3Pane.selectMessage(the_message)
+                                    }
                                 } else {
 		                            MailUtils.displayMessage(the_message)
 		                        }
