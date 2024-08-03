@@ -15,6 +15,8 @@
 
 rm -rf build_linux
 rm -rf dist_linux
+mkdir build_linux
+mkdir dist_linux
 cd mail_extension
 7z a cb_thunderlink.xpi @files_in_xpi.lst
 cd ..

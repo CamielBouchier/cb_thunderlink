@@ -14,8 +14,10 @@
 console.log("cb_api started")
 
 var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm")
-var { Services }        = ChromeUtils.import("resource://gre/modules/Services.jsm")
 var { MailUtils }       = ChromeUtils.import("resource:///modules/MailUtils.jsm")
+
+const Services          = globalThis.Services || ChromeUtils.import("resource://gre/modules/Services.jsm").Services
+
 try {
     var { Gloda }       = ChromeUtils.import("resource:///modules/gloda/GlodaPublic.jsm")
 } catch(e) {

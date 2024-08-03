@@ -1,3 +1,8 @@
+Release_1_7_4
+=============
+
+* Support for ESR128
+
 Release_1_7_3
 =============
 

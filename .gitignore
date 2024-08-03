@@ -9,5 +9,7 @@ __pycache__/*
 *.xpi
 .*.swp
 *.zip
+*.*~
 pyvenv.cfg
 cb_thunderlink.html
+mail_extension/dot_vim/*.*
