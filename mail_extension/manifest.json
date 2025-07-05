@@ -1,92 +1,77 @@
 {
-    "manifest_version": 2,
-    "version": "1.7.4",
-    "name": "cb_thunderlink",
-    "description": "cb_thunderlink is a thunderlink replacement.",
-    "author": "camiel@bouchier.be",
-    "applications": {
-    "gecko": {
-        "id": "cb_thunderlink@bouchier.be",
-        "strict_min_version": "68.9.0",
-        "strict_max_version": "128.*"
-        }
-    },
-    "browser_action": {
-        "default_icon": "images/cb-32px.png"
-    },
-    "commands": {
-	"drop_link": {
-	    "suggested_key": {
-		"default": "Ctrl+Alt+0"
-	    },
-	    "description": "Paste configurable link from the clipboard"
+	"manifest_version": 2,
+	"version": "1.9.1",
+	"name": "cb_thunderlink",
+	"description": "cb_thunderlink is a thunderlink replacement.",
+	"author": "camiel@bouchier.be",
+	"applications": {
+		"gecko": {
+			"id": "cb_thunderlink@bouchier.be",
+			"strict_min_version": "128.0"
+		}
 	},
-	"copy_link_1": {
-	    "suggested_key": {
-		"default": "Ctrl+Alt+1"
-	    },
-	    "description": "Copy configurable link 1 to the clipboard"
+	"browser_action": {
+		"default_icon": "images/cb-32px.png"
 	},
-	"copy_link_2": {
-	    "suggested_key": {
-		"default": "Ctrl+Alt+2"
-	    },
-	    "description": "Copy configurable link 2 to the clipboard"
+	"commands": {
+		"drop_link": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+0"
+			},
+			"description": "Paste configurable link from the clipboard"
+		},
+		"copy_link_1": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+1"
+			},
+			"description": "Copy configurable link 1 to the clipboard"
+		},
+		"copy_link_2": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+2"
+			},
+			"description": "Copy configurable link 2 to the clipboard"
+		},
+		"copy_link_3": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+3"
+			},
+			"description": "Copy configurable link 3 to the clipboard"
+		},
+		"copy_link_4": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+4"
+			},
+			"description": "Copy configurable link 4 to the clipboard"
+		},
+		"copy_link_5": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+5"
+			},
+			"description": "Copy configurable link 5 to the clipboard"
+		}
 	},
-	"copy_link_3": {
-	    "suggested_key": {
-		"default": "Ctrl+Alt+3"
-	    },
-	    "description": "Copy configurable link 3 to the clipboard"
+	"permissions": [
+		"accountsRead",
+		"clipboardRead",
+		"clipboardWrite",
+		"menus",
+		"messagesRead",
+		"nativeMessaging",
+		"storage"
+	],
+	"icons": {
+		"64": "images/cb-64px.png",
+		"32": "images/cb-32px.png",
+		"16": "images/cb-16px.png"
 	},
-	"copy_link_4": {
-	    "suggested_key": {
-		"default": "Ctrl+Alt+4"
-	    },
-	    "description": "Copy configurable link 4 to the clipboard"
-	},
-	"copy_link_5": {
-	    "suggested_key": {
-		"default": "Ctrl+Alt+5"
-	    },
-	    "description": "Copy configurable link 5 to the clipboard"
-	}
-    },
-    "permissions": [
-	    "accountsRead",
-	    "clipboardRead",
-	    "clipboardWrite",
-	    "menus",
-	    "messagesRead",
-	    "nativeMessaging",
-	    "storage"
-    ],
-    "icons": {
-    "64": "images/cb-64px.png",
-    "32": "images/cb-32px.png",
-    "16": "images/cb-16px.png"
-	},
-    "background": {
-	    "scripts": [
-		"cb_background.js"
+	"background": {
+		"scripts": [
+			"cb_background.js"
 		],
-	    "persistent": true
-    },
-    "experiment_apis": {
-        "cb_api": {
-            "schema": "cb_api_schema.json",
-            "parent": {
-                "scopes": [
-                    "addon_parent"
-                ],
-                "paths": [
-                    [ "cb_api" ]
-                ],
-                "script": "cb_api.js"
-            }
-        }
-    },
-    "options_ui": {
-        "page": "cb_options.html"
-    }
+		"type": "module"
+	},
+	"options_ui": {
+		"page": "cb_options.html"
+	}
 }

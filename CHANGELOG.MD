@@ -1,3 +1,11 @@
+Release_1_9_1
+=============
+
+* Synced with https://github.com/pauleve/cb_thunderlink/releases/tag/v1.9.0
+* Thereby removing experiments etc.
+* Some functionality *might* be lost or go slower. Feedback over time will learn.
+* At least works with my TB 128 ESR and TB 140. Chances all between OK as well.
+
 Release_1_7_4
 =============
 
