@@ -35,6 +35,7 @@ import struct
 import subprocess
 import sys
 import time
+import urllib.parse
 
 if sys.platform == "win32" :
     import ctypes
@@ -209,7 +210,9 @@ if __name__ == '__main__' :
         logger.info("Executing cb_thunderlink")
         send_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         send_socket.connect(server_address)
-        message = sys.argv[1].strip('/')
+        # Hmz. 2025-03-25: not well understood, issue (messageid%3d) is only there on some machines
+        decoded_input = urllib.parse.unquote(sys.argv[1])  
+        message = decoded_input.strip('/')
         logger.info(f"Message sent: {message}")
         encoded_content = json.dumps(message).encode("utf-8")
         encoded_length = struct.pack('=I', len(encoded_content))
