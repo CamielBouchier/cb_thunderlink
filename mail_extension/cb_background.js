@@ -271,8 +271,22 @@ async function handle_incoming_link(incoming_link) {
 
     console.log("handle_incoming_link", incoming_link)
 
+    // Handle markread:// protocol for external mark-as-read requests
+    let markread_match = /^markread:\/\/messageid=(.+)$/i.exec(incoming_link)
+    if (markread_match) {
+        let message_id = decodeURIComponent(markread_match[1])
+        // Strip angle brackets if present
+        message_id = message_id.replace(/^</, '').replace(/>$/, '')
+        await handle_markread(message_id)
+        return
+    }
+
     let open_mode = settings.open_mode
     let match = /((cb)?thunderlink):\/\/([^\s\]]+)/.exec(incoming_link)
+    if (!match) {
+        console.log("No match for incoming link:", incoming_link)
+        return
+    }
     let link_type = match[1]
     let link = match[3]
 
@@ -283,6 +297,55 @@ async function handle_incoming_link(incoming_link) {
         case "thunderlink":
             cb_show_message_from_thunderlink(link, open_mode, settings)
             break;
+    }
+}
+
+//
+// Handle markread:// protocol - Mark a message as read by Message-ID
+//
+// This allows external applications (like markdown-based email dashboards) to mark
+// emails as read in Thunderbird without requiring IMAP credentials.
+//
+// Protocol: markread://messageid=<message-id>
+//
+
+async function handle_markread(message_id) {
+    console.log(`cb_thunderlink: Marking as read: ${message_id}`)
+
+    try {
+        // Search all accounts for the message by headerMessageId
+        let found = await messenger.messages.query({
+            headerMessageId: message_id
+        })
+
+        if (found.messages && found.messages.length > 0) {
+            let msg = found.messages[0]
+
+            // Mark as read using the messages API
+            await messenger.messages.update(msg.id, { read: true })
+
+            console.log(`cb_thunderlink: Marked as read - ${msg.subject}`)
+            return true
+        }
+
+        // Try with angle brackets if not found
+        found = await messenger.messages.query({
+            headerMessageId: `<${message_id}>`
+        })
+
+        if (found.messages && found.messages.length > 0) {
+            let msg = found.messages[0]
+            await messenger.messages.update(msg.id, { read: true })
+            console.log(`cb_thunderlink: Marked as read (with brackets) - ${msg.subject}`)
+            return true
+        }
+
+        console.warn(`cb_thunderlink: Message not found: ${message_id}`)
+        return false
+
+    } catch (error) {
+        console.error(`cb_thunderlink: Error marking as read: ${error}`)
+        return false
     }
 }
 

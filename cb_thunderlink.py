@@ -46,7 +46,7 @@ if sys.platform == "win32" :
 program_name    = 'cb_thunderlink'
 author_mail     = 'camiel@bouchier.be'
 server_address  = ('127.0.0.1', 1302)
-protocols       = ['cbthunderlink', 'thunderlink']    # Protocol can not have _ !
+protocols       = ['cbthunderlink', 'thunderlink', 'markread']    # Protocol can not have _ !
 
 this_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 log_dir  = f"{this_dir}/logs"

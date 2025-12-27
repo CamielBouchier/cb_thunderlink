@@ -57,6 +57,7 @@
 		"clipboardWrite",
 		"menus",
 		"messagesRead",
+		"messagesUpdate",
 		"nativeMessaging",
 		"storage"
 	],
